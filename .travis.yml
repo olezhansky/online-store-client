@@ -9,8 +9,6 @@ cache:
 
 before_script:
   - npm install
-  - yarn add
 
 script:
   - npm run test
-  - yarn run test
