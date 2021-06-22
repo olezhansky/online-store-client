@@ -21,7 +21,7 @@ const useStyles = makeStyles({
   },
   container: {
     flexGrow: 1,
-  }
+  },
 });
 
 function App() {
