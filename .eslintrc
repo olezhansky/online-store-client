@@ -24,5 +24,7 @@
       "flowVersion": "0.86"
     },
     "propWrapperFunctions": [ "forbidExtraProps" ]
-  }
+  },
+  "indent": [2, "tab"]
+  
 }
