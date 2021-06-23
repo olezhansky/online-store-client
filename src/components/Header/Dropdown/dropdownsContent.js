@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 const dropdownsContent = [
         {
                 categoryId: 1,
@@ -52,7 +53,9 @@ const dropdownsContent = [
                                 path: '/products',
                                 id: '10_MenuItems'
                         }
+
                 ]
+
         },
         {
                 categoryId: 2,
