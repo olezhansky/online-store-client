@@ -6,7 +6,6 @@ const newProduct = {
   previousPrice: 250,
   categories: 'men',
   imageUrls: [
-
     'img/products/men/001.png',
     'img/products/men/002.png',
     'img/products/men/003.png',
@@ -26,13 +25,13 @@ const setProduct = () => {
     Authorization: token,
   };
   return axios
-    .post('https://intense-hamlet-33316.herokuapp.com/api/products', newProduct, {
-<<<<<<< HEAD
-      headers: headers,
-=======
-      headers,
->>>>>>> develop
-    })
+    .post(
+      'https://intense-hamlet-33316.herokuapp.com/api/products',
+      newProduct,
+      {
+        headers,
+      }
+    )
     .then((newProduct) => {
       /* Do something with newProduct */
       console.log('Product has been added');
