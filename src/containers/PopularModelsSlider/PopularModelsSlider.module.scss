@@ -1,11 +1,12 @@
 .PopularModelsSlider {
   height: 636px;
+  max-width: 1280px;
+  min-width: 320px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-  max-width: 1280px;
-  min-width: 320px;
+
   flex-wrap: nowrap;
 }
 
