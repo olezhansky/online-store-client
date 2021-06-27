@@ -34,7 +34,6 @@
     padding: 0px 25px;
     background-color: #51ad33;
   }
-
   .swiper-button-next,
   .swiper-container-rtl .swiper-button-next {
     top: 90%;
@@ -49,13 +48,11 @@
     background-color: #27690f;
     transition: 0.3s;
   }
-
   .swiper-button-next:after,
   .swiper-container-rtl .swiper-button-prev:after {
     content: 'next';
     font-size: 30px;
   }
-
   .swiper-button-prev:after,
   .swiper-container-rtl .swiper-button-prev:after {
     content: 'prev';
