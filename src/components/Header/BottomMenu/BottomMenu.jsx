@@ -4,7 +4,7 @@
 import React from 'react';
 import { MdViewHeadline, MdShoppingCart } from 'react-icons/md';
 
-import MenuItems from '../../../Data/ButtomMenuItems';
+import MenuItems from '../../../Data/buttomMenuItems';
 import SearchForm from '../SearchForm/SearchForm';
 import BottomMenuLink from './BottomMenuLink';
 import styles from './BottomMenu.module.scss';

@@ -11,10 +11,10 @@ import sliderData from '../../Data/headerSliderData';
 // Import Swiper React components
 
 // Import Swiper styles
-// import 'swiper/swiper.min.css';
+import 'swiper/swiper.min.css';
 import 'swiper/components/navigation/navigation.min.css';
 
-import './HeaderSlider.css';
+import './HeaderSlider.scss';
 
 // import Swiper core and required modules
 

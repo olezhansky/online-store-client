@@ -9,7 +9,7 @@ import { FaUserAlt } from 'react-icons/fa';
 import { BsBoxArrowInRight } from 'react-icons/bs';
 import styles from './MobileMenu.module.scss';
 import menuItems from '../../../Data/menuItems';
-import categoryItems from '../../../Data/ButtomMenuItems';
+import categoryItems from '../../../Data/buttomMenuItems';
 import LanguageSelector from '../LanguageSelector/LanguageSelector';
 
 const MobileMenu = ({ isOpen, toggleMenu }) => {
