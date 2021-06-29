@@ -4,6 +4,7 @@
   }
   .swiper-container {
     width: 1300px;
+    min-width: 320px;
   }
   .swiper-button-next,
   .swiper-button-prev {
@@ -13,9 +14,7 @@
     padding: 20px;
     background-color: #c2cddd;
   }
-  .swiper-slide {
-    margin: 3px;
-  }
+
   .swiper-button-prev {
     left: 0px;
   }
