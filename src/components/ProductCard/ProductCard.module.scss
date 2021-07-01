@@ -2,23 +2,22 @@
   display: flex;
   flex-direction: column;
   background: rgb(255, 255, 255);
-  // min-height: 280px;
-  // align-items: left;
   justify-content: left;
   cursor: pointer;
-  // h2 {
-  //   font-size: 25px;
-  //   text-align: center;
-  // }
-  // &:hover {
-  //   box-shadow: 3px 2px 3px rgba(0, 0, 0, 0.295);
-  // }
+  max-width: 290px;
+  border: 1px;
   padding: 10px;
+
+  &:hover {
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(81, 173, 51, 0.5);
+    height: 550px;
+  }
 }
 .ProductImg {
-  width: 280px;
+  width: 277px;
   height: 277px;
-  background-color: red;
+  background-color: #51ad33;
 }
 .ProductName {
   font-family: Arial, Helvetica, sans-serif;
@@ -55,5 +54,19 @@
   width: 27px;
   height: 27px;
   color: #51ad33;
-  margin: 10px 21px;
+  margin: 10px 19px;
+  &:hover {
+    background-color: #51ad33;
+    color: white;
+  }
+}
+
+.ProductInfo {
+  display: none;
+  color: #333131;
+  font-size: 12px;
+  line-height: 18px;
+}
+.ProductCard:hover > .ProductInfo {
+  display: block;
 }

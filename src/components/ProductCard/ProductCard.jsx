@@ -10,7 +10,7 @@ const ProductCard = () => (
     <div className={styles.ProductCard}>
       <img
         className={styles.ProductImg}
-        src="https://files.foxtrot.com.ua/PhotoNew/img_0_117_3047_0_Small.webp"
+        src="https://files.foxtrot.com.ua/PhotoNew/img_0_117_3135_0_Small.webp"
         alt=""
       />
       <h2 className={styles.ProductName}>
@@ -33,6 +33,12 @@ const ProductCard = () => (
             <BiCart className={styles.ProductIcon} />
           </span>
         </div>
+      </div>
+      <div className={styles.ProductInfo}>
+        Матрица 22.3 x 14.9 мм, 24.2 Мп поддержка карт памяти
+        SD/SDHC/SDXCСенсорный ЖК-дисплей с переменным углом наклона Clear View
+        II TFT 3&#34; / FullHD-видео / питание от литий-ионного аккумулятора /
+        131 x 76.2 x 99.9 мм, 532 г
       </div>
     </div>
     {/* ))} */}
