@@ -1,3 +1,11 @@
+.OrderingInfo {
+  h2 {
+    font-size: 20px;
+    line-height: 20px;
+    font-weight: 700;
+    font-family: 'Roboto', sans-serif;
+  }
+}
 .ContactsData {
   width: 500px;
 }
@@ -5,12 +13,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  h2 {
-    font-size: 20px;
-    line-height: 20px;
-    font-weight: 700;
-    font-family: 'Roboto', sans-serif;
-  }
   p {
     font-size: 12px;
     line-height: 12px;
@@ -35,6 +37,19 @@
     width: 100%;
     padding: 15px;
     border-radius: 5px;
+    &:focus {
+      box-shadow: 0px 0px 5px 1px #d3d7da;
+    }
+  }
+}
+
+.Delivery {
+  margin-top: 45px;
+}
+.DeliveryForm {
+  margin-top: 35px;
+  label {
+    cursor: pointer;
   }
 }
 
