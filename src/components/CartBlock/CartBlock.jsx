@@ -27,7 +27,7 @@ const CartBlock = () => (
                   (Wi-Fi) Body
                 </div>
                 <div className={styles.CartMainItemProductCode}>
-                  Код товара: 012212
+                  Код товара: 01221
                 </div>
               </div>
             </div>
