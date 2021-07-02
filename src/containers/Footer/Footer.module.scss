@@ -1,0 +1,22 @@
+.Footer {
+  height: 320px;
+  color: #fff;
+  background-color: #000;
+  padding-top: 65px;
+  font-size: 12px;
+}
+
+.FooterGrid {
+  height: 180px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 133px;
+  margin-right: 147px;
+
+}
+@media (max-width: 950px) {
+  .Footer {
+    min-height: auto;
+  }
+}

@@ -1,0 +1,167 @@
+.Footer {
+  height: 320px;
+  color: #fff;
+  background-color: #000;
+  padding-top: 65px;
+  font-size: 12px;
+}
+.FooterCopyrightBefore {
+  position: relative;
+}
+.FooterCopyrightBefore::before {
+  content: '';
+  position: absolute;
+  width: 70%;
+  height: 1px;
+  background-color: #5E5C5C;
+  margin-left: 15%;
+  // margin-top: 1%;
+}
+.FooterCopyrightText {
+  text-align: center;
+  padding-top: 53px;
+}
+.FooterGrid {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 133px;
+  margin-right: 147px;
+}
+.footerSubscribe {
+  color: #fff;
+}
+.contactsLink { 
+  text-decoration: none;
+  color: #fff; 
+}
+.FooterInformationText {
+  margin-bottom: 5px;
+}
+h6 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.icons {
+  display: flex;
+  flex-direction: row;
+  padding-left: 20px;
+}
+.form {
+  display: flex;
+  flex-direction: row;
+  width: 280px;
+  height: 32px;
+  background: #FFF;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+.input {
+  border: none;
+  margin-left: 18px;
+}
+.button {
+  margin-left: 75px;
+  margin-top: 2px;
+  background-color: #51AD33;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  border: none;
+  transition: all 0.2s ease 0s;
+}
+.selectIcon {
+  padding-top: 4px;
+  padding-left: 2,75px;
+  color: #fff;
+
+}
+.footerText {
+  margin-top: 75px;
+}
+.footerSubscribeIcon {
+  width: 120px;
+  justify-content: space-between;
+  padding-top: 0px;
+  padding-left: 15px;
+}
+.footerSubscribeTitle {
+padding-left: 20px;
+margin-bottom: 17px;
+}
+.contacts {
+  padding-top: -5px ;
+}
+.contactsText {
+  margin-top: 0px;
+}
+.contactsTel {
+  margin-top: 5px;
+}
+.contactsMail {
+  margin-top: 5px;
+}
+@media screen and (max-width: 1200px) {
+  // .Footer {
+  //   min-height: 300px;
+  // }
+  .FooterCopyrightBefore {
+    width: 60%;
+  }
+}
+@media screen and (max-width: 1024px) {
+  // .Footer {
+  //   min-height: 200px;
+  // }
+  .FooterCopyrightBefore {
+    width: 35%;
+    margin-left: 15%;
+  }
+}
+@media screen and (max-width: 768px) {
+ 
+  .FooterGrid {
+    flex-direction: column;
+  }
+    .FooterInformation {
+      display: none;
+    }
+}
+@media screen and (max-width: 480px) {
+  
+}
+.FooterInformation {
+color: #fff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
