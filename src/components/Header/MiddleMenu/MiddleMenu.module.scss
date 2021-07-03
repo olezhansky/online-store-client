@@ -1,0 +1,57 @@
+@import '../../../assets/styles/variables';
+.Logo {
+  cursor: pointer;
+  height: 40px;
+  img {
+    height: 100%;
+  }
+}
+.mainHeader {
+  display: flex;
+  flex: 1 1 auto;
+}
+.HeaderWrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+}
+.HeaderlinksBlockWrapper {
+  display: flex;
+}
+.HeaderLink {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.HeaderIconWrapper {
+  background: rgb(219, 219, 219);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  margin-right: 5px;
+  transition: all 0.2s ease 0s;
+  &:hover {
+    background: rgb(1, 177, 24);
+  }
+}
+.HeaderIcon {
+  color: #fff;
+  &_cart {
+    font-size: 20px;
+  }
+}
+.HeaderIconText {
+  color: $middleGray;
+}
+@media (max-width: 1024px) {
+  .HeaderWrapper {
+    display: none;
+  }
+}

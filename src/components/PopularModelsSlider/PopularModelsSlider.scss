@@ -1,0 +1,22 @@
+.swiper-container-3 {
+  :root {
+    --swiper-navigation-size: none;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    width: 9px;
+    height: 9px;
+    color: white;
+    padding: 21px;
+    background-color: #c2cddd;
+    top: 210px;
+  }
+
+  .swiper-button-prev {
+    left: 0px;
+  }
+  .swiper-button-next {
+    right: 0px;
+  }
+}
