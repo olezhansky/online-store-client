@@ -1,6 +1,7 @@
 import React from 'react';
 import MainImg from '../../../assets/img/cartBlock/cartImg.png';
 import styles from './ProductsInCart.module.scss';
+import Button from '../../UI/Button/Button';
 
 const ProductsInCart = () => (
   <div className={styles.ProductsInCart}>
@@ -28,7 +29,7 @@ const ProductsInCart = () => (
         Сумма заказа:   16 619
         <span> грн</span>
       </p>
-      <button type="button" className={styles.FooterConfirm}>Подтвердить</button>
+      <Button type="ordering_confirm">Подтвердить</Button>
     </div>
   </div>
     );

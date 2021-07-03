@@ -62,6 +62,7 @@
   line-height: 52px;
   font-weight: 700;
   font-family: 'Roboto', sans-serif;
+  margin-bottom: 23px;
   span {
     font-weight: 400;
   }
@@ -70,20 +71,4 @@
     line-height: 32px;
   }
 }
-.FooterConfirm {
-  margin-top: 23px;
-  background-color: #51ad33;
-  color: #fff;
-  padding: 10px 55px;
-  font-size: 16px;
-  line-height: 27px;
-  font-weight: 500;
-  font-family: 'Roboto', sans-serif;
-  text-transform: uppercase;
-  border-radius: 3px;
-  transition: 0.1s ease-in;
-  &:hover {
-    transition: 0.1s ease;
-    background-color: #368e1a;
-  }
-}
+
