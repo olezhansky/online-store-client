@@ -79,6 +79,7 @@ label {
   display: flex;
   flex-direction: row;
   padding-left: 20px;
+  margin-top: 20px;
 }
 .form {
   display: flex;
@@ -115,24 +116,29 @@ label {
 .footerSubscribeIcon {
   width: 120px;
   justify-content: space-between;
-  padding-top: 0px;
+  // padding-top: 2px;
   padding-left: 15px;
+  // margin-top: 7px;
 }
 .footerSubscribeTitle {
-padding-left: 20px;
-margin-bottom: 17px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  padding-left: 20px;
+  margin-bottom: 25px;
+  padding-top: 15px;
 }
 .contacts {
   padding-top: -5px ;
 }
 .contactsText {
-  margin-top: 0px;
+  margin-top: 20px;
 }
 .contactsTel {
-  margin-top: 5px;
+  margin-top: 3px;
 }
 .contactsMail {
-  margin-top: 5px;
+  margin-top: 17px;
 }
 @media screen and (max-width: 1200px) {
   // .Footer {
