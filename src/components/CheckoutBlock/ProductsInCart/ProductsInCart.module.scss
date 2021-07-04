@@ -10,6 +10,9 @@
     font-weight: 700;
     font-family: 'Roboto', sans-serif;
     color: #fff;
+    @media (max-width: 768px) {
+      text-align: center;
+    }
   }
 }
 .Main {
@@ -20,6 +23,17 @@
   align-items: center;
   @media (max-width: 1024px) {
     padding: 30px 10px;
+  }
+  @media (max-width: 768px) {
+    justify-content: space-around;
+  }
+}
+.MainImgAndName {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  @media (max-width: 480px) {
+    flex-direction: column;
   }
 }
 .MainName {

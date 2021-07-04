@@ -9,15 +9,18 @@ const ProductsInCart = () => (
       <h2>Товары в корзине</h2>
     </div>
     <div className={styles.Main}>
-      <div className={styles.MainImg}>
-        <img src={MainImg} alt={MainImg} />
+      <div className={styles.MainImgAndName}>
+        <div className={styles.MainImg}>
+          <img src={MainImg} alt={MainImg} />
+        </div>
+        <p className={styles.MainName}>
+          Canon EOS 6D
+          (Wi-Fi) Body
+          <br />
+          <span>Код товара: 012212</span>
+        </p>
       </div>
-      <p className={styles.MainName}>
-        Canon EOS 6D
-        (Wi-Fi) Body
-        <br />
-        <span>Код товара: 012212</span>
-      </p>
+   
       <p className={styles.MainPrice}>
         9137
         грн

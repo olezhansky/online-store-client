@@ -28,11 +28,15 @@ const OrderingInfo = () => {
     
   });
 
-  const [selectedValue, setSelectedValue] = React.useState('a');
-  const handleChangeDelivery = (event) => {
-    setSelectedValue(event.target.value);
-  };
+  const [selectedValueDelivery, setSelectedValueDelivery] = React.useState('a');
+  const [selectedValuePaymant, setSelectedValuePaymant] = React.useState('e');
 
+  const handleChangeDelivery = (event) => {
+    setSelectedValueDelivery(event.target.value);
+  };
+  const handleChangePaymant = (event) => {
+    setSelectedValuePaymant(event.target.value);
+  };
   return (
     <div className={styles.OrderingInfo}>
       <div className={styles.ContactsData}>
@@ -77,7 +81,7 @@ values, errors, touched, handleChange, handleBlur
         <form className={styles.DeliveryForm}>
           <div>
             <GreenRadio
-              checked={selectedValue === 'a'}
+              checked={selectedValueDelivery === 'a'}
               onChange={handleChangeDelivery}
               value="a"
               name="radio-button-demo"
@@ -85,11 +89,11 @@ values, errors, touched, handleChange, handleBlur
               id="pointOfDelivery"
             />
             <label htmlFor="pointOfDelivery">Самовывоз из пункта выдачи</label>
-            {selectedValue === 'a' && <Select />}
+            {selectedValueDelivery === 'a' && <Select />}
           </div>
           <div>
             <GreenRadio
-              checked={selectedValue === 'b'}
+              checked={selectedValueDelivery === 'b'}
               onChange={handleChangeDelivery}
               value="b"
               name="radio-button-demo"
@@ -97,11 +101,11 @@ values, errors, touched, handleChange, handleBlur
               id="newMail"
             />
             <label htmlFor="newMail">Новая почта (в отделение)</label>
-            {selectedValue === 'b' && <Select />}
+            {selectedValueDelivery === 'b' && <Select />}
           </div>
           <div>
             <GreenRadio
-              checked={selectedValue === 'c'}
+              checked={selectedValueDelivery === 'c'}
               onChange={handleChangeDelivery}
               value="c"
               name="radio-button-demo"
@@ -109,6 +113,84 @@ values, errors, touched, handleChange, handleBlur
               id="courierDelivery"
             />
             <label htmlFor="courierDelivery">Курьерская доставка</label>
+            {selectedValueDelivery === 'c' && <Select />}
+          </div>
+        </form>
+      </div>
+      <div className={styles.WaysOfPayment}>
+        <h2>Способы оплаты</h2>
+        <form className={styles.WaysOfPaymentForm}>
+          <div className={styles.WaysOfPaymentFormLeft}>
+            <div>
+              <GreenRadio
+                checked={selectedValuePaymant === 'd'}
+                onChange={handleChangePaymant}
+                value="d"
+                name="radio-button-demo"
+                inputProps={{ 'aria-label': 'D' }}
+                id="cash"
+              />
+              <label htmlFor="cash">
+                Наличными при получении
+              </label>
+            </div>
+            <div>
+              <GreenRadio
+                checked={selectedValuePaymant === 'e'}
+                onChange={handleChangePaymant}
+                value="e"
+                name="radio-button-demo"
+                inputProps={{ 'aria-label': 'E' }}
+                id="card"
+              />
+              <label htmlFor="card">Картой при получении</label>
+            </div>
+            <div>
+              <GreenRadio
+                checked={selectedValuePaymant === 'f'}
+                onChange={handleChangePaymant}
+                value="f"
+                name="radio-button-demo"
+                inputProps={{ 'aria-label': 'F' }}
+                id="cashless"
+              />
+              <label htmlFor="cashless">Безналичный расчет</label>
+            </div>
+          </div>
+          <div className={styles.WaysOfPaymentFormRight}>
+            <div>
+              <GreenRadio
+                checked={selectedValuePaymant === 'g'}
+                onChange={handleChangePaymant}
+                value="g"
+                name="radio-button-demo"
+                inputProps={{ 'aria-label': 'G' }}
+                id="alfa"
+              />
+              <label htmlFor="alfa">Кредит Альфа Банк</label>
+            </div>
+            <div>
+              <GreenRadio
+                checked={selectedValuePaymant === 'h'}
+                onChange={handleChangePaymant}
+                value="h"
+                name="radio-button-demo"
+                inputProps={{ 'aria-label': 'H' }}
+                id="credit"
+              />
+              <label htmlFor="credit">Кредит Credit Agricole</label>
+            </div>
+            <div>
+              <GreenRadio
+                checked={selectedValuePaymant === 'i'}
+                onChange={handleChangePaymant}
+                value="i"
+                name="radio-button-demo"
+                inputProps={{ 'aria-label': 'I' }}
+                id="UKRSIBBANK"
+              />
+              <label htmlFor="UKRSIBBANK">Кредит УКРСИББАНК</label>
+            </div>
           </div>
         </form>
       </div>
