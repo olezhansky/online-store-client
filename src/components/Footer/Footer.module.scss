@@ -22,8 +22,8 @@
   padding-top: 53px;
 }
 .FooterGrid {
-  display: flex;
-  flex-direction: row;
+  // display: flex;
+  // flex-direction: row;
   justify-content: space-between;
   margin-left: 133px;
   margin-right: 147px;
@@ -144,14 +144,25 @@ label {
   // .Footer {
   //   min-height: 300px;
   // }
+  .FooterGrid {
+    display: flex;
+    flex-direction: column;
+  }
+  // .FooterInformation {
+  //   display: block;
+  // }
   .FooterCopyrightBefore {
     width: 60%;
   }
 }
 @media screen and (max-width: 1024px) {
-  // .Footer {
-  //   min-height: 200px;
-  // }
+  .FooterGrid {
+    display: flex;
+    flex-direction: column;
+  }
+  .Footer {
+    min-height: 200px;
+  }
   .FooterCopyrightBefore {
     width: 35%;
     margin-left: 15%;
@@ -159,9 +170,9 @@ label {
 }
 @media screen and (max-width: 768px) {
  
-  .FooterGrid {
-    flex-direction: column;
-  }
+  // .FooterGrid {
+  //   flex-direction: column;
+  // }
     // .FooterInformation {
     //   display: none;
     // }
@@ -196,6 +207,7 @@ color: #fff;
   padding: 10px 0 0 0;
 }
 }
+// }
 
 
 

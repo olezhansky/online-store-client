@@ -15,6 +15,12 @@
   margin-right: 147px;
 
 }
+@media screen and (max-width: 1024px) {
+  .FooterGrid {
+    display: flex;
+    flex-direction: column;
+  }
+}
 @media (max-width: 950px) {
   .Footer {
     min-height: auto;
