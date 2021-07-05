@@ -44,3 +44,16 @@
     min-height: auto;
   }
 }
+@media screen and (max-width: 480px) {
+  label::after {
+    right: 60px;
+  }
+  .form {
+  //   width: 180px;
+  margin-left: -30px;
+  }
+  .label {
+    // width: 250px;
+    margin-left: -20px;
+  }
+}
