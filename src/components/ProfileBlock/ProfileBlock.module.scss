@@ -1,11 +1,37 @@
 .ProfileBlock {
   height: 600px;
   background: rgb(241, 241, 241);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
-.btnBox {
-  margin-top: 100px;
+.header {
+  height: 80px;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 26px;
+  padding-top: 20px;
+}
+.content {
+  display: flex;
+}
+.btnBlock {
+  background: rgb(155, 155, 155);
+  flex: 1 1 30%;
+}
+.btnProfile {
+  width: 100%;
+  min-height: 65px;
+  background: #f5f5f5;
+  border-bottom: 1px solid rgb(110, 110, 110);
+  font-size: 16px;
+  transition: all 0.1s ease 0s;
+  cursor: pointer;
+  &:hover {
+    background: #98a1af;
+  }
+  &_active {
+    background: #98a1af;
+  }
+}
+.optionContent {
+  flex: 1 1 70%;
+  background: rgb(255, 255, 255);
 }
