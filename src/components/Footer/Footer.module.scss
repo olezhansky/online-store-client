@@ -121,6 +121,7 @@ label {
   // margin-top: 7px;
 }
 .footerSubscribeTitle {
+  color: rgba(255, 255, 255, 0.5);
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
@@ -141,19 +142,33 @@ label {
   margin-top: 17px;
 }
 @media screen and (max-width: 1200px) {
-  // .Footer {
-  //   min-height: 300px;
-  // }
-  .FooterGrid {
-    display: flex;
-    flex-direction: column;
+  .Footer {
+    height: 320px;
   }
+  // .FooterGrid {
+  //   display: flex;
+  //   flex-direction: column;
+  // }
   // .FooterInformation {
   //   display: block;
   // }
-  .FooterCopyrightBefore {
-    width: 60%;
+  // .FooterCopyrightBefore {
+  //   width: 60%;
+  // }
+}
+@media screen and (max-width: 1100px) {
+  .Footer {
+    height: 680px;
+    padding-top: 5px;
   }
+ .FooterGrid {
+      display: flex;
+      flex-direction: column;
+    }
+    .FooterCopyrightText {
+      margin-top: 450px;
+      padding-top: 15px;
+    }
 }
 @media screen and (max-width: 1024px) {
   .FooterGrid {
