@@ -10,15 +10,12 @@ const ProfileBlock = () => {
   const [current, setCurrent] = useState('edit');
   const handleEdit = () => {
     setCurrent('edit');
-    console.log('edit');
   };
   const handleChange = () => {
     setCurrent('change');
-    console.log('change');
   };
   const handleOrders = () => {
     setCurrent('orders');
-    console.log('orders');
   };
   const btnEdit = classNames({
     [styles.btnProfile]: true,

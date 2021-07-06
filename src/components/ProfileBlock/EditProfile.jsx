@@ -6,13 +6,13 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import TextInput from './TextInput';
 import styles from './ProfileBlock.module.scss';
+import Button from '../UI/Button/Button';
 
 const EditProfile = () => {
   const handleSubmitForm = (values, { setSubmitting }) => {
-    const { firstName, lastName, age, address, email, phone } = values;
+    const { firstName, lastName, sex, birth, email, phone } = values;
     // const isPasswordMatch = newPassword === confirmPassword;
-    const isFormValid =
-      firstName && lastName && age && address && email && phone;
+    const isFormValid = firstName && lastName && sex && birth && email && phone;
 
     if (isFormValid) {
       setSubmitting(true);
@@ -39,7 +39,7 @@ const EditProfile = () => {
     age: Yup.number()
       .max(99, 'Must be 2 characters or less')
       .required('Age is required'),
-    address: Yup.string()
+    sex: Yup.string()
       .max(40, 'Must be 40 characters or less')
       .required('Address is required'),
     email: Yup.string().email('Email is invalid').required('Email is required'),
@@ -56,10 +56,10 @@ const EditProfile = () => {
         initialValues={{
           firstName: '',
           lastName: '',
-          age: '',
-          address: '',
+          sex: '',
           email: '',
           phone: '',
+          birth: '',
         }}
         onSubmit={handleSubmitForm}
         validationSchema={validate}
@@ -67,17 +67,15 @@ const EditProfile = () => {
         {(formik) => (
           <Form className={styles.formWrapper}>
             <div className={styles.inputsWrapper}>
-              <TextInput label="First name" name="firstName" type="text" />
-              <TextInput label="Last name" name="lastName" type="text" />
-              <TextInput label="Age" name="age" type="number" />
-              <TextInput label="Address" name="address" type="text" />
+              <TextInput label="Имя" name="firstName" type="text" />
+              <TextInput label="Фамилия" name="lastName" type="text" />
+              <TextInput label="Пол" name="sex" type="text" />
+              <TextInput label="Телефон" name="phone" type="text" />
               <TextInput label="Email" name="email" type="email" />
-              <TextInput label="Phone" name="phone" type="text" />
+              <TextInput label="Дата рождения" name="birth" type="select" />
             </div>
             <div className="form-btn-group">
-              <button type="submit" className="btn">
-                Готово
-              </button>
+              <Button type="cart_green">Готово</Button>
             </div>
           </Form>
         )}
