@@ -6,7 +6,6 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(150px, 1fr));
   gap: 20px;
-  height: 600px;
 }
 @media (max-width: 1024px) {
   .ProductsFieldGrid {

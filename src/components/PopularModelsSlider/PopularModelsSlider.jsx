@@ -25,7 +25,7 @@ const SwiperCarousel = ({popularModels}) => {
                   <div className={styles.PopularModelsSlider}>
                     <Swiper
                       className="swiper-container-3"
-                      slidesPerView={3}
+                      slidesPerView={4}
                       spaceBetween={55}
                       autoplay={{ delay: 3000 }}
                       slidesPerGroup={1}

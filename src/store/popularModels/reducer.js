@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 import { SET_POPULAR_PRODUCTS } from './types';
 
 const initialState = {
@@ -8,9 +9,11 @@ const initialState = {
 export const popularModelsReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_POPULAR_PRODUCTS:
+      console.log('payload', action.payload.data);
+      const popularModelsProducts = action.payload.data.filter((item) => item.hitSale === 'да');
       return {
         ...state,
-        popularModels: action.payload.data,
+        popularModels: popularModelsProducts,
         isLoadingPopularModels: false,
       };
 
