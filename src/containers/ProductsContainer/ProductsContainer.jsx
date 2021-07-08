@@ -19,8 +19,8 @@ const ProductsContainer = () => {
   useEffect(() => {
     dispatch(axiosProducts());
   }, [dispatch]);
-
-  const products = useSelector((state) => state.products);
+  const products = useSelector((state) => state.productsPage.products);
+  const isLoadingProducts = useSelector((state) => state.productsPage.isLoadingProducts);
   console.log(products);
 
   const [isActive, setIsActive] = useState(false);
@@ -53,7 +53,7 @@ const ProductsContainer = () => {
           </div>
           {(products.length === 0
             ? <div className={styles.PrductsFieldLoader}><Loader /></div>
-            : <ProductsField products={products} />)}
+            : (!isLoadingProducts && <ProductsField products={products} />))}
         </div>
       </div>
 
