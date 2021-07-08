@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React from 'react';
@@ -28,7 +29,7 @@ const ProductsField = () => {
       {products.length === 0 ? <Loader /> : (
         <div className={styles.ProductsFieldGrid}>
           {products.map((product) => (
-            <ProductCard product={product} key={product.id} />
+            <ProductCard product={product} key={product._id} />
         ))}
         </div>
 )}
