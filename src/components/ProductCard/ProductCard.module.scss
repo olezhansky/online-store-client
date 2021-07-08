@@ -73,11 +73,17 @@
   cursor: pointer;
   position: relative;
   transition: 0.5s ease;
+  &:hover {
+    background-color: red;
+  }
 }
 .ProductCard:hover .ProductCardIconCart {
   transition: 0.5s ease;
   background-color: #51ad33;
   color: #fff;
+  &:hover {
+    background-color: #368E1A;
+  }
 }
 .ProductCardInStock,
 .ProductCardIsExpected {
