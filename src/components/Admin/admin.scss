@@ -3,6 +3,9 @@
   width: 600px;
   padding: 30px;
   margin: 20px;
+  &.create {
+    width: 100%;
+  }
 }
 .form-name {
   text-align: center;
