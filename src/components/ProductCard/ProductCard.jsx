@@ -47,7 +47,7 @@ const ProductCard = ({product}) => {
       </div>
       <div className={styles.ProductCardInfo}>
         <p>
-          {product.description ? `${product.description.split(' ').slice(0, 40).join(' ')}...` : null}
+          {product.description ? `${product.description.split(' ').slice(0, 35).join(' ')}...` : null}
         </p>
       </div>
     </div>
