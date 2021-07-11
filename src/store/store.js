@@ -4,12 +4,9 @@ import thunk from 'redux-thunk';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import { productsReducer } from './products/reducer';
 import { popularModelsReducer } from './popularModels/reducer';
-<<<<<<< HEAD
 import { cartReducer } from './cart/reducer';
 import { ADD_PRODUCT_TO_CART } from './cart/types';
-=======
 import { modalsReducer } from './madals/reducer';
->>>>>>> develop
 
 // eslint-disable-next-line no-underscore-dangle
 const devTools = window.__REDUX_DEVTOOLS_EXTENSION__
@@ -29,11 +26,8 @@ const devTools = window.__REDUX_DEVTOOLS_EXTENSION__
 const rootReducer = combineReducers({
   productsPage: productsReducer,
   popularModelsPage: popularModelsReducer,
-<<<<<<< HEAD
-  cart: cartReducer
-=======
+  cart: cartReducer,
   modalsReducer,
->>>>>>> develop
 });
 
 const store = createStore(
