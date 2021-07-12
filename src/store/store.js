@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 /* eslint-disable no-shadow */
 /* eslint-disable operator-linebreak */
 import thunk from 'redux-thunk';
@@ -28,28 +29,21 @@ const localStorageMiddleware =
       action.type === DELETE_PRODUCT_FROM_CART
     ) {
       const { cart } = getState();
-      localStorage.setItem('cart', JSON.stringify(cart));
+      localStorage.setItem('cart', JSON.stringify(cart.cart));
     }
     return result;
   };
-
+    
 const rootReducer = combineReducers({
   productsPage: productsReducer,
   popularModelsPage: popularModelsReducer,
   modals,
   admin,
-  cart,
+  cart
 });
 
 const store = createStore(
   rootReducer,
-  // {
-  //   cartPage: JSON.parse(localStorage.getItem('cartProducts')) || []
-  // },
-  {
-    cart: JSON.parse(localStorage.getItem('cart')) || [],
-  },
-
   compose(applyMiddleware(thunk, localStorageMiddleware), devTools)
 );
 

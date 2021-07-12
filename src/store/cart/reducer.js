@@ -1,5 +1,9 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-case-declarations */
 // /* eslint-disable no-underscore-dangle */
 // /* eslint-disable no-case-declarations */
+// import { ADD_PRODUCT_TO_CART, DELETE_PRODUCT_FROM_CART } from './types';
+
 // import { ADD_PRODUCT_TO_CART, DELETE_PRODUCT_FROM_CART } from './types';
 
 // const initialState = [];
@@ -18,12 +22,13 @@
 //   }
 // };
 
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable no-case-declarations */
-import { ADD_PRODUCT_TO_CART, DELETE_PRODUCT_FROM_CART } from './types';
+// eslint-disable no-underscore-dangle
+// eslint-disable no-case-declarations
+import { ADD_PRODUCT_TO_CART, CART_FROM_LOCAL_STORAGE, DELETE_PRODUCT_FROM_CART } from './types';
 
 const initialState = {
-  cart: []
+  cart: [],
+  counter: 2
 };
 
 export const cart = (state = initialState, action) => {
@@ -31,7 +36,7 @@ export const cart = (state = initialState, action) => {
     case ADD_PRODUCT_TO_CART:
       console.log(action.payload);
       console.log(state);
-    
+      console.log(state);
       return {
         ...state,
         cart: [...state.cart, action.payload]
@@ -41,6 +46,11 @@ export const cart = (state = initialState, action) => {
       return {
         ...state,
         cart: newCart
+      };
+    case CART_FROM_LOCAL_STORAGE:
+      return {
+        ...state,
+        cart: action.payload,
       };
     default:
       return state;
