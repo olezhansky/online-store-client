@@ -1,15 +1,24 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable no-debugger */
+/* eslint-disable max-len */
+// /* eslint-disable max-len */
+// /* eslint-disable no-debugger */
+// /* eslint-disable no-unused-vars */
 import React from 'react';
 import HeaderSlider from '../components/HeaderSlider/HeaderSlider';
-import PopularModelsSlider from '../components/PopularModelsSlider/PopularModelsSlider';
 import DiscountSlider from '../containers/DiscountSlider/DiscountSlider';
 
-const Home = () => (
-  <>
-    <HeaderSlider />
-    <PopularModelsSlider />
-    <DiscountSlider />
-  </>
-);
+import PopularModelsSliderContainer from '../containers/PopularModelsSliderContainer/PopularModelsSliderContainer';
+
+const Home = () => {
+  console.log('test');
+
+  return (
+    <>
+      <HeaderSlider />
+      <PopularModelsSliderContainer />
+      <DiscountSlider />
+    </>
+  );
+};
 
 export default Home;
