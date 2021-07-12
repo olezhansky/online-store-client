@@ -20,11 +20,9 @@ const CartProduct = ({cartProduct}) => {
   const [counter, setCounter] = useState(1);
 
   const incrementHandler = () => {
-    console.log('Click');
       setCounter(counter + 1);
   };
   const decrementtHandler = () => {
-    console.log('Click');
     setCounter(counter - 1);
     if (counter <= 1) {
       deleteProductFromCartHandler();

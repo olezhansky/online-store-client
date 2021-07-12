@@ -6,11 +6,11 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import styles from './CartContainer.module.scss';
 import Button from '../../components/UI/Button/Button';
-import CartProduct from '../../components/CartBlock/CartProduct';
+import CartProduct from '../../components/CartProduct/CartProduct';
 
 const CartContainer = () => {
   console.log('test');
-  const cart = useSelector((state) => state.cart);
+  const cart = useSelector((state) => state.cart.cart);
   console.log(cart);
   return (
     <div className={styles.CartBlock}>

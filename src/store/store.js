@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 /* eslint-disable operator-linebreak */
 import thunk from 'redux-thunk';
 // eslint-disable-next-line object-curly-newline
@@ -6,7 +7,7 @@ import { productsReducer } from './products/reducer';
 import { popularModelsReducer } from './popularModels/reducer';
 import { modals } from './madals/reducer';
 import { admin } from './admin/reducer';
-import { cartReducer } from './cart/reducer';
+import { cart } from './cart/reducer';
 import { ADD_PRODUCT_TO_CART, DELETE_PRODUCT_FROM_CART } from './cart/types';
 
 // eslint-disable-next-line no-underscore-dangle
@@ -37,7 +38,7 @@ const rootReducer = combineReducers({
   popularModelsPage: popularModelsReducer,
   modals,
   admin,
-  cart: cartReducer,
+  cart,
 });
 
 const store = createStore(
