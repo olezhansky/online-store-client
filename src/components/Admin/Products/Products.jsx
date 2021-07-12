@@ -15,6 +15,7 @@ import styles from './Products.module.scss';
 import Button from '../../UI/Button/Button';
 import Loader from '../../UI/Loader/Loader';
 import Modal from '../../Modal/Modal';
+import { editProductModalOpen } from '../../../store/madals/actions';
 import {
   editProductModalClose,
   editProductModalOpen,
