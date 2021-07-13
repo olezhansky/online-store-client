@@ -22,8 +22,12 @@ const ProductCard = ({product}) => {
     dispatch(addProductToCartAction(product));
     dispatch(setFlagInCartAction(product));
   };
+
+  const addSingleProductHandler = () => {
+    console.log('Click');
+  };
   return (
-    <div className={styles.ProductCard}>
+    <div className={styles.ProductCard} onClick={addSingleProductHandler}>
       <Link to="/single-product">
         <div className={styles.ProductCardImg}>
           <img src={product.imageUrls[0]} alt={product.imageUrls[0]} />
