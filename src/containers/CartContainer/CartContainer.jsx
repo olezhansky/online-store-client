@@ -46,7 +46,7 @@ const CartContainer = () => {
                   key={cartProduct._id}
                   cartProduct={cartProduct}
                 />
-))}
+              ))}
             </ul>
             <div className={styles.CartFooter}>
               <div>
@@ -76,8 +76,7 @@ const CartContainer = () => {
               </div>
             </div>
           </div>
-) : <p>Корзина пустая</p>}
-
+        ) : <p>Корзина пустая</p>}
       </div>
     </div>
   );

@@ -20,7 +20,7 @@ const CartProduct = ({cartProduct}) => {
   };
   const decrementtHandler = () => {
     dispatch(cartDecrementAction(cartProduct._id));
-};
+  };
 
   return (
     <li className={styles.CartMainItem}>

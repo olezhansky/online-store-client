@@ -19,7 +19,6 @@ const ProductCard = ({product}) => {
   if (!product) return null;
 
   const addProductToCartHandler = () => {
-    console.log('Click');
     dispatch(addProductToCartAction(product));
     dispatch(setFlagInCartAction(product));
   };
