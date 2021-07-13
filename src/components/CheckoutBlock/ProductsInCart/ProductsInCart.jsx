@@ -34,7 +34,7 @@ const ProductsInCart = () => {
           Сумма заказа: 16 619
           <span> грн</span>
         </p>
-        <Button type="ordering_confirm" onClick={openModal}>
+        <Button addClass="ordering_confirm" onClick={openModal}>
           Подтвердить
         </Button>
       </div>
