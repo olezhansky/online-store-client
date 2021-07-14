@@ -1,5 +1,6 @@
 .swiper-container-3 {
   height: 650px;
+  position: relative;
   .swiper-button-next,
   .swiper-button-prev {
     width: 9px;
@@ -8,10 +9,12 @@
     padding: 21px;
     background-color: #c2cddd;
     top: 210px;
+    position: absolute;
+    z-index: 9999000;
   }
 
   .swiper-button-prev {
-    left: 0px;
+    left: -10px;
   }
   .swiper-button-next {
     right: 0px;
