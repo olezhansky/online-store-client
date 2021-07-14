@@ -8,17 +8,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { BiCart } from 'react-icons/bi';
+import { FaShoppingCart } from 'react-icons/fa';
+import { GiCheckMark } from 'react-icons/gi';
 // import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './ProductCard.module.scss';
 import { addProductToCartAction } from '../../store/cart/actions';
 import { setFlagInCartAction } from '../../store/products/actions';
 import { setSingleProductAction } from '../../store/singleProduct/actions';
 
 const ProductCard = ({product}) => {
+  const cart = useSelector((state) => state.cart.cart);
+  const isInCart = cart.some((item) => item._id === product._id);
   const dispatch = useDispatch();
   if (!product) return null;
-
   const addProductToCartHandler = () => {
     dispatch(addProductToCartAction(product));
     dispatch(setFlagInCartAction(product));
@@ -70,8 +73,10 @@ const ProductCard = ({product}) => {
             ? <span className={styles.ProductCardInStock}>в наличии</span>
           : <span className={styles.ProductCardIsExpected}>ожидается</span>}
         </p>
-        <div className={styles.ProductCardIconCart} onClick={addProductToCartHandler}><BiCart /></div>
-        <div>{product.inCart && <p>In cart</p>}</div>
+        <div className={styles.ProductCardIconCart} onClick={addProductToCartHandler}>
+          {isInCart ? <FaShoppingCart /> : <BiCart />}
+          {isInCart && <span><GiCheckMark /></span>}
+        </div>
       </div>
       <div className={styles.ProductCardInfo}>
         <p>
