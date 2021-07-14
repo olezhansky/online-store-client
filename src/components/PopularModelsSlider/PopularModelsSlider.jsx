@@ -98,7 +98,6 @@ const PopularModelsSlider = ({popularModels}) => {
             </SwiperSlide>
                       ))}
         </Swiper>
-        <div className={styles.test5}>1000</div>
       </div>
                 
     </>
