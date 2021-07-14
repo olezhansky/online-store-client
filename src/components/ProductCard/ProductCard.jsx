@@ -13,6 +13,7 @@ import { useDispatch } from 'react-redux';
 import styles from './ProductCard.module.scss';
 import { addProductToCartAction } from '../../store/cart/actions';
 import { setFlagInCartAction } from '../../store/products/actions';
+import { setSingleProductAction } from '../../store/singleProduct/actions';
 
 const ProductCard = ({product}) => {
   const dispatch = useDispatch();
@@ -23,11 +24,12 @@ const ProductCard = ({product}) => {
     dispatch(setFlagInCartAction(product));
   };
 
-  const addSingleProductHandler = () => {
-    console.log('Click');
+  const dispatchSingleProductHandler = () => {
+    dispatch(setSingleProductAction(product));
   };
+
   return (
-    <div className={styles.ProductCard} onClick={addSingleProductHandler}>
+    <div className={styles.ProductCard} onClick={dispatchSingleProductHandler}>
       <Link to="/single-product">
         <div className={styles.ProductCardImg}>
           <img src={product.imageUrls[0]} alt={product.imageUrls[0]} />
