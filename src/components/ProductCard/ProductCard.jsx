@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-undef */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
@@ -11,18 +12,22 @@ import { BiCart } from 'react-icons/bi';
 import { useDispatch } from 'react-redux';
 import styles from './ProductCard.module.scss';
 import { addProductToCartAction } from '../../store/cart/actions';
-// import cardProduct from '../../assets/img/CardProduct/cardProduct.png';
+import { setFlagInCartAction } from '../../store/products/actions';
 
 const ProductCard = ({product}) => {
   const dispatch = useDispatch();
   if (!product) return null;
 
-  const addProductTocart = () => {
-    console.log('Click');
+  const addProductToCartHandler = () => {
     dispatch(addProductToCartAction(product));
+    dispatch(setFlagInCartAction(product));
+  };
+
+  const addSingleProductHandler = () => {
+    console.log('Click');
   };
   return (
-    <div className={styles.ProductCard}>
+    <div className={styles.ProductCard} onClick={addSingleProductHandler}>
       <Link to="/single-product">
         <div className={styles.ProductCardImg}>
           <img src={product.imageUrls[0]} alt={product.imageUrls[0]} />
@@ -63,7 +68,8 @@ const ProductCard = ({product}) => {
             ? <span className={styles.ProductCardInStock}>в наличии</span>
           : <span className={styles.ProductCardIsExpected}>ожидается</span>}
         </p>
-        <div className={styles.ProductCardIconCart} onClick={addProductTocart}><BiCart /></div>
+        <div className={styles.ProductCardIconCart} onClick={addProductToCartHandler}><BiCart /></div>
+        <div>{product.inCart && <p>In cart</p>}</div>
       </div>
       <div className={styles.ProductCardInfo}>
         <p>
