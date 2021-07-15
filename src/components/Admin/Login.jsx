@@ -22,7 +22,7 @@ const Login = () => {
       .required('Password is required'),
   });
 
-  const handleLogin = (values, { setSubmitting }) => {
+  const handleLogin = (values, { setSubmitting, resetForm }) => {
     console.log('handleLogin');
     const { loginOrEmail, password } = values;
     setSubmitting(true);
@@ -35,6 +35,7 @@ const Login = () => {
       .then((res) => {
         console.log(res);
         localStorage.setItem('token', res.data.token);
+        resetForm();
       })
       .then(() => {
         alert('Login successful');
@@ -50,7 +51,7 @@ const Login = () => {
           password: '',
         }}
         onSubmit={handleLogin}
-        // validationSchema={loginSchema}
+        validationSchema={loginSchema}
       >
         {(formik) => (
           <Form className="cart-form">

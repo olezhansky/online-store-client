@@ -1,12 +1,12 @@
 /* eslint-disable implicit-arrow-linebreak */
 import axios from 'axios';
 
-const userData = {
-  loginOrEmail: 'admin@gmail.com',
-  password: 'admin1234',
-};
+// const userData = {
+//   loginOrEmail: 'admin@gmail.com',
+//   password: 'admin1234',
+// };
 
-const Login = () =>
+const Login = (userData) =>
   // console.log('LOGIN', userData);
 
   axios
