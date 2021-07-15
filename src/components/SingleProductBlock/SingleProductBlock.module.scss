@@ -1,9 +1,11 @@
 .Wrapper {
     margin-top: 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     margin-bottom: 100px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 50px;
+    align-items: center;
+
 }
 .SliderBlockText {
     display: flex;
@@ -21,7 +23,7 @@
         line-height: 26px;
         background-color: #F7F5F6;
         padding: 7px 13px;
-        margin-left: 100px;
+        margin-left: 50px;
         font-family: 'Roboto', sans-serif;
     }
 }

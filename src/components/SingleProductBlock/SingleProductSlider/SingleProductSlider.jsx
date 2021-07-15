@@ -39,12 +39,13 @@ const SingleProductSlider = ({singleProduct}) => {
         <Swiper
           onSwiper={setThumbsSwiper}
           loop
-          spaceBetween={10}
+          spaceBetween={0}
           slidesPerView={4}
           freeMode
           watchSlidesVisibility
           watchSlidesProgress
-          className="swiper-container-4"
+          className="swiper-container-5"
+          fadeEffect
         >
           <SwiperSlide><img src={singleProduct.imageUrls[0]} /></SwiperSlide>
           <SwiperSlide><img src={singleProduct.imageUrls[1]} /></SwiperSlide>

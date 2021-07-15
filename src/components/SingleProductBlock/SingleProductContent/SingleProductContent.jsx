@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+import Button from '../../UI/Button/Button';
 import styles from './SingleProductContent.module.scss';
 
 const SingleProductContent = ({singleProduct}) => {
@@ -12,6 +13,12 @@ const SingleProductContent = ({singleProduct}) => {
           {' '}
           грн
         </p>
+        <div className={styles.BuyButton}>
+          <Button addClass="cart_green">
+            Купить
+          </Button>
+        </div>
+       
       </div>
     );
 };
