@@ -10,17 +10,13 @@ const Login = (userData) =>
   // console.log('LOGIN', userData);
 
   axios
-    .post('https://intense-hamlet-33316.herokuapp.com/api/customers/login', userData)
-    // .post('http://localhost:5000/api/customers/login', userData)
-    // .then((loginResult) => {
-    //   console.log('loginResult', loginResult);
-    //   console.log('token: ', loginResult.data.token);
-    //   localStorage.setItem('token', loginResult.data.token);
-    //   /* Do something with jwt-token if login successed */
-    // })
-    .catch((err) => {
-      console.log(
-        err
-      ); /* Show error to customer, may be incorrect password or something else */
-    });
+    .post('https://intense-hamlet-33316.herokuapp.com/api/customers/login', userData);
+// .post('http://localhost:5000/api/customers/login', userData);
+// .then((loginResult) => {
+//   console.log('loginResult', loginResult);
+//   console.log('token: ', loginResult.data.token);
+//   localStorage.setItem('token', loginResult.data.token);
+//   /* Do something with jwt-token if login successed */
+// })
+
 export default Login;

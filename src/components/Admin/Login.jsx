@@ -8,10 +8,13 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
+import { useDispatch } from 'react-redux';
 import LoginApi from '../../api/login';
 import TextInput from '../UI/Input/TextInput';
+import { isAdminAction } from '../../store/admin/actions';
 
 const Login = () => {
+  const dispatch = useDispatch();
   const loginSchema = Yup.object().shape({
     loginOrEmail: Yup.string()
       .email('Email is invalid')
@@ -36,10 +39,19 @@ const Login = () => {
         console.log(res);
         localStorage.setItem('token', res.data.token);
         resetForm();
+        if (res.data.isAdmin) {
+          dispatch(isAdminAction());
+        }
       })
       .then(() => {
         alert('Login successful');
         setSubmitting(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        alert(
+          'Login failed'
+        ); /* Show error to customer, may be incorrect password or something else */
       });
   };
   return (
