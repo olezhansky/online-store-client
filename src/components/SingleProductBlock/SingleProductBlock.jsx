@@ -83,9 +83,7 @@ const SliderSelectProduct = () => (
           </div>
         </sectionButton>
       </div>
-    
     </div>
   </>
 );
 export default SliderSelectProduct;
-// export default SingleProductBlock;
