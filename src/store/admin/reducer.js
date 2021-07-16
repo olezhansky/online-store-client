@@ -4,7 +4,7 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable array-callback-return */
 import {
-  SET_PRODUCTS, REMOVE_PRODUCT, MODAL_REMOVE_PRODUCT, MODAL_REMOVE_PRODUCT_CLOSE, EDIT_PRODUCT, SET_CATALOG, MODAL_EDIT_CATEGORY_OPEN, MODAL_EDIT_CATEGORY_CLOSE, EDIT_CATEGORY, MODAL_DELETE_CATEGORY_OPEN, MODAL_DELETE_CATEGORY_CLOSE, IS_ADMIN, DELETE_CATEGORY
+  SET_PRODUCTS, REMOVE_PRODUCT, MODAL_REMOVE_PRODUCT, MODAL_REMOVE_PRODUCT_CLOSE, EDIT_PRODUCT, SET_CATALOG, MODAL_EDIT_CATEGORY_OPEN, MODAL_EDIT_CATEGORY_CLOSE, EDIT_CATEGORY, MODAL_DELETE_CATEGORY_OPEN, MODAL_DELETE_CATEGORY_CLOSE, IS_ADMIN, DELETE_CATEGORY, IS_LOGGED_IN, CURRENT_USER_SET_UP, EXIT
 } from './types';
 
 const initialState = {
@@ -16,14 +16,35 @@ const initialState = {
   isModalEditCategoryOpen: false,
   isModalRemoveCategoryOpen: false,
   isAdmin: false,
+  isLoggedIn: false,
+  currentUser: {},
 };
 
 export const admin = (state = initialState, action) => {
   switch (action.type) {
+    case EXIT:
+      return {
+        ...state,
+        isAdmin: false,
+        isLoggedIn: false,
+        currentUser: {}
+      };
     case IS_ADMIN:
       return {
         ...state,
         isAdmin: true
+      };
+    case IS_LOGGED_IN:
+      return {
+        ...state,
+        isLoggedIn: true,
+        currentUser: action.payload
+      };
+    case CURRENT_USER_SET_UP:
+      return {
+        ...state,
+        isLoggedIn: true,
+        currentUser: action.payload
       };
     case MODAL_EDIT_CATEGORY_CLOSE:
       return {
