@@ -11,9 +11,12 @@ import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import LoginApi from '../../api/login';
 import TextInput from '../UI/Input/TextInput';
-import { isAdminAction } from '../../store/admin/actions';
+import { isAdminAction, isLoggedInAction } from '../../store/admin/actions';
+import styles from './LoginModal.module.scss';
+import Button from '../UI/Button/Button';
+import { loginModalCloseAction } from '../../store/madals/actions';
 
-const Login = () => {
+const LoginForm = () => {
   const dispatch = useDispatch();
   const loginSchema = Yup.object().shape({
     loginOrEmail: Yup.string()
@@ -39,6 +42,8 @@ const Login = () => {
         console.log(res);
         localStorage.setItem('token', res.data.token);
         resetForm();
+        dispatch(loginModalCloseAction());
+        dispatch(isLoggedInAction(res.data.userData));
         if (res.data.isAdmin) {
           dispatch(isAdminAction());
         }
@@ -55,8 +60,7 @@ const Login = () => {
       });
   };
   return (
-    <div className="formBlock login">
-      <h2 className="form-name ">Login form</h2>
+    <div className={styles.formWrapper}>
       <Formik
         initialValues={{
           loginOrEmail: '',
@@ -66,15 +70,27 @@ const Login = () => {
         validationSchema={loginSchema}
       >
         {(formik) => (
-          <Form className="cart-form">
-            <div className="cart-inputs-area">
+          <Form className={styles.FormWrapper}>
+            <div className={styles.InputsWrapper}>
               <TextInput label="Email" name="loginOrEmail" type="email" />
-              <TextInput label="Password" name="password" type="password" />
+              <TextInput label="Пароль" name="password" type="password" />
             </div>
-            <div className="form-btn-group">
-              <button type="submit" className="btn cart-body-order">
-                Login
-              </button>
+            <div className={styles.addFunctionsWrapper}>
+              <div className={styles.CheckBoxWrapper}>
+                <label htmlFor="comp">Чужой компьютер</label>
+                <input
+                  type="checkbox"
+                  name="comp"
+                  id="comp"
+                  className={styles.checkBox}
+                />
+              </div>
+              <p className={styles.forgotPass}>Забыли пароль?</p>
+            </div>
+            <div className={styles.BtnsWrapper}>
+              <Button type="submit" addClass="loginForm">
+                Войти
+              </Button>
             </div>
           </Form>
         )}
@@ -83,4 +99,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginForm;
