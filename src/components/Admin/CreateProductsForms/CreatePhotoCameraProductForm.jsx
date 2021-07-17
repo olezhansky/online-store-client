@@ -7,21 +7,25 @@ import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import createProduct from '../../../api/createProduct';
-import createProductLocalHost5000 from '../../../api/createProductLocalHost5000';
+// import createProductLocalHost5000 from '../../../api/createProductLocalHost5000';
 import TextInput from '../Input/TextInput';
 import { sony02 } from '../../../Data/products';
 import FormikControl from '../FormikControl';
+import styles from './CreateProductsForms.module.scss';
 
 const CreatePhotoCameraProductForm = () => {
-  const handleCreateProduct2 = () => {
-    console.log('CREATE2');
-    createProductLocalHost5000();
-  };
+  // const handleCreateProduct2 = () => {
+  //   console.log('CREATE2');
+  //   createProductLocalHost5000();
+  // };
   const handleCreateProduct = (values, { setSubmitting }) => {
     console.log(values);
     const {
-      brand,
       name,
+      brandName,
+      brandValue,
+      modelName,
+      modelValue,
       currentPrice,
       previousPrice,
       quantity,
@@ -48,8 +52,8 @@ const CreatePhotoCameraProductForm = () => {
     } = values;
     setSubmitting(true);
     const newProduct = {
-      brand,
-      name,
+      brand: [brandName, brandValue],
+      model: [modelName, modelValue],
       currentPrice,
       previousPrice,
       quantity,
@@ -106,8 +110,14 @@ const CreatePhotoCameraProductForm = () => {
     <div className="formBlock create">
       <Formik
         initialValues={{
-          brand: '',
-          name: '',
+          brandName: 'Производитель',
+          brandValue: '',
+
+          modelName: 'Модель',
+          modelValue: '',
+
+          currentPriceName: 'Текущая цена',
+          currentPriceValue: '',
           set: '',
           currentPrice: '',
           previousPrice: '',
@@ -132,20 +142,40 @@ const CreatePhotoCameraProductForm = () => {
           imageUrl03: '',
           imageUrl04: '',
         }}
-        onSubmit={handleCreateProduct2}
+        onSubmit={handleCreateProduct}
         // validationSchema={productSchema}
       >
         {(formik) => (
           <Form className="product-form">
             <div className="product-inputs-area">
-              <TextInput label="Производитель" name="brand" type="text" />
-              <TextInput label="Модель" name="name" type="text" />
+              <div className={styles.productInputsGroup}>
+                <TextInput name="brandName" type="text" />
+                <TextInput name="brandValue" type="text" />
+              </div>
+              <div className={styles.productInputsGroup}>
+                <TextInput name="modelName" type="text" />
+                <TextInput name="modelValue" type="text" />
+              </div>
+              <div className={styles.productInputsGroup}>
+                <TextInput
+                  label="Текущая цена"
+                  name="currentPriceName"
+                  type="text"
+                />
+                <TextInput
+                  label="Текущая цена"
+                  name="currentPriceValue"
+                  type="text"
+                />
+                <TextInput name="modelValue" type="text" />
+              </div>
+
               <TextInput
                 label="Комплектация (c/без объектива)"
                 name="set"
                 type="text"
               />
-              <TextInput label="Текущая цена" name="currentPrice" type="text" />
+
               <TextInput
                 label="Предыдущая цена"
                 name="previousPrice"
@@ -235,9 +265,9 @@ const CreatePhotoCameraProductForm = () => {
               <button type="submit" className="btn cart-body-order">
                 Create product
               </button>
-              <button type="reset" className="btn cart-body-order reset">
+              {/* <button type="reset" className="btn cart-body-order reset">
                 Reset data
-              </button>
+              </button> */}
             </div>
           </Form>
         )}

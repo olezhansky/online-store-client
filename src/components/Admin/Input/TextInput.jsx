@@ -15,9 +15,9 @@ const TextInput = ({ label, ...props }) => {
   });
   return (
     <div className={styles.TextInputGroup}>
-      <label className={styles.textInputLabel} htmlFor={field.name}>
+      {/* <label className={styles.textInputLabel} htmlFor={field.name}>
         {label}
-      </label>
+      </label> */}
       <input className={inputStyles} {...props} {...field} autoComplete="off" />
       <ErrorMessage
         component="div"
