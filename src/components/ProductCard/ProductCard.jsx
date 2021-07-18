@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-duplicate-props */
 /* eslint-disable max-len */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-undef */
@@ -30,10 +31,18 @@ const ProductCard = ({product}) => {
   const dispatchSingleProductHandler = () => {
     dispatch(setSingleProductAction(product));
   };
+  console.log(product);
 
   return (
     <div className={styles.ProductCard} onClick={dispatchSingleProductHandler}>
-      <Link to="/single-product">
+      <Link
+        // to="/products/single-product"
+        to={{
+          pathname: '/products/single-product',
+          search: '?sort=name',
+          hash: product.model[1],
+      }}
+      >
         <div className={styles.ProductCardImg}>
           <img src={product.imageUrls[0]} alt={product.imageUrls[0]} />
           {product.hitSale === 'да' && <div className={styles.ProductCardImgHitSale}>Хит продаж</div>}
