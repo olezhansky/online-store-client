@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Magazins = () => (
+const Shops = () => (
   <div className="container">
     <h2>МАГАЗИНЫ</h2>
     <div>
@@ -11,4 +11,4 @@ const Magazins = () => (
   </div>
 );
 
-export default Magazins;
+export default Shops;
