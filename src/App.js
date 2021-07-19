@@ -32,7 +32,7 @@ function App() {
 
   let totalSum = 0;
   cart.forEach((item) => {
-    totalSum += item.currentPrice * item.count;
+    totalSum += item.currentPrice[1] * item.count;
   });
   useEffect(() => {
     dispatch(setTotalPriceCartAction(totalSum));
@@ -86,7 +86,7 @@ function App() {
         <Route exact path="/products">
           <Products />
         </Route>
-        <Route exact path="/single-product">
+        <Route exact path="/products/single-product">
           <SingleProduct />
         </Route>
         <Route exact path="/contacts">
@@ -95,7 +95,7 @@ function App() {
         <Route exact path="/cart">
           <Cart />
         </Route>
-        <Route exact path="/checkout">
+        <Route exact path="/cart/checkout">
           <Checkout />
         </Route>
         <Route exact path="/profile">

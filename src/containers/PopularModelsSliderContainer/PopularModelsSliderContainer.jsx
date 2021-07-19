@@ -12,6 +12,7 @@ const PopularModelsSliderContainer = () => {
     dispatch(axiosPopularModels());
   }, [dispatch]);
   const popularModels = useSelector((state) => state.popularModelsPage.popularModels.products);
+  console.log(popularModels);
     return (
       <div className={styles.PopularModelsSliderContainer}>
         <div className="container">

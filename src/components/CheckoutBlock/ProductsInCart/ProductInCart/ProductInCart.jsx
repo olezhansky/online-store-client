@@ -12,17 +12,17 @@ const ProductInCart = ({cartProduct}) => {
             <img src={cartProduct.imageUrls[0]} alt={cartProduct.name} />
           </div>
           <p className={styles.MainName}>
-            {cartProduct.name}
+            {cartProduct.model[1]}
             <br />
             <span>
               Код товара:
               {' '}
-              {cartProduct.artical}
+              {cartProduct.artical[1]}
             </span>
           </p>
         </div>
         <p className={styles.MainPrice}>
-          {cartProduct.currentPrice * cartProduct.count}
+          {cartProduct.currentPrice[1] * cartProduct.count}
           {' '}
           грн
           {' '}

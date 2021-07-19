@@ -30,17 +30,17 @@ const CartProduct = ({cartProduct}) => {
         </div>
         <div className={styles.CartMainItemProductContent}>
           <div className={styles.CartMainItemProductTitle}>
-            {cartProduct.name}
+            {cartProduct.model[1]}
           </div>
           <div className={styles.CartMainItemProductCode}>
             Код товара:
             {' '}
-            {cartProduct.artical}
+            {cartProduct.artical[1]}
           </div>
         </div>
       </div>
       <div className={styles.CartMainItemPrice}>
-        {cartProduct.currentPrice}
+        {cartProduct.currentPrice[1]}
         {' '}
         грн
       </div>
@@ -50,7 +50,7 @@ const CartProduct = ({cartProduct}) => {
         <div className={styles.CartMainItemAmountPlus} onClick={incrementHandler}>+</div>
       </div>
       <div className={styles.CartMainItemTotal}>
-        {cartProduct.currentPrice * cartProduct.count}
+        {cartProduct.currentPrice[1] * cartProduct.count}
         {' '}
         грн
       </div>

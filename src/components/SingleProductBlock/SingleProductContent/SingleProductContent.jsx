@@ -13,11 +13,12 @@ const SingleProductContent = ({singleProduct}) => {
       console.log('click');
       dispatch(addSingleProductToCartAction(singleProduct));
     };
+    console.log(singleProduct);
     return (
       <div className={styles.Wrapper}>
         <p className={styles.InStock}>{singleProduct.quantity !== 0 && <span>в наличии</span>}</p>
         <p className={styles.Price}>
-          {singleProduct.currentPrice }
+          {singleProduct.currentPrice[1] }
           {' '}
           грн
         </p>

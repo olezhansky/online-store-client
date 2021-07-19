@@ -54,7 +54,7 @@ const CartContainer = () => {
                   {totalSumCart}
                   <span> грн</span>
                 </div>
-                <Link to="/checkout">
+                <Link to="/cart/checkout">
                   <Button addClass="cart_green">Оформить</Button>
                 </Link>
               </div>

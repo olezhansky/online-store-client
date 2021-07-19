@@ -33,13 +33,13 @@ const ProductCard = ({product}) => {
 
   return (
     <div className={styles.ProductCard} onClick={dispatchSingleProductHandler}>
-      <Link to="/single-product">
+      <Link to="/products/single-product">
         <div className={styles.ProductCardImg}>
           <img src={product.imageUrls[0]} alt={product.imageUrls[0]} />
-          {product.hitSale === 'да' && <div className={styles.ProductCardImgHitSale}>Хит продаж</div>}
+          {product.hit[1] === 'yes' && <div className={styles.ProductCardImgHitSale}>Хит продаж</div>}
         </div>
         <h2 className={styles.ProductCardName}>
-          {product.name}
+          {product.model[1]}
         </h2>
       </Link>
       <div className={styles.ProductCardPriceAndIconCart}>
@@ -47,16 +47,16 @@ const ProductCard = ({product}) => {
           {(product.previousPrice !== 0
           ? (
             <span className={styles.ProductCardOldPrice}>
-              {product.previousPrice}
+              {product.previousPrice[1]}
               {' '}
               грн
             </span>
 ) : <p className={styles.ProductCardOldPriceSpace}>&nbsp;</p>)}
           <br />
-          {product.previousPrice
+          {product.previousPrice[1]
           ? (
             <span className={styles.ProductCardNewPrice}>
-              {product.currentPrice}
+              {product.currentPrice[1]}
               {' '}
               грн
             </span>

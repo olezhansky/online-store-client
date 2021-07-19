@@ -1,7 +1,10 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-case-declarations */
 import {
-  SET_CURRENT_CAREGORY, SET_CURRENT_PAGE, SET_CURRENT_PRODUCTS_ARR, SET_PRODUCTS
+  SET_CURRENT_CAREGORY,
+  SET_CURRENT_PAGE,
+  SET_CURRENT_PRODUCTS_ARR,
+  SET_PRODUCTS,
 } from './types';
 
 const initialState = {
@@ -10,7 +13,6 @@ const initialState = {
   allProductsCurrentCategory: [],
   currentPage: 1,
   isLoadingProducts: true,
-
 };
 
 export const productsReducer = (state = initialState, action) => {
