@@ -1,5 +1,50 @@
 .PagesH1 {
-    color:#00aa4d;
+    // color:#00aa4d;
+    font-weight: bold;
     font-size: 30px;
     margin: 20px 0;
+    text-align: left;
+}
+.Logo {
+    display: flex;
+    flex-direction:row ;
+}
+.staticBlock {
+    display: flex;
+    flex-direction: row;
+    // justify-content: space-between;
+    font-size: 12px;
+    // width: 578px;
+}
+// .staticBlock1 {
+//     width: 580px; !important
+// }
+h2{
+    color:#00aa4d;
+    font-size: 25px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 20px 0;  
+}
+h3 {
+    text-align: left;
+    text-transform: none;
+    font-weight: bold;
+    font-size: 18px;
+    margin: 40px 0 10px 0;
+    height: auto;
+}
+h4 {
+    font-weight: bold;
+    font-size: 16px;
+    margin: 20px 0 5px 0;
+    height: auto;
+}
+.wrapper {
+    font-size: 12px;
+}
+.Guaranty {
+    margin: 0 0 10px 0;
+    width: auto;
+    overflow: hidden;
 }
