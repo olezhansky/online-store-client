@@ -1,11 +1,9 @@
 import axios from 'axios';
 
-const getProductsHitSale = () =>
+const getAllFilteredProducts = (currentCategory) =>
   // eslint-disable-next-line implicit-arrow-linebreak
   axios
-    .get(
-      'https://intense-hamlet-33316.herokuapp.com/api/products/filter?hit=yes'
-    )
+    .get(`https://intense-hamlet-33316.herokuapp.com/api/products/filter?category=${currentCategory}`)
 
     // console.log('products', products);
     .catch((err) => {
@@ -13,4 +11,4 @@ const getProductsHitSale = () =>
       console.log(err);
     });
 
-export default getProductsHitSale;
+export default getAllFilteredProducts;

@@ -10,7 +10,7 @@ import Characteristics from './Characteristics';
 import Accessories from './Accessories';
 import AccordeonTabs from './AccordeonTabs';
 
-const SingleProductInfoTabs = ({singleProduct}) => {
+const SingleProductInfoTabs = ({ singleProduct }) => {
   const [currentTab, setCurrentTab] = useState('description');
   const descriptionToggle = () => {
     setCurrentTab('description');
@@ -50,16 +50,22 @@ const SingleProductInfoTabs = ({singleProduct}) => {
         <AccordeonTabs />
       </div>
       <div className={styles.tabContentBox}>
-        {currentTab === 'description' && <Desctiption singleProduct={singleProduct} />}
-        {currentTab === 'characteristics' && <Characteristics singleProduct={singleProduct} />}
-        {currentTab === 'accessories' && <Accessories singleProduct={singleProduct} />}
+        {currentTab === 'description' && (
+          <Desctiption singleProduct={singleProduct} />
+        )}
+        {currentTab === 'characteristics' && (
+          <Characteristics singleProduct={singleProduct} />
+        )}
+        {currentTab === 'accessories' && (
+          <Accessories singleProduct={singleProduct} />
+        )}
       </div>
     </div>
   );
 };
 
 SingleProductInfoTabs.propTypes = {
-  singleProduct: PropTypes.objectOf.isRequired
+  singleProduct: PropTypes.objectOf.isRequired,
 };
 
 export default SingleProductInfoTabs;
