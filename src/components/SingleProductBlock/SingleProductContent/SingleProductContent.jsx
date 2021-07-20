@@ -24,7 +24,11 @@ const SingleProductContent = ({singleProduct}) => {
   return (
     <div className={styles.Wrapper}>
       <p className={styles.InStock}>
-        {singleProduct.quantity !== 0 ? <span>в наличии</span> : <span style={{color: 'red'}}>ожидается</span>}
+        {singleProduct.quantity !== 0 ? (
+          <span>в наличии</span>
+        ) : (
+          <span style={{ color: 'red' }}>ожидается</span>
+        )}
       </p>
       <p className={styles.Price}>{singleProduct.currentPrice} грн</p>
 
