@@ -1,37 +1,53 @@
 import React from 'react';
+import styles from './Pages.module.scss';
 
 const Shops = () => (
   <div className="container">
-    <h1>МАГАЗИНЫ</h1>
+    <div className={styles.Logo}>
+      <ul>
+        <li>
+          <a href="/"> Интернет-магазин abcphoto</a>
+        </li>
+        <li> / Магазины</li>
+      </ul>
+    </div>
+    <h1 className={styles.PagesH1}>Магазины</h1>
     <div>
-      <p>
-        Интернет-магазин abcphotoМагазины
-        Магазины
+      <h2>
         ИНТЕРНЕТ-МАГАЗИН
-        пн - пт: с 10:00 до 19:00
+      </h2>
+      <div>
+        <p className={styles.Shops}>пн - пт: с 10:00 до 19:00</p>
 
-        0 800 21 21 50
+        <p className={styles.phoneShope}>
+          <span className={styles.codeShope}>0 800 </span>
+          21 21 50
+        </p>
+      </div>
 
-        КИЕВ
-        ул. Б. Васильковская (Красноармейская), 132 (Вход со двора)
+      <h2>КИЕВ</h2>
+      <div>
+        <p className={styles.addressShope}>
+          ул. Б. Васильковская (Красноармейская), 132
+          (Вход со двора)
 
-        пн - пт: с 10:00 до 19:00
+        </p>
+        <p>пн - пт: с 10:00 до 19:00</p>
+        <p>сб: с 10:00 до 16:00</p>
+        <p>показать на карте</p>
+      </div>
 
-        сб: с 10:00 до 16:00
+      <h2>ДНЕПР</h2>
+      ул. Харьковская, 7
 
-        показать на карте
+      пн - сб: с 10:00 до 19:00
 
-        ДНЕПР
-        ул. Харьковская, 7
+      вс: с 10:00 до 18:00
 
-        пн - сб: с 10:00 до 19:00
+      показать на карте
 
-        вс: с 10:00 до 18:00
-
-        показать на карте
-
-        info@abcphoto.com.ua
-      </p>
+      info@abcphoto.com.ua
+      
     </div>
   </div>
 );

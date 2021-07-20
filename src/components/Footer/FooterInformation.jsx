@@ -5,7 +5,7 @@ import styles from './Footer.module.scss';
 const FooterInformation = ({title, links, id}) => (
   <div className={styles.FooterInformation}>
     <input type="checkbox" id={id} className={styles.FooterInformationInput} />
-    <label htmlFor={id}>{title}</label>
+    <label htmlFor={id} className={styles.FooterInformationInputLabel}>{title}</label>
     <div className={styles.FooterInformationLinkWrapper}>
       {links.map((link) => (
         <a key={link.text} href={link.to} className={styles.FooterInformationText}>
