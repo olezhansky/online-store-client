@@ -9,6 +9,7 @@ import { addSingleProductToCartAction } from '../../../store/cart/actions';
 import Button from '../../UI/Button/Button';
 import styles from './SingleProductContent.module.scss';
 
+<<<<<<< HEAD
 const SingleProductContent = () => {
   const [singleProduct, setSingleProduct] = useState({});
   const [isLoading, setIsLoading] = useState(true);
@@ -39,6 +40,19 @@ const SingleProductContent = () => {
       {!isLoading && (
         <p className={styles.Price}>{singleProduct.currentPrice} грн</p>
       )}
+=======
+const SingleProductContent = ({singleProduct}) => {
+  const dispatch = useDispatch();
+  const addProductToCartHandler = () => {
+    dispatch(addSingleProductToCartAction(singleProduct));
+  };
+  return (
+    <div className={styles.Wrapper}>
+      <p className={styles.InStock}>
+        {singleProduct.quantity !== 0 ? <span>в наличии</span> : <span style={{color: 'red'}}>ожидается</span>}
+      </p>
+      <p className={styles.Price}>{singleProduct.currentPrice} грн</p>
+>>>>>>> develop
 
       <div className={styles.ButtonBuy}>
         <Button addClass="cart_green" onClick={addProductToCartHandler}>
