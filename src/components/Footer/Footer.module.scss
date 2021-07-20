@@ -233,6 +233,8 @@
   background: #000000;
   display: none;
   a {
+    display: flex;
+    flex-direction: column;
     outline: none;
     color: #fff;
   }

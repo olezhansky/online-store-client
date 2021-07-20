@@ -1,8 +1,9 @@
 import React from 'react';
+import styles from './Pages.module.scss';
 
 const Delivery = () => (
   <div className="container">
-    <h1>Доставка и оплата</h1>
+    <h1 className={styles.PagesH1}>Доставка и оплата</h1>
     <div>
       <p>
         Интернет-магазин abcphotoДоставка и оплата

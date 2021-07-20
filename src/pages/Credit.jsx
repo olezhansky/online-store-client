@@ -1,8 +1,9 @@
 import React from 'react';
+import styles from './Pages.module.scss';
 
 const Credit = () => (
   <div className="container">
-    <h2>КРЕДИТ</h2>
+    <h1 className={styles.PagesH1}>КРЕДИТ</h1>
     <div>
       <p>
         Альфа-БанкУкрсиббанк
