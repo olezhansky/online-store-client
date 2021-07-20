@@ -8,9 +8,9 @@ const FooterInformation = ({title, links, id}) => (
     <label htmlFor={id}>{title}</label>
     <div className={styles.FooterInformationLinkWrapper}>
       {links.map((link) => (
-        <p key={link.text} to={link.to} className={styles.FooterInformationText}>
+        <a key={link.text} href={link.to} className={styles.FooterInformationText}>
           {link.text}
-        </p>
+        </a>
       // <FooterLinkItem key={link.text} to={link.to} onClick={() => window.scrollTo(0, 0)}>
       //   {link.text}
       // </FooterLinkItem>

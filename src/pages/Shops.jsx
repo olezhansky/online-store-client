@@ -2,7 +2,7 @@ import React from 'react';
 
 const Shops = () => (
   <div className="container">
-    <h2>МАГАЗИНЫ</h2>
+    <h1>МАГАЗИНЫ</h1>
     <div>
       <p>
         Интернет-магазин abcphotoМагазины
