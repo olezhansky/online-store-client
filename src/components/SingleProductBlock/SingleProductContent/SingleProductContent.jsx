@@ -9,39 +9,7 @@ import { addSingleProductToCartAction } from '../../../store/cart/actions';
 import Button from '../../UI/Button/Button';
 import styles from './SingleProductContent.module.scss';
 
-<<<<<<< HEAD
-const SingleProductContent = () => {
-  const [singleProduct, setSingleProduct] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
-  const singleProduct1 = useSelector(
-    (state) => state.singleProduct.singleProduct
-  );
-  useEffect(() => {
-    if (singleProduct1) {
-      setSingleProduct(singleProduct1);
-      setIsLoading(false);
-    }
-  }, [singleProduct1]);
-
-  const dispatch = useDispatch();
-  // const [q, currentPrice] = singleProduct.currentPrice;
-  console.log('singleProduct', singleProduct);
-
-  const addProductToCartHandler = () => {
-    console.log('click');
-    dispatch(addSingleProductToCartAction(singleProduct));
-  };
-
-  return (
-    <div className={styles.Wrapper}>
-      <p className={styles.InStock}>
-        {singleProduct.quantity !== 0 && <span>в наличии</span>}
-      </p>
-      {!isLoading && (
-        <p className={styles.Price}>{singleProduct.currentPrice} грн</p>
-      )}
-=======
-const SingleProductContent = ({singleProduct}) => {
+const SingleProductContent = ({ singleProduct }) => {
   const dispatch = useDispatch();
   const addProductToCartHandler = () => {
     dispatch(addSingleProductToCartAction(singleProduct));
@@ -49,10 +17,13 @@ const SingleProductContent = ({singleProduct}) => {
   return (
     <div className={styles.Wrapper}>
       <p className={styles.InStock}>
-        {singleProduct.quantity !== 0 ? <span>в наличии</span> : <span style={{color: 'red'}}>ожидается</span>}
+        {singleProduct.quantity !== 0 ? (
+          <span>в наличии</span>
+        ) : (
+          <span style={{ color: 'red' }}>ожидается</span>
+        )}
       </p>
       <p className={styles.Price}>{singleProduct.currentPrice} грн</p>
->>>>>>> develop
 
       <div className={styles.ButtonBuy}>
         <Button addClass="cart_green" onClick={addProductToCartHandler}>
