@@ -13,8 +13,7 @@ import Button from '../../UI/Button/Button';
 import styles from './SingleProductContent.module.scss';
 import './SingleProductContent.scss';
 
-const SingleProductContent = ({singleProduct}) => {
-  console.log(singleProduct);
+const SingleProductContent = ({ singleProduct }) => {
   const cart = useSelector((state) => state.cart.cart);
   const isInCart = cart.some((item) => item._id === singleProduct._id);
   const dispatch = useDispatch();
@@ -44,7 +43,11 @@ const SingleProductContent = ({singleProduct}) => {
       <div className={styles.ButtonBuy}>
         <Button disabled={moveToCart} addClass={singleProduct.quantity !== 0 ? 'cart_green' : 'cart_disable'} onClick={addProductToCartHandler}>
           <span>Купить</span>
-          {singleProduct.quantity !== 0 ? <FiShoppingCart /> : <MdRemoveShoppingCart style={{color: '#e91e49'}} />}
+          {singleProduct.quantity !== 0 ? (
+            <FiShoppingCart />
+          ) : (
+            <MdRemoveShoppingCart style={{ color: '#e91e49' }} />
+          )}
           &nbsp;
           {isInCart && <GiCheckMark />}
         </Button>
