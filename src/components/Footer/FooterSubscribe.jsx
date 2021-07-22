@@ -1,8 +1,10 @@
 // import { StylesContext } from '@material-ui/styles';
 import React from 'react';
-import PropTypes from 'prop-types';
 import 'antd/dist/antd.css';
 import { Form } from 'antd';
+import PropTypes from 'prop-types';
+// import 'antd/dist/antd.css';
+// import { Form } from 'antd';
 
 import {FaFacebookSquare, FaInstagramSquare } from 'react-icons/fa';
 import { IoIosArrowForward} from 'react-icons/io';
