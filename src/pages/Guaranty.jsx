@@ -5,8 +5,8 @@ const Guaranty = () => (
 
   <div className="container">
     <div className={styles.wrapper}>
-      <div className={styles.Logo}>
-        <ul>
+      <div>
+        <ul className={styles.Logo}>
           <li>
             <a href="/"> Интернет-магазин abcphoto</a>
           </li>

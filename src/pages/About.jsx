@@ -1,17 +1,18 @@
 import React from 'react';
+import styles from './Pages.module.scss';
 
 const Shops = () => (
   <div className="container">
     
     <div>
-      <ul>
+      <ul className={styles.Logo}>
         <li>
           <a href="/"> Интернет-магазин abcphoto</a>
         </li>
-        <li>О компании</li>
+        <li> / О компании</li>
       </ul>
     </div>
-    <h1>О компании</h1>
+    <h1 className={styles.PagesH1}>О компании</h1>
     <div>
       <p>
         Торговая марка «АВС Фото» известна на рынке Украины уже более 20 лет. Профессионализм,

@@ -3,8 +3,8 @@ import styles from './Pages.module.scss';
 
 const Shops = () => (
   <div className="container">
-    <div className={styles.Logo}>
-      <ul>
+    <div>
+      <ul className={styles.Logo}>
         <li>
           <a href="/"> Интернет-магазин abcphoto</a>
         </li>
@@ -34,11 +34,15 @@ const Shops = () => (
         </p>
         <p>пн - пт: с 10:00 до 19:00</p>
         <p>сб: с 10:00 до 16:00</p>
-        <p>показать на карте</p>
+        <p>
+          <a href="https://goo.gl/maps/xPYrXG9RvDu" className={styles.aShops}>показать на карте</a>
+        </p>
       </div>
 
       <h2>ДНЕПР</h2>
-      ул. Харьковская, 7
+      <p className={styles.addressShope}>
+        ул. Харьковская, 7
+      </p>
 
       пн - сб: с 10:00 до 19:00
 

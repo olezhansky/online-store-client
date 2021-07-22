@@ -3,8 +3,8 @@ import styles from './Pages.module.scss';
 
 const Delivery = () => (
   <div className="container">
-    <div className={styles.Logo}>
-      <ul>
+    <div>
+      <ul className={styles.Logo}>
         <li>
           <a href="/"> Интернет-магазин abcphoto</a>
         </li>
