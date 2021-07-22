@@ -1,5 +1,5 @@
 // import React from 'react';
-// import { HashRouter as Router } from 'react-router-dom';
+// import { HashgiRouter as Router } from 'react-router-dom';
 // import { shallow} from 'enzyme';
 // import Footer from './Footer';
 
