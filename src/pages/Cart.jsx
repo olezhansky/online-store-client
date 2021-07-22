@@ -1,7 +1,7 @@
 import React from 'react';
 import Breadcrumbs from '../containers/Breadcrumbs/Breadcrumbs';
 import CartContainer from '../containers/CartContainer/CartContainer';
-import SimilarProductsSlider from '../containers/SimilarProductsSlider/SimilarProductsSlider';
+import SimilarProducts from '../containers/SimilarProducts/SimilarProducts';
 
 const Cart = () => {
   const array = [['/', 'Главная'], ['cart', 'Моя корзина']];
@@ -9,7 +9,7 @@ const Cart = () => {
     <>
       <Breadcrumbs data={array} />
       <CartContainer />
-      <SimilarProductsSlider />
+      <SimilarProducts />
     </>
   );
 };

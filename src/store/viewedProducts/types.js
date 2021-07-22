@@ -1,0 +1,1 @@
+export const ADD_VIEWED_PRODUCT = 'ADD_VIEWED_PRODUCT';

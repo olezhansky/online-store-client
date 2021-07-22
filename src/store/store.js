@@ -11,6 +11,7 @@ import { admin } from './admin/reducer';
 import { cart } from './cart/reducer';
 import { favorites } from './favorites/reducer';
 import { singleProduct } from './singleProduct/reducer';
+import { viewedProducts } from './viewedProducts/reducer';
 import {
   ADD_PRODUCT_TO_CART,
   ADD_SINGLE_PRODUCT_TO_CART,
@@ -19,7 +20,10 @@ import {
   DELETE_PRODUCT_FROM_CART,
 } from './cart/types';
 import { SET_SINGLE_PRODUCT } from './singleProduct/types';
-import { ADD_PRODUCT_TO_FAVORITE, DELETE_PRODUCT_FROM_FAVORITE } from './favorites/types';
+import {
+  ADD_PRODUCT_TO_FAVORITE,
+  DELETE_PRODUCT_FROM_FAVORITE,
+} from './favorites/types';
 
 // eslint-disable-next-line no-underscore-dangle
 const devTools = window.__REDUX_DEVTOOLS_EXTENSION__
@@ -69,6 +73,7 @@ const rootReducer = combineReducers({
   cart,
   singleProduct,
   favorites,
+  viewedProducts,
 });
 
 const store = createStore(
