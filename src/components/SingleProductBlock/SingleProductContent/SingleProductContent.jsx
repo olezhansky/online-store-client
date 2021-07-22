@@ -1,47 +1,68 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FiShoppingCart } from 'react-icons/fi';
-import { useDispatch } from 'react-redux';
+import { MdRemoveShoppingCart } from 'react-icons/md';
+import { GiCheckMark } from 'react-icons/gi';
+import { useDispatch, useSelector } from 'react-redux';
 import { addSingleProductToCartAction } from '../../../store/cart/actions';
+
 import Button from '../../UI/Button/Button';
 import styles from './SingleProductContent.module.scss';
+import './SingleProductContent.scss';
 
-const SingleProductContent = ({singleProduct}) => {
-    console.log('test');
-    const dispatch = useDispatch();
-    const addProductToCartHandler = () => {
-      console.log('click');
-      dispatch(addSingleProductToCartAction(singleProduct));
-    };
-    return (
-      <div className={styles.Wrapper}>
-        <p className={styles.InStock}>{singleProduct.quantity !== 0 && <span>в наличии</span>}</p>
-        <p className={styles.Price}>
-          {singleProduct.currentPrice }
-          {' '}
-          грн
-        </p>
-        <div className={styles.ButtonBuy}>
-          <Button addClass="cart_green" onClick={addProductToCartHandler}>
-            <span>Купить</span>
+const SingleProductContent = ({ singleProduct }) => {
+  const cart = useSelector((state) => state.cart.cart);
+  const isInCart = cart.some((item) => item._id === singleProduct._id);
+  const dispatch = useDispatch();
+   const [moveToCart, setMoveToCart] = useState(false);
+  const addProductToCartHandler = () => {
+    if (singleProduct.quantity !== 0) {
+      setTimeout(() => {
+         dispatch(addSingleProductToCartAction(singleProduct));
+      }, 2800);
+       setMoveToCart(true);
+    }
+    setTimeout(() => {
+      setMoveToCart(false);
+    }, 2500);
+  };
+  return (
+    <div className={styles.Wrapper}>
+      <p className={styles.InStock}>
+        {singleProduct.quantity !== 0 ? (
+          <span>в наличии</span>
+        ) : (
+          <span style={{ color: '#e91e49' }}>ожидается</span>
+        )}
+      </p>
+      <p className={styles.Price}>{singleProduct.currentPrice} грн</p>
+
+      <div className={styles.ButtonBuy}>
+        <Button disabled={moveToCart} addClass={singleProduct.quantity !== 0 ? 'cart_green' : 'cart_disable'} onClick={addProductToCartHandler}>
+          <span>Купить</span>
+          {singleProduct.quantity !== 0 ? (
             <FiShoppingCart />
-          </Button>
-        </div>
-        <p className={styles.Delivery}>
-          Доставка
-        </p>
-        <ul className={styles.DeliveryList}>
-          <li>
-            • Доставка по всей Украине
-          </li>
-          <li>• Оплата товара при получении</li>
-          <li>
-            • Возможен самовывоз
-          </li>
-        </ul>
-       
+          ) : (
+            <MdRemoveShoppingCart style={{ color: '#e91e49' }} />
+          )}
+          &nbsp;
+          {isInCart && <GiCheckMark />}
+        </Button>
       </div>
-    );
+      <p className={styles.Delivery}>Доставка</p>
+      <ul className={styles.DeliveryList}>
+        <li>• Доставка по всей Украине</li>
+        <li>• Оплата товара при получении</li>
+        <li>• Возможен самовывоз</li>
+      </ul>
+      <div className="MoveToCartBlock">
+        <div className={`MoveToCartItem  ${moveToCart ? 'MoveToCartItem_isOpen' : 'MoveToCartItem_isClose'}`}><img src={singleProduct.imageUrls[0]} alt="sdfdf" /></div>
+      </div>
+    </div>
+  );
 };
 
 export default SingleProductContent;

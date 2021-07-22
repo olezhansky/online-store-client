@@ -1,8 +1,13 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable max-len */
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-tabs */
-import React, { useState } from 'react';
+import React from 'react';
 import Slider from '@material-ui/core/Slider';
 import { makeStyles } from '@material-ui/core';
+import { useDispatch } from 'react-redux';
 import styles from './RangeSlider.module.scss';
+import { getFilteredProductsAction } from '../../../store/products/actions';
 
 const useStyles = makeStyles({
     root: {
@@ -11,42 +16,45 @@ const useStyles = makeStyles({
     },
   });
 
-const RangeSlider = () => {
-const [value, setValue] = useState([0, 12000]);
-
-const rangeSelector = (event, newValue) => {
-	setValue(newValue);
-};
-
-const handleChangeMinRange = (event) => {
-    setValue([+event.target.value, +value[1]]);
-};
-const handleChangeMaxRange = (event) => {
-    setValue([+value[0], +event.target.value]);
-};
-
-const classes = useStyles();
+const RangeSlider = ({
+currentCategory,
+page,
+maxPrice,
+minPrice,
+rangeSelector,
+handleChangeMinRange,
+handleChangeMaxRange,
+addQuery,
+price
+}) => {
+  const classes = useStyles();
+  const dispatch = useDispatch();
+  console.log(maxPrice);
+  const dispatchPriceHandler = () => {
+    dispatch(getFilteredProductsAction(currentCategory, page, addQuery));
+  };
 
 return (
   <div className={styles.RangeSlider}>
     <h3 className={styles.Title}>По цене</h3>
     <form className={styles.RangeSliderTop}>
-      <input type="text" value={value[0]} onChange={handleChangeMinRange} />
+      <input type="text" value={price[0]} onChange={handleChangeMinRange} />
       &nbsp;
       -
       &nbsp;
-      <input type="text" value={value[1]} onChange={handleChangeMaxRange} />
+      <input type="text" value={price[1]} onChange={handleChangeMaxRange} />
             &nbsp;
             &nbsp;
-      <button type="button" className={styles.RangeSliderButton}>OK</button>
+      <button type="button" className={styles.RangeSliderButton} onClick={dispatchPriceHandler}>OK</button>
     </form>
 
     <Slider
       className={classes.root}
-      value={value}
+      value={price}
       onChange={rangeSelector}
       valueLabelDisplay="auto"
-      max={15000}
+      max={maxPrice}
+      min={minPrice}
     />
   </div>
 );

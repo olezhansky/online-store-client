@@ -8,23 +8,42 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { BiCart } from 'react-icons/bi';
-import { FaShoppingCart } from 'react-icons/fa';
+import { BsFillStarFill, BsStar } from 'react-icons/bs';
+// import { FaShoppingCart } from 'react-icons/fa';
 import { GiCheckMark } from 'react-icons/gi';
+import { MdRemoveShoppingCart } from 'react-icons/md';
+
 // import PropTypes from 'prop-types';
+
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './ProductCard.module.scss';
 import { addProductToCartAction } from '../../store/cart/actions';
 import { setFlagInCartAction } from '../../store/products/actions';
 import { setSingleProductAction } from '../../store/singleProduct/actions';
+import { addProdductToFavoritesAction, deleteProdductFromFavoritesAction } from '../../store/favorites/actions';
 
 const ProductCard = ({product}) => {
   const cart = useSelector((state) => state.cart.cart);
+  const popupIsOpen = useSelector((state) => state.cart.popupIsOpen);
+  console.log(popupIsOpen);
+  const favorites = useSelector((state) => state.favorites.favorites);
   const isInCart = cart.some((item) => item._id === product._id);
+  const isInFavorites = favorites.some((item) => item._id === product._id);
   const dispatch = useDispatch();
   if (!product) return null;
   const addProductToCartHandler = () => {
-    dispatch(addProductToCartAction(product));
-    dispatch(setFlagInCartAction(product));
+    if (product.quantity !== 0) {
+      dispatch(addProductToCartAction(product));
+      dispatch(setFlagInCartAction(product));
+    }
+  };
+ 
+  const addProductToFavoritesHandler = () => {
+    if (isInFavorites) {
+      dispatch(deleteProdductFromFavoritesAction(product));
+    } else {
+      dispatch(addProdductToFavoritesAction(product));
+    }
   };
 
   const dispatchSingleProductHandler = () => {
@@ -36,10 +55,10 @@ const ProductCard = ({product}) => {
       <Link to="/single-product">
         <div className={styles.ProductCardImg}>
           <img src={product.imageUrls[0]} alt={product.imageUrls[0]} />
-          {product.hitSale === 'да' && <div className={styles.ProductCardImgHitSale}>Хит продаж</div>}
+          {product.hit === 'yes' && <div className={styles.ProductCardImgHitSale}>Хит продаж</div>}
         </div>
         <h2 className={styles.ProductCardName}>
-          {product.name}
+          {product.characteristics.model[1]}
         </h2>
       </Link>
       <div className={styles.ProductCardPriceAndIconCart}>
@@ -73,10 +92,15 @@ const ProductCard = ({product}) => {
             ? <span className={styles.ProductCardInStock}>в наличии</span>
           : <span className={styles.ProductCardIsExpected}>ожидается</span>}
         </p>
-        <div className={styles.ProductCardIconCart} onClick={addProductToCartHandler}>
-          {isInCart ? <FaShoppingCart /> : <BiCart />}
-          {isInCart && <span><GiCheckMark /></span>}
+        <div className={styles.ProductFavorite} onClick={addProductToFavoritesHandler}>
+          {/* {isInFavorites ? <BsStar /> : <BsStar style={{color: '#e91e49'}} />} */}
+          {isInFavorites ? <BsFillStarFill /> : <BsStar />}
         </div>
+        <button type="button" disabled={popupIsOpen} className={styles.ProductCardIconCart} onClick={addProductToCartHandler}>
+          {/* {isInCart ? <FaShoppingCart /> : <BiCart />} */}
+          {product.quantity !== 0 ? <BiCart /> : <MdRemoveShoppingCart style={{color: '#e91e49'}} />}
+          {isInCart && <span><GiCheckMark /></span>}
+        </button>
       </div>
       <div className={styles.ProductCardInfo}>
         <p>

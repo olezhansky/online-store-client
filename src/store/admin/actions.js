@@ -22,12 +22,13 @@ import {
 
 export const adminProducts = () => (dispatch) => {
   getProducts().then((data) => {
+    console.log('DATA', data);
     dispatch({ type: SET_PRODUCTS, payload: data });
   });
 };
 export const setCatalog = () => (dispatch) => {
   getCatalog().then((data) => {
-    console.log(data);
+    // console.log(data);
     dispatch({ type: SET_CATALOG, payload: data });
   });
 };

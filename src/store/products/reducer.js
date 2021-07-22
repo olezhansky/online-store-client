@@ -1,19 +1,52 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-case-declarations */
-import { SET_PRODUCTS } from './types';
+import {
+  SET_CURRENT_CAREGORY, SET_CURRENT_PAGE, SET_CURRENT_PRODUCTS_ARR, SET_CURRENT_QUERY, SET_PRODUCTS
+} from './types';
 
 const initialState = {
   products: [],
+  currentCategory: null,
+  currentPage: 1,
   isLoadingProducts: true,
+  currentQuery: '',
+
 };
 
 export const productsReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_PRODUCTS:
+      // ==== REFACTORING ====
+      console.log('SET_PRODUCTS: ', action.payload);
       return {
         ...state,
-        products: action.payload.data,
+        products: action.payload,
         isLoadingProducts: false,
+      };
+    case SET_CURRENT_CAREGORY:
+      return {
+        ...state,
+        currentCategory: action.payload,
+        isLoadingProducts: false,
+      };
+    case SET_CURRENT_QUERY:
+      return {
+        ...state,
+        currentQuery: action.payload,
+
+      };
+    case SET_CURRENT_PRODUCTS_ARR:
+      // === for pagination calculation ======
+      // console.log('SET_CURRENT_PRODUCTS_ARR', action.payload);
+      return {
+        ...state,
+        products: action.payload,
+        isLoadingProducts: false,
+      };
+    case SET_CURRENT_PAGE:
+      return {
+        ...state,
+        currentPage: action.payload,
       };
     default:
       return state;

@@ -16,17 +16,24 @@ const Select = (props) => {
     [styles.isInvalid]: meta.touched && meta.error,
     [styles.Valid]: meta.touched && !meta.error,
   });
-
+  // const handleOnChange = () => {
+  //   console.log('Change');
+  // };
   return (
     <div className={styles.selectAreaWrapper}>
-      <label className={styles.textAreaLabel} htmlFor={name}>
-        {label}
-      </label>
+      {label && (
+        <label className={styles.textAreaLabel} htmlFor={name}>
+          {label}
+        </label>
+      )}
       <Field
         name={name}
         placeholder="Select..."
         as="select"
         className={selectStyles}
+        // onChange={(e) => {
+        //   handleOnChange(e);
+        // }}
       >
         {options}
       </Field>
