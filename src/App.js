@@ -109,7 +109,6 @@ function App() {
         <Route exact path="/contacts">
           <Contacts />
         </Route>
-<<<<<<< HEAD
         <Route exact path="/shops">
           <Shops />
         </Route>
@@ -131,11 +130,6 @@ function App() {
         <Route exact path="/public">
           <Public />
         </Route> */}
-=======
-        <Route exact path="/favorites">
-          <Favorites />
-        </Route>
->>>>>>> develop
         <Route exact path="/cart">
           <Cart />
         </Route>
