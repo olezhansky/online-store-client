@@ -24,6 +24,7 @@ import {
   ADD_PRODUCT_TO_FAVORITE,
   DELETE_PRODUCT_FROM_FAVORITE,
 } from './favorites/types';
+import { ADD_VIEWED_PRODUCT } from './viewedProducts/types';
 
 // eslint-disable-next-line no-underscore-dangle
 const devTools = window.__REDUX_DEVTOOLS_EXTENSION__
@@ -61,6 +62,13 @@ const localStorageMiddleware =
     ) {
       const { favorites } = getState();
       localStorage.setItem('favorites', JSON.stringify(favorites.favorites));
+    }
+    if (action.type === ADD_VIEWED_PRODUCT) {
+      const { viewedProducts } = getState();
+      localStorage.setItem(
+        'viewedProducts',
+        JSON.stringify(viewedProducts.viewedProducts)
+      );
     }
     return result;
   };

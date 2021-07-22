@@ -1,13 +1,13 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import ProductCard from '../../components/ProductCard/ProductCard';
-import styles from './SimilarProducts.module.scss';
-import SimilarProductsSlider from './SimilarProductsSlider';
+import styles from './ViewedProducts.module.scss';
+import ViewedProductsSlider from './ViewedProductsSlider';
 
-const SimilarProducts = () => {
+const ViewedProducts = () => {
   const viewedProducts = useSelector((state) => state.viewedProducts.viewedProducts);
   return (
-    <div className={styles.SimilarProductsSlider}>
+    <div className={styles.ViewedProductsSlider}>
       <div className="container">
         <h2 className={styles.Title}>Просмотренные товары</h2>
         {viewedProducts.length <= 4 ? (
@@ -16,10 +16,10 @@ const SimilarProducts = () => {
               <ProductCard product={viewedProduct} />
             ))}
           </ul>
-        ) : <SimilarProductsSlider viewedProducts={viewedProducts} />}
+        ) : <ViewedProductsSlider viewedProducts={viewedProducts} />}
       </div>
     </div>
   );
 };
 
-export default SimilarProducts;
+export default ViewedProducts;

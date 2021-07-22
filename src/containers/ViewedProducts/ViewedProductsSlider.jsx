@@ -9,19 +9,19 @@ import 'swiper/swiper.min.css';
 import 'swiper/components/pagination/pagination.min.css';
 import 'swiper/components/navigation/navigation.min.css';
 import SwiperCore, { Pagination, Navigation, Autoplay } from 'swiper/core';
-import './SimilarProductsSlider.scss';
-import styles from './SimilarProductsSlider.module.scss';
+import './ViewedProductsSlider.scss';
+import styles from './ViewedProductsSlider.module.scss';
 import ProductCard from '../../components/ProductCard/ProductCard';
 
 SwiperCore.use([Pagination, Navigation, Autoplay]);
 
-const SimilarProductsSlider = ({viewedProducts}) => {
+const ViewedProductsSlider = ({viewedProducts}) => {
   if (!viewedProducts) return null;
   return (
     <>
       <div className={styles.Container}>
         <Swiper
-          className="SimilarProductsSlider"
+          className="ViewedProductsSlider"
           slidesPerView={1}
           spaceBetween={5}
           autoplay={{
@@ -62,4 +62,4 @@ const SimilarProductsSlider = ({viewedProducts}) => {
   );
 };
 
-export default SimilarProductsSlider;
+export default ViewedProductsSlider;
