@@ -21,12 +21,16 @@ import { addProductToCartAction } from '../../store/cart/actions';
 import { setFlagInCartAction } from '../../store/products/actions';
 import { setSingleProductAction } from '../../store/singleProduct/actions';
 import { addProdductToFavoritesAction, deleteProdductFromFavoritesAction } from '../../store/favorites/actions';
+import { addViewedProductAction } from '../../store/viewedProducts/actions';
 
 const ProductCard = ({product}) => {
   const cart = useSelector((state) => state.cart.cart);
+  const popupIsOpen = useSelector((state) => state.cart.popupIsOpen);
   const favorites = useSelector((state) => state.favorites.favorites);
+  const viewedProducts = useSelector((state) => state.viewedProducts.viewedProducts);
   const isInCart = cart.some((item) => item._id === product._id);
   const isInFavorites = favorites.some((item) => item._id === product._id);
+  const isInViewedProducts = viewedProducts.some((item) => item._id === product._id);
   const dispatch = useDispatch();
   if (!product) return null;
   const addProductToCartHandler = () => {
@@ -46,6 +50,9 @@ const ProductCard = ({product}) => {
 
   const dispatchSingleProductHandler = () => {
     dispatch(setSingleProductAction(product));
+    if (!isInViewedProducts) {
+      dispatch(addViewedProductAction(product));
+    }
   };
 
   return (
@@ -94,11 +101,11 @@ const ProductCard = ({product}) => {
           {/* {isInFavorites ? <BsStar /> : <BsStar style={{color: '#e91e49'}} />} */}
           {isInFavorites ? <BsFillStarFill /> : <BsStar />}
         </div>
-        <div className={styles.ProductCardIconCart} onClick={addProductToCartHandler}>
+        <button type="button" disabled={popupIsOpen} className={styles.ProductCardIconCart} onClick={addProductToCartHandler}>
           {/* {isInCart ? <FaShoppingCart /> : <BiCart />} */}
           {product.quantity !== 0 ? <BiCart /> : <MdRemoveShoppingCart style={{color: '#e91e49'}} />}
           {isInCart && <span><GiCheckMark /></span>}
-        </div>
+        </button>
       </div>
       <div className={styles.ProductCardInfo}>
         <p>

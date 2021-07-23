@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable import/no-named-as-default */
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
@@ -7,7 +9,6 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CheckBox from './CheckBox/CheckBox';
 import styles from './Type.module.scss';
-import TypeQueryMaker from './TypeQueryMaker';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -26,10 +27,11 @@ const useStyles = makeStyles(() => ({
   },
   accordionDetails: {
     padding: '0px',
+    width: '70%',
   },
 }));
 
-const Type = () => {
+const Type = ({ handleChange, typeFilter }) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -40,15 +42,14 @@ const Type = () => {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <h3 className={styles.Title}>По типу</h3>
+          <h3 className={styles.Title}>Тип фотоаппарата</h3>
         </AccordionSummary>
         <AccordionDetails className={classes.accordionDetails}>
           <Typography component="span">
-            <CheckBox />
+            <CheckBox handleChange={handleChange} typeFilter={typeFilter} />
           </Typography>
         </AccordionDetails>
       </Accordion>
-      <TypeQueryMaker />
     </div>
   );
 };

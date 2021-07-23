@@ -1,55 +1,65 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable max-len */
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-tabs */
-import React, { useState } from 'react';
+import React from 'react';
 import Slider from '@material-ui/core/Slider';
 import { makeStyles } from '@material-ui/core';
+import { useDispatch } from 'react-redux';
 import styles from './RangeSlider.module.scss';
+import { getFilteredProductsAction } from '../../../store/products/actions';
 
 const useStyles = makeStyles({
-    root: {
-      background: 'white',
-      color: 'green'
-    },
-  });
+  root: {
+    background: 'white',
+    color: 'green',
+  },
+});
 
-const RangeSlider = () => {
-const [value, setValue] = useState([0, 12000]);
+const RangeSlider = ({
+  currentCategory,
+  page,
+  maxPrice,
+  minPrice,
+  rangeSelector,
+  handleChangeMinRange,
+  handleChangeMaxRange,
+  addQuery,
+  price,
+}) => {
+  const classes = useStyles();
+  const dispatch = useDispatch();
+  const dispatchPriceHandler = () => {
+    dispatch(getFilteredProductsAction(currentCategory, page, addQuery));
+  };
 
-const rangeSelector = (event, newValue) => {
-	setValue(newValue);
-};
+  return (
+    <div className={styles.RangeSlider}>
+      <h3 className={styles.Title}>По цене</h3>
+      <form className={styles.RangeSliderTop}>
+        <input type="text" value={price[0]} onChange={handleChangeMinRange} />
+        &nbsp; - &nbsp;
+        <input type="text" value={price[1]} onChange={handleChangeMaxRange} />
+        &nbsp; &nbsp;
+        <button
+          type="button"
+          className={styles.RangeSliderButton}
+          onClick={dispatchPriceHandler}
+        >
+          OK
+        </button>
+      </form>
 
-const handleChangeMinRange = (event) => {
-    setValue([+event.target.value, +value[1]]);
-};
-const handleChangeMaxRange = (event) => {
-    setValue([+value[0], +event.target.value]);
-};
-
-const classes = useStyles();
-
-return (
-  <div className={styles.RangeSlider}>
-    <h3 className={styles.Title}>По цене</h3>
-    <form className={styles.RangeSliderTop}>
-      <input type="text" value={value[0]} onChange={handleChangeMinRange} />
-      &nbsp;
-      -
-      &nbsp;
-      <input type="text" value={value[1]} onChange={handleChangeMaxRange} />
-            &nbsp;
-            &nbsp;
-      <button type="button" className={styles.RangeSliderButton}>OK</button>
-    </form>
-
-    <Slider
-      className={classes.root}
-      value={value}
-      onChange={rangeSelector}
-      valueLabelDisplay="auto"
-      max={15000}
-    />
-  </div>
-);
+      <Slider
+        className={classes.root}
+        value={price}
+        onChange={rangeSelector}
+        valueLabelDisplay="auto"
+        max={maxPrice}
+        min={minPrice}
+      />
+    </div>
+  );
 };
 
 export default RangeSlider;

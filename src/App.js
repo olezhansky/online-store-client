@@ -9,6 +9,13 @@ import Home from './pages/Home';
 import Contacts from './pages/Contacts';
 import Products from './pages/Products';
 import SingleProduct from './pages/SingleProduct';
+import Shops from './pages/Shops';
+// import Maps from './pages/Maps';
+import Credit from './pages/Credit';
+import Guaranty from './pages/Guaranty';
+import About from './pages/About';
+import Delivery from './pages/Delivery';
+// import Public from './pages/Public';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
 import Profile from './pages/Profile';
@@ -25,6 +32,7 @@ import { userFromLocalStorageAction } from './store/admin/actions';
 import { singleProductFromLocalStorageAction } from './store/singleProduct/actions';
 import Favorites from './pages/Favorites';
 import { favoritesFromLocalStorageAction } from './store/favorites/actions';
+import { viewedProductsFromLocalStorageAction } from './store/viewedProducts/actions';
 
 function App() {
   const cart = useSelector((state) => state.cart.cart);
@@ -47,13 +55,14 @@ function App() {
     totalCount += item.count;
   });
   useEffect(() => {
-    dispatch(setTotalCountCartAction(totalCount));
+   dispatch(setTotalCountCartAction(totalCount));
   }, [dispatch, totalCount]);
 
   useEffect(() => {
     const cartFromLocalStorage = localStorage.getItem('cart');
     const favoritesFromLocalStorage = localStorage.getItem('favorites');
     const singleProductFromLocalStorage = localStorage.getItem('singleProduct');
+    const viewedProductsFromLocalStorage = localStorage.getItem('viewedProducts');
     if (cartFromLocalStorage) {
       dispatch(cartFromLocalStorageAction(cartFromLocalStorage));
     }
@@ -63,6 +72,11 @@ function App() {
     if (singleProductFromLocalStorage) {
       dispatch(
         singleProductFromLocalStorageAction(singleProductFromLocalStorage)
+      );
+    }
+    if (viewedProductsFromLocalStorage) {
+      dispatch(
+        viewedProductsFromLocalStorageAction(viewedProductsFromLocalStorage)
       );
     }
   }, [dispatch]);
@@ -96,15 +110,36 @@ function App() {
         <Route path="/products">
           <Products />
         </Route>
+        <Route path="/favorites">
+          <Favorites />
+        </Route>
         <Route exact path="/single-product">
           <SingleProduct />
         </Route>
         <Route exact path="/contacts">
           <Contacts />
         </Route>
-        <Route exact path="/favorites">
-          <Favorites />
+        <Route exact path="/shops">
+          <Shops />
         </Route>
+        <Route exact path="/guaranty">
+          <Guaranty />
+        </Route>
+        <Route exact path="/about">
+          <About />
+        </Route>
+        <Route exact path="/credit">
+          <Credit />
+        </Route>
+        <Route exact path="/delivery">
+          <Delivery />
+        </Route>
+        {/* <Route exact path="/maps">
+          <Maps />
+        </Route>
+        <Route exact path="/public">
+          <Public />
+        </Route> */}
         <Route exact path="/cart">
           <Cart />
         </Route>
