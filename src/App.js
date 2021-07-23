@@ -19,6 +19,7 @@ import Delivery from './pages/Delivery';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
 import Profile from './pages/Profile';
+import ErrorPage from './pages/ErrorPage';
 import Admin from './pages/Admin';
 import ButtonTop from './components/UI/ButtonTop/ButtonTop';
 import {
@@ -55,7 +56,7 @@ function App() {
     totalCount += item.count;
   });
   useEffect(() => {
-   dispatch(setTotalCountCartAction(totalCount));
+    dispatch(setTotalCountCartAction(totalCount));
   }, [dispatch, totalCount]);
 
   useEffect(() => {
@@ -152,6 +153,7 @@ function App() {
         <Route exact path="/admin">
           <Admin />
         </Route>
+        <Route><ErrorPage /></Route>
       </Switch>
       <Footer />
       <ButtonTop />
