@@ -139,7 +139,6 @@ const PhotoCamerasFilter = () => {
       },
     });
   };
-
   return (
     <div className={styles.ProductsFilter}>
       <FilterQueryMaker
