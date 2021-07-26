@@ -2,25 +2,6 @@
 /* eslint-disable max-len */
 /* eslint-disable no-alert */
 import axios from 'axios';
-// === NOT LOGGED IN ====
-// const newOrder = {
-//   customerId: '5d99ce196d40fb1b747bc5f5',
-//   deliveryAddress: {
-//     country: 'Ukraine',
-//     city: 'Kiev',
-//     address: 'Kreshchatic Street 56//A',
-//     postal: '01044'
-//   },
-//   shipping: 'Kiev 50UAH',
-//   paymentInfo: 'Credit card',
-//   status: 'not shipped',
-//   email: 'saribeg@gmail.com',
-//   mobile: '+380630000000',
-//   letterSubject: 'Thank you for order! You are welcome!',
-//   letterHtml:
-//     '<h1>Your order is placed. OrderNo is 023689452.</h1><p>{Other details about order in your HTML}</p>'
-// };
-//  === LOGGED IN ========
 
 const newOrder = {
   products: JSON.stringify([
