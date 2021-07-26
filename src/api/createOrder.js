@@ -100,8 +100,8 @@ const createOrder = () => {
     'Content-Type': 'application/json',
   };
   return axios
-    // .post('https://intense-hamlet-33316.herokuapp.com/api/orders', JSON.stringify(newOrder))
-    .post('http://localhost:5000/api/orders', newOrder)
+    // .post('http://localhost:5000/api/orders', newOrder)
+    .post('https://intense-hamlet-33316.herokuapp.com/api/orders', newOrder)
     .then((newOrderRes) => {
       /* Do something with newOrder */
       console.log('NEW ORDER: ', newOrderRes);
