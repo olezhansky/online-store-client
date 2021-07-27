@@ -22,7 +22,7 @@ const ModalSubscribeProduct = ({ active, setActive, singleProduct }) => {
   });
 
   // eslint-disable-next-line no-unused-vars
-  const handleOnSubmitForm = (e, values, { setSubmitting, resetForm }) => {
+  const handleOnSubmitForm = (values, { setSubmitting, resetForm }) => {
       setSubmitting(true);
       const form = {
         name: values.name,
