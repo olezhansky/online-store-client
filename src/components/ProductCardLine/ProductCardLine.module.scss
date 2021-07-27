@@ -1,0 +1,10 @@
+.ProductCardLine {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.ProductCardImg {
+    img {
+        max-width: 120px;
+    }
+}

@@ -3,9 +3,10 @@
 import React, {useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {FaRegGrinStars} from 'react-icons/fa';
-import ProductCard from '../../components/ProductCard/ProductCard';
+// import ProductCard from '../../components/ProductCard/ProductCard';
 import { favoriteChangeOrderAction } from '../../store/favorites/actions';
 import styles from './FavoriteContainer.module.scss';
+import ProductCardLine from '../../components/ProductCardLine/ProductCardLine';
 
 const FavoriteContainer = () => {
     console.log('favoriteContainer');
@@ -42,7 +43,7 @@ const FavoriteContainer = () => {
           {favoriteProducts.length !== 0 ? (
             <ul className={styles.Main}>
               {favoriteProducts.sort(sortFavorites).map((favoriteProduct) => (
-                <ProductCard
+                <ProductCardLine
                   product={favoriteProduct}
                   dragStart={dragStartHandler}
                   dragEnd={dragEndHandler}
