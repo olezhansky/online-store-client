@@ -62,7 +62,7 @@ const ProductsSorting = ({ currentPage, allProducts }) => {
           className={styles.SelectPrice}
           onChange={(e) => handleMinMaxSort(e)}
         >
-          <option>-</option>
+          <option value="">-</option>
           <option value="+currentPrice">Возростанию цены</option>
           <option value="-currentPrice">Уменьшению цены</option>
         </select>
