@@ -14,7 +14,6 @@ import {
   SET_PRODUCTS,
   SET_SORT_BY,
   SHOW_GRID,
-  SET_SEARCH_PRODUCTS,
 } from './types';
 
 // eslint-disable-next-line operator-linebreak
@@ -45,15 +44,6 @@ export const getAllProductsCurrentCategoryAction =
       });
     });
   };
-export const getSearchProductsAction = (value) => (dispatch) => {
-  getSearchProducts(value).then((data) => {
-    console.log('allProducts', data);
-    dispatch({
-      type: SET_SEARCH_PRODUCTS,
-      payload: data,
-    });
-  });
-};
 
 export const setFlagInCartAction = (product) => ({
   type: SET_FLAG_IN_CART,

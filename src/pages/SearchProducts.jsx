@@ -1,26 +1,17 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import ProductCard from '../components/ProductCard/ProductCard';
-// import getSearchProducts from '../api/getSearchProducts';
-import { getSearchProductsAction } from '../store/products/actions';
+import Breadcrumbs from '../containers/Breadcrumbs/Breadcrumbs';
+import SearchProductsContainer from '../containers/SearchProductsContainer/SearchProductsContainer';
+import Stories from '../containers/Stories/Stories';
 
 const SearchProducts = () => {
-    const products = useSelector((state) => state.productsPage.products);
-    console.log(products);
-    const dispatch = useDispatch();
-    const handleSearch = () => {
-        dispatch(getSearchProductsAction());
-    };
-    return (
-      <>
-        <button type="button" onClick={handleSearch}>Search</button>
-        <div>
-          {products.map((product) => (
-            <ProductCard product={product} />
-          ))}
-        </div>
-      </>
-    );
+  const array = [['/', 'Главная'], ['products', 'Цифровая техника']];
+  return (
+    <>
+      <Breadcrumbs data={array} />
+      <SearchProductsContainer />
+      <Stories />
+    </>
+  );
 };
 
 export default SearchProducts;

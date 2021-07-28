@@ -8,7 +8,7 @@ import { IoMdOptions } from 'react-icons/io';
 import { VscChromeClose } from 'react-icons/vsc';
 import classNames from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
-import styles from './ProductsContainer.module.scss';
+import styles from './SearchProductsContainer.module.scss';
 import PhotoCamerasFilter from '../../components/ProductsFilter/PhotoCamerasFilter';
 import ProductsField from '../../components/ProductsField/ProductsField';
 import {
@@ -19,20 +19,20 @@ import Loader from '../../components/UI/Loader/Loader';
 import VideoCamerasFilter from '../../components/ProductsFilter/VideoCamerasFilter';
 import ActionCamerasFilter from '../../components/ProductsFilter/ActionCamerasFilter';
 import LensesFilter from '../../components/ProductsFilter/LensesFilter';
+import SearchProductsFilter from '../../components/ProductsFilter/SearchProductsFilter';
 
-const ProductsContainer = () => {
+const SearchProductsContainer = () => {
   const dispatch = useDispatch();
   const currentCategory = useSelector(
     (state) => state.productsPage.currentCategory
   );
   const page = useSelector((state) => state.productsPage.currentPage);
   const perPage = useSelector((state) => state.productsPage.currentPerPage);
-  console.log(currentCategory, page, perPage);
   useEffect(() => {
     dispatch(getFilteredProductsAction(currentCategory, page, perPage, ''));
     dispatch(getAllProductsCurrentCategoryAction(currentCategory));
   }, [currentCategory, dispatch, page, perPage]);
-  const products = useSelector((state) => state.productsPage.products);
+  const searchProducts = useSelector((state) => state.searchProducts.searchProducts);
   const isLoadingProducts = useSelector(
     (state) => state.productsPage.isLoadingProducts
   );
@@ -63,17 +63,14 @@ const ProductsContainer = () => {
             <IoMdOptions />
           </div>
           <div className={styles.filterContainer}>
-            {currentCategory === 'photocameras' && <PhotoCamerasFilter />}
-            {currentCategory === 'videocameras' && <VideoCamerasFilter />}
-            {currentCategory === 'actioncameras' && <ActionCamerasFilter />}
-            {currentCategory === 'lenses' && <LensesFilter />}
+            <SearchProductsFilter />
           </div>
-          {products.length === 0 ? (
+          {searchProducts.length === 0 ? (
             <div className={styles.PrductsFieldLoader}>
               <Loader />
             </div>
           ) : (
-            !isLoadingProducts && <ProductsField products={products} />
+            !isLoadingProducts && <ProductsField products={searchProducts} />
           )}
         </div>
       </div>
@@ -89,4 +86,4 @@ const ProductsContainer = () => {
   );
 };
 
-export default ProductsContainer;
+export default SearchProductsContainer;

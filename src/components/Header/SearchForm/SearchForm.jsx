@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { useDispatch } from 'react-redux';
 import SearchIcon from '@material-ui/icons/Search';
 import { Link } from 'react-router-dom';
-import { getSearchProductsAction } from '../../../store/products/actions';
+import { getSearchProductsAction } from '../../../store/searchProducts/actions';
 import styles from './SearchForm.module.scss';
 
 const SearchForm = () => {
@@ -13,12 +13,7 @@ const SearchForm = () => {
   };
   const dispatch = useDispatch();
 
-  // const searchPhrases = {
-  //   query: value,
-  // };
   const handleClick = () => {
-    // console.log(searchPhrases);
-    console.log(value);
     dispatch(getSearchProductsAction(value));
   };
   
@@ -32,7 +27,7 @@ const SearchForm = () => {
           placeholder="Search text"
           onChange={(e) => handleChange(e)}
         />
-        <Link to="search-products">
+        <Link to="/search-products">
           <button
             className={styles.searchButton}
             type="button"
