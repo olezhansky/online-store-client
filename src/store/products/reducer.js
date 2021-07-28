@@ -10,6 +10,7 @@ import {
   SET_PRODUCTS,
   SET_SORT_BY,
   SHOW_GRID,
+  SET_SEARCH_PRODUCTS,
 } from './types';
 
 const initialState = {
@@ -32,6 +33,14 @@ export const productsReducer = (state = initialState, action) => {
       return {
         ...state,
         products: action.payload,
+        isLoadingProducts: false,
+      };
+    case SET_SEARCH_PRODUCTS:
+      // ==== REFACTORING ====
+      console.log('SET_PRODUCTS: ', action.payload.data);
+      return {
+        ...state,
+        products: action.payload.data,
         isLoadingProducts: false,
       };
     case SET_CURRENT_CAREGORY:
