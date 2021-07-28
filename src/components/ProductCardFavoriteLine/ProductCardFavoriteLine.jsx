@@ -11,14 +11,21 @@ import { BsFillStarFill, BsStar } from 'react-icons/bs';
 import { MdRemoveShoppingCart } from 'react-icons/md';
 import { BiCart } from 'react-icons/bi';
 import { GiCheckMark } from 'react-icons/gi';
-import styles from './ProductCardLine.module.scss';
+import styles from './ProductCardFavoriteLine.module.scss';
 import { addProdductToFavoritesAction, deleteProdductFromFavoritesAction } from '../../store/favorites/actions';
 import { addProductToCartAction } from '../../store/cart/actions';
 import { setFlagInCartAction } from '../../store/products/actions';
 import { setSingleProductAction } from '../../store/singleProduct/actions';
 import { addViewedProductAction } from '../../store/viewedProducts/actions';
 
-const ProductCardLine = ({product}) => {
+const ProductCardLine = ({
+    product,
+    dragStart,
+    dragEnd,
+    dragOver,
+    drop
+}) => {
+    console.log(product);
     const cart = useSelector((state) => state.cart.cart);
     const popupIsOpen = useSelector((state) => state.cart.popupIsOpen);
     const favorites = useSelector((state) => state.favorites.favorites);
@@ -53,6 +60,12 @@ const ProductCardLine = ({product}) => {
     return (
       <div
         className={styles.ProductCardLine}
+        onDragStart={(e) => dragStart(e, product)}
+        onDragLeave={(e) => dragEnd(e)}
+        onDragEnd={(e) => dragEnd(e)}
+        onDragOver={(e) => dragOver(e)}
+        onDrop={(e) => drop(e, product)}
+        draggable
       >
         <Link to="/single-product" onClick={dispatchSingleProductHandler}>
           <div className={styles.ProductCardImg}>

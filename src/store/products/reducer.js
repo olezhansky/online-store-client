@@ -9,6 +9,7 @@ import {
   SET_PER_PAGE,
   SET_PRODUCTS,
   SET_SORT_BY,
+  SHOW_GRID,
 } from './types';
 
 const initialState = {
@@ -20,6 +21,7 @@ const initialState = {
   isLoadingProducts: true,
   currentQuery: '',
   sortBy: '',
+  showGrid: true,
 };
 
 export const productsReducer = (state = initialState, action) => {
@@ -65,6 +67,11 @@ export const productsReducer = (state = initialState, action) => {
       return {
         ...state,
         sortBy: action.payload,
+      };
+    case SHOW_GRID:
+      return {
+        ...state,
+        showGrid: !state.showGrid,
       };
     default:
       return state;

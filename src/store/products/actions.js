@@ -12,6 +12,7 @@ import {
   SET_PER_PAGE,
   SET_PRODUCTS,
   SET_SORT_BY,
+  SHOW_GRID,
 } from './types';
 
 // eslint-disable-next-line operator-linebreak
@@ -66,4 +67,8 @@ export const setCurrentQueryAction = (id, page) => ({
 export const setSortQueryAction = (querySort) => ({
   type: SET_SORT_BY,
   payload: querySort,
+});
+
+export const showGridAction = () => ({
+  type: SHOW_GRID,
 });

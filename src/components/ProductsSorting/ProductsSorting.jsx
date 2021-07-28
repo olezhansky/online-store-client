@@ -1,16 +1,21 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable no-debugger */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { GiHamburgerMenu } from 'react-icons/gi';
+import { CgMenuGridR } from 'react-icons/cg';
 import { setCurrentPerPageAction, setSortQueryAction } from '../../store/products/actions';
 import styles from './ProductsSorting.module.scss';
 
-const ProductsSorting = ({ currentPage, allProducts }) => {
+const ProductsSorting = ({ currentPage, allProducts, handlerSwitch }) => {
   const [currentInterval, setCurrentInterval] = useState([1, 3]);
   const dispatch = useDispatch();
   console.log(currentPage);
+  const showGrid = useSelector((state) => state.productsPage.showGrid);
 
   // const [, updateState] = useState();
   // const forceUpdate = React.useCallback(() => updateState({}), []);
@@ -66,6 +71,13 @@ const ProductsSorting = ({ currentPage, allProducts }) => {
           <option value="+currentPrice">Возростанию цены</option>
           <option value="-currentPrice">Уменьшению цены</option>
         </select>
+      </div>
+      <div
+        className={showGrid ? styles.SwitchIcon : styles.SwitchIconRotate}
+        onClick={handlerSwitch}
+      >
+        {showGrid ? <GiHamburgerMenu style={{color: '#51ad33'}} /> : <CgMenuGridR style={{color: '#51ad33'}} />}
+       
       </div>
     </div>
   );
