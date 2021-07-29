@@ -22,6 +22,13 @@ const ProductsField = ({ products }) => {
   const handlerSwitch = () => {
     dispatch(showGridAction());
   };
+    
+  const scrollToTopHandler = () => {
+    window.scrollTo({
+      behavior: 'smooth',
+    top: 0,
+    });
+};
   return (
     <div className={styles.ProductsField}>
       <ProductsSorting
@@ -44,7 +51,9 @@ const ProductsField = ({ products }) => {
             </div>
           )}
       </div>
-      <Pagination />
+      <Pagination
+        scrollTo={scrollToTopHandler}
+      />
     </div>
   );
 };

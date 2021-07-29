@@ -45,7 +45,7 @@ const FilterQueryMaker = ({
     if (addQueryBrandCanon === 'Canon') {
       dispatch(getFilteredSearchProductsAction('Canon'));
     } else {
-      dispatch(getSearchProductsAction('photocameras'));
+      // dispatch(getSearchProductsAction('photocameras'));
     }
   }, [brandState, dispatch]);
 

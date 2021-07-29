@@ -15,6 +15,7 @@ const SearchForm = () => {
 
   const handleClick = () => {
     dispatch(getSearchProductsAction(value));
+    setValue('');
   };
   
   return (

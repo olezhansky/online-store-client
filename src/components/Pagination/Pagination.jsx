@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
@@ -9,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentPageAction } from '../../store/products/actions';
 import styles from './Pagination.module.scss';
 
-const Pagination = () => {
+const Pagination = ({scrollTo}) => {
   const allProductsArr = useSelector(
     (state) => state.productsPage.AllProductsForPagination
   );
@@ -30,6 +31,7 @@ const Pagination = () => {
     console.log(item);
     // setIsActive(item);
     dispatch(setCurrentPageAction(item));
+    scrollTo();
   };
 
   return (

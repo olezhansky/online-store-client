@@ -3,7 +3,7 @@ import { GET_FILTERED_PRODUCTS, SET_SEARCH_PRODUCTS } from './types';
 
 const initialState = {
   searchProducts: [],
-  searchProducts2: [],
+  isLoadingSearchProducts: true
 };
 
 export const searchProducts = (state = initialState, action) => {
@@ -13,12 +13,13 @@ export const searchProducts = (state = initialState, action) => {
         ...state,
         searchProducts: action.payload.data,
         searchProducts2: action.payload.data,
+        isLoadingSearchProducts: false
       };
     case GET_FILTERED_PRODUCTS:
       console.log(action.payload.brand);
       let newArr1 = '';
 
-      newArr1 = state.searchProducts2.filter(
+      newArr1 = state.searchProducts.filter(
         (item) => item.brand === action.payload.brand
       );
       return {
