@@ -4,7 +4,7 @@ import SearchProductsContainer from '../containers/SearchProductsContainer/Searc
 import Stories from '../containers/Stories/Stories';
 
 const SearchProducts = () => {
-  const array = [['/', 'Главная'], ['products', 'Цифровая техника']];
+  const array = [['/', 'Главная'], ['products', 'Товары']];
   return (
     <>
       <Breadcrumbs data={array} />

@@ -1,17 +1,31 @@
-import { SET_SEARCH_PRODUCTS } from './types';
+/* eslint-disable no-case-declarations */
+import { GET_FILTERED_PRODUCTS, SET_SEARCH_PRODUCTS } from './types';
 
 const initialState = {
-    searchProducts: []
+  searchProducts: [],
+  searchProducts2: [],
 };
 
 export const searchProducts = (state = initialState, action) => {
-    switch (action.type) {
-        case SET_SEARCH_PRODUCTS:
-            return {
-                ...state,
-                searchProducts: action.payload.data
-            };
-        default:
-            return state;
-    }
+  switch (action.type) {
+    case SET_SEARCH_PRODUCTS:
+      return {
+        ...state,
+        searchProducts: action.payload.data,
+        searchProducts2: action.payload.data,
+      };
+    case GET_FILTERED_PRODUCTS:
+      console.log(action.payload.brand);
+      let newArr1 = '';
+
+      newArr1 = state.searchProducts2.filter(
+        (item) => item.brand === action.payload.brand
+      );
+      return {
+        ...state,
+        searchProducts: newArr1,
+      };
+    default:
+      return state;
+  }
 };

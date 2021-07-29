@@ -59,13 +59,6 @@ const SearchProductsFilter = () => {
   // ======================================
   return (
     <div className={styles.ProductsFilter}>
-      {/* <FilterQueryMaker
-        typeState={typeState}
-        brandState={brandState}
-        setFilter={setState}
-        matrixState={matrixState}
-        priceState={priceData}
-      /> */}
       <SearchProductsQueryMaker
         priceState={priceData}
         brandState={brandState}

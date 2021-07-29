@@ -10,7 +10,6 @@ import classNames from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './SearchProductsContainer.module.scss';
 import PhotoCamerasFilter from '../../components/ProductsFilter/PhotoCamerasFilter';
-import ProductsField from '../../components/ProductsField/ProductsField';
 import {
   getAllProductsCurrentCategoryAction,
   getFilteredProductsAction,
@@ -20,6 +19,8 @@ import VideoCamerasFilter from '../../components/ProductsFilter/VideoCamerasFilt
 import ActionCamerasFilter from '../../components/ProductsFilter/ActionCamerasFilter';
 import LensesFilter from '../../components/ProductsFilter/LensesFilter';
 import SearchProductsFilter from '../../components/ProductsFilter/SearchProductsFilter';
+import SearchProductsField from '../../components/SearchProductsField/SearchProductsField';
+import PaginationSearchProducts from '../../components/PaginationSearchProducts/PaginationSearchProducts';
 
 const SearchProductsContainer = () => {
   const dispatch = useDispatch();
@@ -55,6 +56,18 @@ const SearchProductsContainer = () => {
     [styles.showFiltersBtn]: true,
     [styles.showFiltersBtn_hidden]: isActive,
   });
+
+  const [currentPage2, setCurrentPage2] = useState(1);
+  const [productsPerPage] = useState(5);
+
+  const lastProductsIndex = currentPage2 * productsPerPage;
+  const firstProductsIndex = lastProductsIndex - productsPerPage;
+  const currentProduct = searchProducts.slice(firstProductsIndex, lastProductsIndex);
+
+  const paginate = (pageNumber) => {
+    setCurrentPage2(pageNumber);
+  };
+
   return (
     <div className={styles.ProductsBlock}>
       <div className="container">
@@ -70,7 +83,7 @@ const SearchProductsContainer = () => {
               <Loader />
             </div>
           ) : (
-            !isLoadingProducts && <ProductsField products={searchProducts} />
+            !isLoadingProducts && <SearchProductsField searchProducts={currentProduct} />
           )}
         </div>
       </div>
@@ -82,6 +95,11 @@ const SearchProductsContainer = () => {
         </div>
         <PhotoCamerasFilter />
       </div>
+      <PaginationSearchProducts
+        productsPerPage={productsPerPage}
+        totalProducts={searchProducts.length}
+        paginate={paginate}
+      />
     </div>
   );
 };

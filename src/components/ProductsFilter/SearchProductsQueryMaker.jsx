@@ -1,25 +1,14 @@
 /* eslint-disable operator-linebreak */
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable no-unused-vars */
-import React, { useMemo, memo } from 'react';
+import React, { useMemo, memo, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getFilteredProductsAction } from '../../store/products/actions';
+import {getFilteredSearchProductsAction, getSearchProductsAction } from '../../store/searchProducts/actions';
 
 const FilterQueryMaker = ({
   brandState,
-  priceState,
 }) => {
-  const currentCategory = useSelector(
-    (state) => state.productsPage.currentCategory
-  );
-  const page = useSelector((state) => state.productsPage.currentPage);
-  const perPage = useSelector((state) => state.productsPage.currentPerPage);
-  const sortBy = useSelector((state) => state.productsPage.sortBy);
   const dispatch = useDispatch();
-
-  const rangeQuery = `&minPrice=${priceState[0]}&maxPrice=${priceState[1]}`;
-  const addQuerySortBy = `&sort=${sortBy}`;
-
   const result = useMemo(() => {
     const brandArr = Object.keys(brandState).map((item) => {
       if (item === 'checkboxA' && brandState[item].status) {
@@ -39,27 +28,26 @@ const FilterQueryMaker = ({
       }
       return null;
     });
-    const filteredBrandArr = brandArr.filter((item) => item !== null);
-    let addQueryBrand = '';
+    const filteredBrandArrCanon = brandArr.filter((item) => item === 'Canon');
+    const filteredBrandArrNikon = brandArr.filter((item) => item === 'Nikon');
+    console.log(filteredBrandArrCanon);
+    console.log(filteredBrandArrNikon);
+    let addQueryBrandCanon = '';
+    let addQueryBrandNikon = '';
  
-    if (filteredBrandArr.length > 0) {
-      addQueryBrand = `&brand=${filteredBrandArr.join(',')}`;
+    if (filteredBrandArrCanon.length > 0) {
+      addQueryBrandCanon = filteredBrandArrCanon.join(',');
+    }
+    if (filteredBrandArrNikon.length > 0) {
+      addQueryBrandNikon = filteredBrandArrNikon.join(',');
     }
 
-    const finalQuery =
-      addQueryBrand +
-      addQuerySortBy +
-      rangeQuery;
-    if (finalQuery) {
-      // console.log('FINAL QUERY: ', finalQuery);
-      dispatch(
-        getFilteredProductsAction(currentCategory, page, perPage, finalQuery)
-      );
+    if (addQueryBrandCanon === 'Canon') {
+      dispatch(getFilteredSearchProductsAction('Canon'));
     } else {
-      // console.log('SHOW ALL!!!');
-      dispatch(getFilteredProductsAction(currentCategory, page, perPage, ''));
+      dispatch(getSearchProductsAction('photocameras'));
     }
-  }, [brandState, currentCategory, dispatch, page, perPage, rangeQuery, addQuerySortBy]);
+  }, [brandState, dispatch]);
 
   return null;
 };
