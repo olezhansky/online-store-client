@@ -1,17 +1,22 @@
+/* eslint-disable no-debugger */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-one-expression-per-line */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCurrentPerPageAction } from '../../store/products/actions';
+import { setCurrentPerPageAction, setSortQueryAction } from '../../store/products/actions';
 import styles from './ProductsSorting.module.scss';
 
 const ProductsSorting = ({ currentPage, allProducts }) => {
   const [currentInterval, setCurrentInterval] = useState([1, 3]);
   const dispatch = useDispatch();
+  console.log(currentPage);
 
+  // const [, updateState] = useState();
+  // const forceUpdate = React.useCallback(() => updateState({}), []);
+ 
   const handlePerPage = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     const showBy = +e.target.value;
     dispatch(setCurrentPerPageAction(showBy));
     setCurrentInterval(
@@ -26,6 +31,11 @@ const ProductsSorting = ({ currentPage, allProducts }) => {
       })
     );
   };
+
+  const handleMinMaxSort = (e) => {
+    dispatch(setSortQueryAction(e.target.value));
+  };
+
   return (
     <div className={styles.ProductsSorting}>
       <div className={styles.ProductsSortingLeft}>
@@ -48,9 +58,13 @@ const ProductsSorting = ({ currentPage, allProducts }) => {
       </div>
       <div className={styles.ProductsSortingRight}>
         <span>Сортировать по</span>
-        <select className={styles.SelectPrice}>
-          <option>Возростанию цены</option>
-          <option>По уменьшению цены</option>
+        <select
+          className={styles.SelectPrice}
+          onChange={(e) => handleMinMaxSort(e)}
+        >
+          <option>-</option>
+          <option value="+currentPrice">Возростанию цены</option>
+          <option value="-currentPrice">Уменьшению цены</option>
         </select>
       </div>
     </div>

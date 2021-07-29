@@ -12,13 +12,16 @@ const FilterQueryMaker = ({
   brandState,
   priceState,
 }) => {
-  const rangeQuery = `&minPrice=${priceState[0]}&maxPrice=${priceState[1]}`;
   const currentCategory = useSelector(
     (state) => state.productsPage.currentCategory
   );
   const page = useSelector((state) => state.productsPage.currentPage);
   const perPage = useSelector((state) => state.productsPage.currentPerPage);
+  const sortBy = useSelector((state) => state.productsPage.sortBy);
   const dispatch = useDispatch();
+
+  const rangeQuery = `&minPrice=${priceState[0]}&maxPrice=${priceState[1]}`;
+  const addQuerySortBy = `&sort=${sortBy}`;
 
   const result = useMemo(() => {
     const typeStatusArr = Object.keys(typeState).map((item) => {
@@ -36,22 +39,6 @@ const FilterQueryMaker = ({
       }
       return null;
     });
-    // console.log(typeStatusArr);
-    // const typeArr = Object.keys(typeFilter).map((item) => {
-    //   if (item === 'mirror' && typeFilter[item]) {
-    //     return 'Зеркальный';
-    //   }
-    //   if (item === 'compact' && typeFilter[item]) {
-    //     return 'Компактный';
-    //   }
-    //   if (item === 'system' && typeFilter[item]) {
-    //     return 'Системный';
-    //   }
-    //   if (item === 'zoom' && typeFilter[item]) {
-    //     return 'Суперзум';
-    //   }
-    //   return null;
-    // });
 
     const brandArr = Object.keys(brandState).map((item) => {
       if (item === 'checkboxA' && brandState[item].status) {
@@ -113,6 +100,7 @@ const FilterQueryMaker = ({
     let addQueryBrand = '';
     let addQuerySet = '';
     let addQueryMatrixSize = '';
+    
     if (filteredTypeArr.length > 0) {
       addQueryType = `&type=${filteredTypeArr.join(',')}`;
     }
@@ -125,20 +113,21 @@ const FilterQueryMaker = ({
     if (filteredMatrixSizeArr.length > 0) {
       addQueryMatrixSize = `&matrixSize=${filteredMatrixSizeArr.join(',')}`;
     }
-    console.log(addQueryMatrixSize);
+    // console.log(addQueryMatrixSize);
     const finalQuery =
       addQueryType +
       addQueryBrand +
       addQuerySet +
       addQueryMatrixSize +
+      addQuerySortBy +
       rangeQuery;
     if (finalQuery) {
-      console.log('FINAL QUERY: ', finalQuery);
+      // console.log('FINAL QUERY: ', finalQuery);
       dispatch(
         getFilteredProductsAction(currentCategory, page, perPage, finalQuery)
       );
     } else {
-      console.log('SHOW ALL!!!');
+      // console.log('SHOW ALL!!!');
       dispatch(getFilteredProductsAction(currentCategory, page, perPage, ''));
     }
   }, [
@@ -151,6 +140,7 @@ const FilterQueryMaker = ({
     rangeQuery,
     setFilter,
     typeState,
+    addQuerySortBy
   ]);
 
   return null;
