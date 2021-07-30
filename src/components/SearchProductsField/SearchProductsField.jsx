@@ -2,7 +2,7 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch} from 'react-redux';
 import styles from './SearchProductsField.module.scss';
 import {showGridAction} from '../../store/products/actions';

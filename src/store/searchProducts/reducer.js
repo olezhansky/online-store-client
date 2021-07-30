@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-case-declarations */
 import {
   GET_FILTERED_PRODUCTS,
@@ -5,6 +6,7 @@ import {
   PAGINATE_PAGE_NUMBER,
   SET_SEARCH_PRODUCTS_PER_PAGE,
   CLEAR_SEARCH_PRODUCTS,
+  SORT_SEARCH_PRODUCTS,
 } from './types';
 
 const initialState = {
@@ -50,6 +52,12 @@ export const searchProducts = (state = initialState, action) => {
       return {
         ...state,
         searchProducts: [],
+      };
+    case SORT_SEARCH_PRODUCTS:
+      const newArr = (state.searchProducts.sort((a, b) => a.currentPrice + b.currentPrice)).slice(0, -1);
+      return {
+        ...state,
+        searchProducts: newArr,
       };
     default:
       return state;

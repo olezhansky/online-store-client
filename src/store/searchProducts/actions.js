@@ -5,6 +5,7 @@ import {
   PAGINATE_PAGE_NUMBER,
   SET_SEARCH_PRODUCTS_PER_PAGE,
   CLEAR_SEARCH_PRODUCTS,
+  SORT_SEARCH_PRODUCTS,
 } from './types';
 
 export const getSearchProductsAction = (value) => (dispatch) => {
@@ -33,4 +34,7 @@ export const setSearchProductsPerPageAction = (showBy) => ({
 
 export const clearSearchProductsAction = () => ({
   type: CLEAR_SEARCH_PRODUCTS,
+});
+export const sortSearchProductsAction = () => ({
+  type: SORT_SEARCH_PRODUCTS,
 });

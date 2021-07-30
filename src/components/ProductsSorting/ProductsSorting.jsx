@@ -9,10 +9,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { CgMenuGridR } from 'react-icons/cg';
 import { setCurrentPerPageAction, setSortQueryAction } from '../../store/products/actions';
-import { setSearchProductsPerPageAction} from '../../store/searchProducts/actions';
+import { setSearchProductsPerPageAction, sortSearchProductsAction} from '../../store/searchProducts/actions';
 import styles from './ProductsSorting.module.scss';
 
-const ProductsSorting = ({ currentPage, allProducts, handlerSwitch }) => {
+const ProductsSorting = ({
+ currentPage, allProducts, handlerSwitch
+}) => {
   const [currentInterval, setCurrentInterval] = useState([1, 3]);
   const dispatch = useDispatch();
   console.log(currentPage);
@@ -38,6 +40,7 @@ const ProductsSorting = ({ currentPage, allProducts, handlerSwitch }) => {
   };
 
   const handleMinMaxSort = (e) => {
+    dispatch(sortSearchProductsAction(e.target.value));
     dispatch(setSortQueryAction(e.target.value));
   };
 
