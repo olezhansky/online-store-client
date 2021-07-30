@@ -78,20 +78,20 @@ const ContactDetails = () => {
       letterSubject: 'ABC_Photo_ordering confirm',
       letterHtml: `<h1>${values.name}, Ваш заказ принят. Номер заказа ${orderNo}.</h1><p>Мы свяжемся с Вами в ближайшее время</p>`,
     };
-    // if (isLoggedIn) {
-    //   newOrder.customerId = currentUserId;
-    // } else {
-    //   newOrder.products = JSON.stringify(orderProducts);
-    // }
-    // if (isLoggedIn) {
-    //   createOrder(newOrder);
-    //   dispatch(cartDeleteAction());
-    // } else {
-    //   createOrder(newOrder);
-    //   // clear cart in REDUX & LocalStorege
-    //   dispatch(deleteLocalCartAction());
-    // }
-    // resetForm();
+    if (isLoggedIn) {
+      newOrder.customerId = currentUserId;
+    } else {
+      newOrder.products = JSON.stringify(orderProducts);
+    }
+    if (isLoggedIn) {
+      createOrder(newOrder);
+      dispatch(cartDeleteAction());
+    } else {
+      createOrder(newOrder);
+      // clear cart in REDUX & LocalStorege
+      dispatch(deleteLocalCartAction());
+    }
+    resetForm();
   };
 
   const handleChangeDelivery = (event) => {

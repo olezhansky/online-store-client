@@ -9,6 +9,7 @@ import Footer from './containers/Footer/Footer';
 import Home from './pages/Home';
 import Contacts from './pages/Contacts';
 import Products from './pages/Products';
+import SearchProducts from './pages/SearchProducts';
 import SingleProduct from './pages/SingleProduct';
 import Shops from './pages/Shops';
 // import Maps from './pages/Maps';
@@ -182,6 +183,9 @@ function App() {
         </Route>
         <Route exact path="/admin">
           <Admin />
+        </Route>
+        <Route exact path="/search-products">
+          <SearchProducts />
         </Route>
       </Switch>
       <Footer />
