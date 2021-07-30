@@ -2,11 +2,13 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, {useState} from 'react';
+import { useSelector, useDispatch} from 'react-redux';
 import styles from './ProductsField.module.scss';
+import {showGridAction} from '../../store/products/actions';
 import ProductsSorting from '../ProductsSorting/ProductsSorting';
 import ProductCard from '../ProductCard/ProductCard';
+import ProductCardLine from '../ProductCardLine/ProductCardLine';
 import Pagination from '../Pagination/Pagination';
 
 const ProductsField = ({ products }) => {
@@ -15,17 +17,43 @@ const ProductsField = ({ products }) => {
   const allProducts = useSelector(
     (state) => state.productsPage.AllProductsForPagination.length
   );
+  const showGrid = useSelector((state) => state.productsPage.showGrid);
+  const dispatch = useDispatch();
+  const handlerSwitch = () => {
+    dispatch(showGridAction());
+  };
+    
+  const scrollToTopHandler = () => {
+    window.scrollTo({
+      behavior: 'smooth',
+    top: 0,
+    });
+};
   return (
     <div className={styles.ProductsField}>
-      <ProductsSorting currentPage={currentPage} allProducts={allProducts} />
+      <ProductsSorting
+        currentPage={currentPage}
+        allProducts={allProducts}
+        handlerSwitch={handlerSwitch}
+      />
       <div className={styles.ProductsFieldGridWrapp}>
-        <div className={styles.ProductsFieldGrid}>
-          {products.map((product) => (
-            <ProductCard product={product} key={product._id} />
+        {showGrid ? (
+          <div className={styles.ProductsFieldGrid}>
+            {products.map((product) => (
+              <ProductCard product={product} key={product._id} dragable={false} />
           ))}
-        </div>
+          </div>
+          ) : (
+            <div className={styles.ProductsFieldLine}>
+              {products.map((product) => (
+                <ProductCardLine product={product} key={product._id} />
+                    ))}
+            </div>
+          )}
       </div>
-      <Pagination />
+      <Pagination
+        scrollTo={scrollToTopHandler}
+      />
     </div>
   );
 };

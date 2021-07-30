@@ -23,13 +23,7 @@ import { setSingleProductAction } from '../../store/singleProduct/actions';
 import { addProdductToFavoritesAction, deleteProdductFromFavoritesAction } from '../../store/favorites/actions';
 import { addViewedProductAction } from '../../store/viewedProducts/actions';
 
-const ProductCard = ({
-  product,
-  dragStart,
-  dragEnd,
-  dragOver,
-  drop
-}) => {
+const ProductCard = ({product}) => {
   const cart = useSelector((state) => state.cart.cart);
   const popupIsOpen = useSelector((state) => state.cart.popupIsOpen);
   const favorites = useSelector((state) => state.favorites.favorites);
@@ -64,12 +58,6 @@ const ProductCard = ({
   return (
     <div
       className={styles.ProductCard}
-      onDragStart={(e) => dragStart(e, product)}
-      onDragLeave={(e) => dragEnd(e)}
-      onDragEnd={(e) => dragEnd(e)}
-      onDragOver={(e) => dragOver(e)}
-      onDrop={(e) => drop(e, product)}
-      draggable
     >
       <Link to="/single-product" onClick={dispatchSingleProductHandler}>
         <div className={styles.ProductCardImg}>
@@ -89,7 +77,7 @@ const ProductCard = ({
               {' '}
               грн
             </span>
-) : <p className={styles.ProductCardOldPriceSpace}>&nbsp;</p>)}
+          ) : <p className={styles.ProductCardOldPriceSpace}>&nbsp;</p>)}
           <br />
           {product.previousPrice
           ? (
@@ -98,14 +86,14 @@ const ProductCard = ({
               {' '}
               грн
             </span>
-)
-          : (
-            <span className={styles.ProductCardPrice}>
-              {product.currentPrice}
-              {' '}
-              грн
-            </span>
-)}
+            )
+            : (
+              <span className={styles.ProductCardPrice}>
+                {product.currentPrice}
+                {' '}
+                грн
+              </span>
+            )}
           <br />
           {product.quantity !== 0
             ? <span className={styles.ProductCardInStock}>в наличии</span>

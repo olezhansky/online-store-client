@@ -29,12 +29,10 @@ const ProductsContainer = () => {
   const perPage = useSelector((state) => state.productsPage.currentPerPage);
   console.log(currentCategory, page, perPage);
   useEffect(() => {
-    // console.log(currentCategory, page);
     dispatch(getFilteredProductsAction(currentCategory, page, perPage, ''));
     dispatch(getAllProductsCurrentCategoryAction(currentCategory));
   }, [currentCategory, dispatch, page, perPage]);
   const products = useSelector((state) => state.productsPage.products);
-  // console.log(products);
   const isLoadingProducts = useSelector(
     (state) => state.productsPage.isLoadingProducts
   );
