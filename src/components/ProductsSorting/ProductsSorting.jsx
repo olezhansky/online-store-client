@@ -4,7 +4,10 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCurrentPerPageAction, setSortQueryAction } from '../../store/products/actions';
+import {
+  setCurrentPerPageAction,
+  setSortQueryAction,
+} from '../../store/products/actions';
 import styles from './ProductsSorting.module.scss';
 
 const ProductsSorting = ({ currentPage, allProducts }) => {
@@ -14,7 +17,7 @@ const ProductsSorting = ({ currentPage, allProducts }) => {
 
   // const [, updateState] = useState();
   // const forceUpdate = React.useCallback(() => updateState({}), []);
- 
+
   const handlePerPage = (e) => {
     // console.log(e.target.value);
     const showBy = +e.target.value;
