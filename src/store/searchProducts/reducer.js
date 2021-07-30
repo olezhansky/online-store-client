@@ -1,9 +1,18 @@
 /* eslint-disable no-case-declarations */
-import { GET_FILTERED_PRODUCTS, SET_SEARCH_PRODUCTS } from './types';
+import {
+  GET_FILTERED_PRODUCTS,
+  SET_SEARCH_PRODUCTS,
+  PAGINATE_PAGE_NUMBER,
+  SET_SEARCH_PRODUCTS_PER_PAGE,
+  CLEAR_SEARCH_PRODUCTS,
+} from './types';
 
 const initialState = {
   searchProducts: [],
-  isLoadingSearchProducts: true
+  isLoadingSearchProducts: true,
+  currentPage: 1,
+  searchProductsPerPage: 6,
+  showBy: 3,
 };
 
 export const searchProducts = (state = initialState, action) => {
@@ -13,7 +22,8 @@ export const searchProducts = (state = initialState, action) => {
         ...state,
         searchProducts: action.payload.data,
         searchProducts2: action.payload.data,
-        isLoadingSearchProducts: false
+        isLoadingSearchProducts: false,
+        searchProductsPerPage: 6,
       };
     case GET_FILTERED_PRODUCTS:
       console.log(action.payload.brand);
@@ -25,6 +35,21 @@ export const searchProducts = (state = initialState, action) => {
       return {
         ...state,
         searchProducts: newArr1,
+      };
+    case PAGINATE_PAGE_NUMBER:
+      return {
+        ...state,
+        currentPage: action.payload.pageNumber,
+      };
+    case SET_SEARCH_PRODUCTS_PER_PAGE:
+      return {
+        ...state,
+        searchProductsPerPage: action.payload.showBy,
+      };
+    case CLEAR_SEARCH_PRODUCTS:
+      return {
+        ...state,
+        searchProducts: [],
       };
     default:
       return state;

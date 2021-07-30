@@ -42,7 +42,7 @@ const SearchProductsField = ({ searchProducts }) => {
             <div className={styles.ProductsFieldLine}>
               {searchProducts.map((product) => (
                 <ProductCardLine product={product} key={product._id} />
-                    ))}
+              ))}
             </div>
           )}
       </div>

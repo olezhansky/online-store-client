@@ -3,38 +3,58 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable react/prop-types */
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import classNames from 'classnames';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { paginateAction } from '../../store/searchProducts/actions';
 import styles from './PaginationSearchProducts.module.scss';
 
 const PaginationSearchProducts = ({
-productsPerPage, totalProducts, paginate, currentPage, scrollToTop
+productsPerPage, totalProducts, currentPage, scrollToTop
 }) => {
+    const dispatch = useDispatch();
     const pageNumbers = [];
     for (let i = 1; i <= Math.ceil(totalProducts / productsPerPage); i++) {
         pageNumbers.push(i);
     }
 
-    const handlePaginate = (item) => {
-      paginate(item);
+    const handlePaginate = (pageNumber) => {
+      dispatch(paginateAction(pageNumber));
       scrollToTop();
+    };
+
+    const handlePaginateRight = () => {
+      if (currentPage <= pageNumbers.length - 1) {
+        dispatch(paginateAction(currentPage + 1));
+      }
+    };
+    const handlePaginateLeft = () => {
+      if (currentPage > 1) {
+        dispatch(paginateAction(currentPage - 1));
+      }
     };
     return (
       <div className={styles.Pagination}>
-        <FaChevronLeft className={styles.ButtonPrev} />
-        {pageNumbers.map((item) => (
+        <FaChevronLeft
+          className={styles.ButtonPrev}
+          onClick={handlePaginateLeft}
+        />
+        {pageNumbers.map((pageNumber) => (
           <div
             className={classNames({
             [styles.PaginationItem]: true,
-            [styles.PaginationItem_active]: currentPage === item,
+            [styles.PaginationItem_active]: currentPage === pageNumber,
           })}
-            key={item}
-            onClick={() => handlePaginate(item)}
+            key={pageNumber}
+            onClick={() => handlePaginate(pageNumber)}
           >
-            {item}
+            {pageNumber}
           </div>
       ))}
-        <FaChevronRight className={styles.ButtonNext} />
+        <FaChevronRight
+          className={styles.ButtonNext}
+          onClick={handlePaginateRight}
+        />
       </div>
     );
 };

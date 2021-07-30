@@ -19,24 +19,36 @@ const Pagination = ({scrollTo}) => {
   );
   const currentPage = useSelector((state) => state.productsPage.currentPage);
   const pagesCount = Math.ceil(allProductsArr.length / productPerPage);
-  // console.log(allProductsArr.length, pagesCount);
-  // const [isActive, setIsActive] = useState(1);
   const dispatch = useDispatch();
   const pages = [];
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i);
   }
-  // console.log(pages);
   const handleExactPage = (item) => {
     console.log(item);
-    // setIsActive(item);
     dispatch(setCurrentPageAction(item));
     scrollTo();
   };
 
+  const handleRightPage = () => {
+    if (currentPage <= pages.length - 1) {
+      dispatch(setCurrentPageAction(currentPage + 1));
+      scrollTo();
+    }
+  };
+  const handleLeftPage = () => {
+    if (currentPage > 1) {
+      dispatch(setCurrentPageAction(currentPage - 1));
+      scrollTo();
+    }
+  };
+
   return (
     <div className={styles.Pagination}>
-      <FaChevronLeft className={styles.ButtonPrev} />
+      <FaChevronLeft
+        className={styles.ButtonPrev}
+        onClick={handleLeftPage}
+      />
       {pages.map((item) => (
         <div
           className={classNames({
@@ -51,7 +63,10 @@ const Pagination = ({scrollTo}) => {
           {item}
         </div>
       ))}
-      <FaChevronRight className={styles.ButtonNext} />
+      <FaChevronRight
+        className={styles.ButtonNext}
+        onClick={handleRightPage}
+      />
     </div>
   );
 };

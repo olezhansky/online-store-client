@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { CgMenuGridR } from 'react-icons/cg';
 import { setCurrentPerPageAction, setSortQueryAction } from '../../store/products/actions';
+import { setSearchProductsPerPageAction} from '../../store/searchProducts/actions';
 import styles from './ProductsSorting.module.scss';
 
 const ProductsSorting = ({ currentPage, allProducts, handlerSwitch }) => {
@@ -16,12 +17,10 @@ const ProductsSorting = ({ currentPage, allProducts, handlerSwitch }) => {
   const dispatch = useDispatch();
   console.log(currentPage);
   const showGrid = useSelector((state) => state.productsPage.showGrid);
-
-  // const [, updateState] = useState();
-  // const forceUpdate = React.useCallback(() => updateState({}), []);
- 
+  const searchProductsPerPage = useSelector((state) => state.searchProducts.searchProductsPerPage);
+  const searchProductsShowBy = useSelector((state) => state.searchProducts.showBy);
+  
   const handlePerPage = (e) => {
-    // console.log(e.target.value);
     const showBy = +e.target.value;
     dispatch(setCurrentPerPageAction(showBy));
     setCurrentInterval(
@@ -35,11 +34,30 @@ const ProductsSorting = ({ currentPage, allProducts, handlerSwitch }) => {
         return allProducts;
       })
     );
+    dispatch(setSearchProductsPerPageAction(showBy));
   };
 
   const handleMinMaxSort = (e) => {
     dispatch(setSortQueryAction(e.target.value));
   };
+
+  // const stateValue = [
+  //   {
+  //     text: 'товара',
+  //     id: 3,
+  //     value: '3',
+  //   },
+  //   {
+  //     text: 'товаров',
+  //     id: 6,
+  //     value: '6',
+  //   },
+  //   {
+  //     text: 'товаров',
+  //     id: 9,
+  //     value: '9'
+  //   }
+  // ];
 
   return (
     <div className={styles.ProductsSorting}>
@@ -48,7 +66,7 @@ const ProductsSorting = ({ currentPage, allProducts, handlerSwitch }) => {
           {currentInterval[0]} - {currentInterval[1]} из {allProducts}
         </div>
         <div className={styles.Show}>
-          <span>Показывать</span>
+          <span>Показывать по</span>
           <select
             className={styles.SelectAmount}
             onChange={(e) => {
@@ -56,8 +74,13 @@ const ProductsSorting = ({ currentPage, allProducts, handlerSwitch }) => {
             }}
           >
             <option value="3">3 товара</option>
-            <option value="6">6 товаров</option>
+            <option selected value="6">6 товаров</option>
             <option value="9">9 товаров</option>
+            {/* {stateValue.map((value) => (
+              <option key={value.id} value={value.id}>
+                {value.value} {value.text}
+              </option>
+            ))} */}
           </select>
         </div>
       </div>

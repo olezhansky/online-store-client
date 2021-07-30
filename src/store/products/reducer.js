@@ -17,7 +17,7 @@ const initialState = {
   AllProductsForPagination: [],
   currentCategory: null,
   currentPage: 1,
-  currentPerPage: 3,
+  currentPerPage: 6,
   isLoadingProducts: true,
   currentQuery: '',
   sortBy: '',

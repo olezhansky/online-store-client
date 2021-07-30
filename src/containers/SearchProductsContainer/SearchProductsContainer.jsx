@@ -28,6 +28,8 @@ const SearchProductsContainer = () => {
   const isLoadingSearchProducts = useSelector(
     (state) => state.searchProducts.isLoadingSearchProducts
   );
+  const currentPage = useSelector((state) => state.searchProducts.currentPage);
+  const searchProductsPerPage = useSelector((state) => state.searchProducts.searchProductsPerPage);
 
   const [isActive, setIsActive] = useState(false);
   const handleClick = () => {
@@ -47,17 +49,12 @@ const SearchProductsContainer = () => {
     [styles.showFiltersBtn_hidden]: isActive,
   });
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [searchProductsPerPage] = useState(6);
-
   const lastSearchProductsIndex = currentPage * searchProductsPerPage;
   const firstSearchProductsIndex = lastSearchProductsIndex - searchProductsPerPage;
-  const currentProduct = searchProducts.slice(firstSearchProductsIndex, lastSearchProductsIndex);
+  const currentSearchProducts = (
+    searchProducts.slice(firstSearchProductsIndex, lastSearchProductsIndex)
+  );
 
-  const paginate = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
-  
   const scrollToTopHandler = () => {
       window.scrollTo({
         behavior: 'smooth',
@@ -80,14 +77,17 @@ const SearchProductsContainer = () => {
               <Loader />
             </div>
           ) : (
-            !isLoadingSearchProducts && <SearchProductsField searchProducts={currentProduct} />
+            !isLoadingSearchProducts && (
+              <SearchProductsField
+                searchProducts={currentSearchProducts}
+              />
+            )
           )}
         </div>
         <PaginationSearchProducts
           currentPage={currentPage}
           productsPerPage={searchProductsPerPage}
           totalProducts={searchProducts.length}
-          paginate={paginate}
           scrollToTop={scrollToTopHandler}
         />
       </div>
