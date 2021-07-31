@@ -32,7 +32,7 @@ import {
   logOutAction,
 } from './store/cart/actions';
 import CartPopup from './components/UI/CartPopup/CartPopup';
-import { userFromLocalStorageAction } from './store/admin/actions';
+import { exitAction, userFromLocalStorageAction } from './store/admin/actions';
 import { singleProductFromLocalStorageAction } from './store/singleProduct/actions';
 import Favorites from './pages/Favorites';
 import { favoritesFromLocalStorageAction } from './store/favorites/actions';
