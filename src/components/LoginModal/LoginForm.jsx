@@ -46,6 +46,14 @@ const LoginForm = () => {
       .required('Введите пароль'),
   });
 
+  const handleRemoveToken = () => {
+    setTimeout(() => {
+      dispatch(exitAction());
+      // localStorage.removeItem('token');
+      localStorage.removeItem('currentUser');
+    }, 3600000);
+  };
+
   const handleLogin = (values, { setSubmitting, resetForm }) => {
     console.log('handleLogin');
     const { loginOrEmail, password } = values;
@@ -126,7 +134,11 @@ const LoginForm = () => {
               <p className={styles.forgotPass}>Забыли пароль?</p>
             </div> */}
             <div className={styles.BtnsWrapper}>
-              <Button type="submit" addClass="loginForm">
+              <Button
+                type="submit"
+                addClass="loginForm"
+                onClick={handleRemoveToken}
+              >
                 Войти
               </Button>
             </div>
