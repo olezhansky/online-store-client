@@ -52,6 +52,7 @@ function App() {
   // === USER ===
   useEffect(() => {
     const userFromLocalStorage = localStorage.getItem('currentUser');
+    // const tokenFromLocalStorage = localStorage.getItem('token');
     if (userFromLocalStorage) {
       dispatch(userFromLocalStorageAction(JSON.parse(userFromLocalStorage)));
     }
@@ -69,7 +70,7 @@ function App() {
       // deleteCart();
     } else {
       console.log('LOG OUT');
-      dispatch(logOutAction());
+      // dispatch(logOutAction());
     }
   }, [dispatch, isLoggedIn]);
 

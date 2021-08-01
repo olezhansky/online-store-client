@@ -39,9 +39,9 @@ const LoginForm = () => {
   const handleRemoveToken = () => {
     setTimeout(() => {
       dispatch(exitAction());
-      localStorage.removeItem('token');
+      // localStorage.removeItem('token');
       localStorage.removeItem('currentUser');
-    }, 36000000);
+    }, 3600000);
   };
 
   const handleLogin = (values, { setSubmitting, resetForm }) => {
