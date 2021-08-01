@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable no-tabs */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/self-closing-comp */
@@ -9,6 +10,7 @@ import { IoMdOptions } from 'react-icons/io';
 import { VscChromeClose } from 'react-icons/vsc';
 import classNames from 'classnames';
 import { useSelector } from 'react-redux';
+import noSearchProducts from '../../assets/img/searchProducts/noSearchProducts.jpg';
 import styles from './SearchProductsContainer.module.scss';
 import PhotoCamerasFilter from '../../components/ProductsFilter/PhotoCamerasFilter';
 import {
@@ -72,17 +74,21 @@ const SearchProductsContainer = () => {
           <div className={styles.filterContainer}>
             <SearchProductsFilter />
           </div>
-          {searchProducts.length === 0 ? (
+          {searchProducts.length ? (
+            <SearchProductsField
+              searchProducts={currentSearchProducts}
+            />
+          ) : (isLoadingSearchProducts
+          ? (
             <div className={styles.PrductsFieldLoader}>
               <Loader />
             </div>
           ) : (
-            !isLoadingSearchProducts && (
-              <SearchProductsField
-                searchProducts={currentSearchProducts}
-              />
-            )
-          )}
+            <p>
+              `За запитом
+              нічого не знайдено`
+            </p>
+))}
         </div>
         <PaginationSearchProducts
           currentPage={currentPage}

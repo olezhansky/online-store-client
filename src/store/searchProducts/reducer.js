@@ -53,6 +53,7 @@ export const searchProducts = (state = initialState, action) => {
     case CLEAR_SEARCH_PRODUCTS:
       return {
         ...state,
+        isLoadingSearchProducts: true,
         searchProducts: [],
       };
     case SHOW_GRID:

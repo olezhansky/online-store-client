@@ -8,7 +8,6 @@ import styles from './SearchForm.module.scss';
 const SearchForm = () => {
   const [value, setValue] = useState('');
   const handleChange = (e) => {
-    console.log(e.target.value);
     setValue(e.target.value);
   };
   const dispatch = useDispatch();
