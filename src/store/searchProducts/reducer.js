@@ -8,6 +8,10 @@ import {
   SET_SEARCH_PRODUCTS_PER_PAGE,
   CLEAR_SEARCH_PRODUCTS,
   SORT_SEARCH_PRODUCTS,
+  SET_SEARCH_VALUE,
+  CLEAR_SEARCH_VALUE,
+  SET_SEARCH_VALUE_FOR_USER,
+  SEARCH_PRODUCTS_FROM_LOCAL_STORAGE,
 } from './types';
 
 const initialState = {
@@ -17,6 +21,8 @@ const initialState = {
   searchProductsPerPage: 6,
   showBy: 3,
   showGrid: true,
+  searchValue: '',
+  searchValueForUser: ''
 };
 
 export const searchProducts = (state = initialState, action) => {
@@ -60,6 +66,26 @@ export const searchProducts = (state = initialState, action) => {
       return {
         ...state,
         showGrid: !state.showGrid,
+      };
+    case SET_SEARCH_VALUE:
+      return {
+        ...state,
+        searchValue: action.payload.searchValue
+      };
+    case CLEAR_SEARCH_VALUE:
+      return {
+        ...state,
+        searchValue: ''
+      };
+    case SET_SEARCH_VALUE_FOR_USER:
+      return {
+        ...state,
+        searchValueForUser: action.payload.searchValueForUser
+      };
+    case SEARCH_PRODUCTS_FROM_LOCAL_STORAGE:
+      return {
+        ...state,
+        searchProducts: action.payload
       };
     case SORT_SEARCH_PRODUCTS:
       console.log(action.payload.value);

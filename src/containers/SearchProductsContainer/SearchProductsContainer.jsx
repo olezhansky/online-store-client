@@ -10,7 +10,7 @@ import { IoMdOptions } from 'react-icons/io';
 import { VscChromeClose } from 'react-icons/vsc';
 import classNames from 'classnames';
 import { useSelector } from 'react-redux';
-import noSearchProducts from '../../assets/img/searchProducts/noSearchProducts.jpg';
+import ProductsNotFound from '../../assets/img/searchProducts/ProductsNotFound.png';
 import styles from './SearchProductsContainer.module.scss';
 import PhotoCamerasFilter from '../../components/ProductsFilter/PhotoCamerasFilter';
 import {
@@ -32,7 +32,7 @@ const SearchProductsContainer = () => {
   );
   const currentPage = useSelector((state) => state.searchProducts.currentPage);
   const searchProductsPerPage = useSelector((state) => state.searchProducts.searchProductsPerPage);
-
+  const searchValueForUser = useSelector((state) => state.searchProducts.searchValueForUser);
   const [isActive, setIsActive] = useState(false);
   const handleClick = () => {
     document.body.classList.toggle('no-scroll');
@@ -84,20 +84,27 @@ const SearchProductsContainer = () => {
               <Loader />
             </div>
           ) : (
-            <p>
-              `За запитом
-              нічого не знайдено`
-            </p>
-))}
+            <div className={styles.ProductsNotFound}>
+              <p>
+                По запросу
+                {' "'}
+                <span>{searchValueForUser}</span>
+                {'" '}
+                ничего не найдено
+              </p>
+              <img src={ProductsNotFound} alt={ProductsNotFound} />
+            </div>
+          ))}
         </div>
+        {searchProducts.length !== 0 && (
         <PaginationSearchProducts
           currentPage={currentPage}
           productsPerPage={searchProductsPerPage}
           totalProducts={searchProducts.length}
           scrollToTop={scrollToTopHandler}
         />
+        )}
       </div>
-
       <div className={filtersOverLay} onClick={handleClick}></div>
       <div className={filtersMobile}>
         <div className={styles.filtersCloseBtn} onClick={handleClick}>
@@ -105,7 +112,6 @@ const SearchProductsContainer = () => {
         </div>
         <PhotoCamerasFilter />
       </div>
-    
     </div>
   );
 };
