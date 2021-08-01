@@ -1,4 +1,5 @@
 import getSearchProducts from '../../api/getSearchProducts';
+import { SHOW_GRID } from '../products/types';
 import {
   GET_FILTERED_PRODUCTS,
   SET_SEARCH_PRODUCTS,
@@ -38,4 +39,8 @@ export const clearSearchProductsAction = () => ({
 export const sortSearchProductsAction = (value) => ({
   type: SORT_SEARCH_PRODUCTS,
   payload: {value}
+});
+
+export const showGridSearchProductsAction = () => ({
+  type: SHOW_GRID,
 });

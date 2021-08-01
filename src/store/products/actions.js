@@ -5,6 +5,7 @@ import getFilteredProducts from '../../api/getFilteredProducts';
 import getSearchProducts from '../../api/getSearchProducts';
 // import getProducts from '../../api/getProducts';
 import {
+  CLEAR_PRODUCTS,
   SET_CURRENT_CAREGORY,
   SET_CURRENT_PAGE,
   SET_CURRENT_PRODUCTS_ARR,
@@ -72,4 +73,7 @@ export const setSortQueryAction = (querySort) => ({
 
 export const showGridAction = () => ({
   type: SHOW_GRID,
+});
+export const clearProductsAction = () => ({
+  type: CLEAR_PRODUCTS,
 });

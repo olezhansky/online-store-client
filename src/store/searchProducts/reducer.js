@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 /* eslint-disable no-case-declarations */
+import { SHOW_GRID } from '../products/types';
 import {
   GET_FILTERED_PRODUCTS,
   SET_SEARCH_PRODUCTS,
@@ -15,6 +16,7 @@ const initialState = {
   currentPage: 1,
   searchProductsPerPage: 6,
   showBy: 3,
+  showGrid: true,
 };
 
 export const searchProducts = (state = initialState, action) => {
@@ -24,6 +26,7 @@ export const searchProducts = (state = initialState, action) => {
         ...state,
         searchProducts: action.payload.data,
         isLoadingSearchProducts: false,
+        currentPage: 1,
         searchProductsPerPage: 6,
       };
     case GET_FILTERED_PRODUCTS:
@@ -51,6 +54,11 @@ export const searchProducts = (state = initialState, action) => {
       return {
         ...state,
         searchProducts: [],
+      };
+    case SHOW_GRID:
+      return {
+        ...state,
+        showGrid: !state.showGrid,
       };
     case SORT_SEARCH_PRODUCTS:
       console.log(action.payload.value);
