@@ -3,6 +3,7 @@
 /* eslint-disable no-case-declarations */
 import {
   CLEAR_PRODUCTS,
+  GET_PRODUCTS_FROM_LOCAL_STORAGE,
   SET_CURRENT_CAREGORY,
   SET_CURRENT_PAGE,
   SET_CURRENT_PRODUCTS_ARR,
@@ -80,6 +81,11 @@ export const productsReducer = (state = initialState, action) => {
       return {
         ...state,
         products: [],
+      };
+    case GET_PRODUCTS_FROM_LOCAL_STORAGE:
+      return {
+        ...state,
+        products: action.payload,
       };
     default:
       return state;

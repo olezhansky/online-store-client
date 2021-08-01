@@ -83,10 +83,10 @@ const localStorageMiddleware =
       );
     }
     if (action.type === SET_PRODUCTS) {
-      const { productsReducer } = getState();
+      const { productsPage } = getState();
       localStorage.setItem(
         'products',
-        JSON.stringify(productsReducer.products)
+        JSON.stringify(productsPage.products)
       );
     }
     return result;
