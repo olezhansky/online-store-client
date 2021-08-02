@@ -38,9 +38,6 @@ const SearchProductsSorting = ({ currentPage, allProducts, handlerSwitch }) => {
   return (
     <div className={styles.ProductsSorting}>
       <div className={styles.ProductsSortingLeft}>
-        <div className={styles.NumberOf}>
-          {currentInterval[0]} - {currentInterval[1]} из {allProducts}
-        </div>
         <div className={styles.Show}>
           <span>Показывать по</span>
           <select

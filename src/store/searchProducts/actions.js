@@ -11,6 +11,7 @@ import {
   CLEAR_SEARCH_VALUE,
   SET_SEARCH_VALUE_FOR_USER,
   SEARCH_PRODUCTS_FROM_LOCAL_STORAGE,
+  FILTER_PRICE_SEARCH_PRODUCTS,
 } from './types';
 
 export const getSearchProductsAction = (value) => (dispatch) => {
@@ -42,7 +43,7 @@ export const clearSearchProductsAction = () => ({
 });
 export const sortSearchProductsAction = (value) => ({
   type: SORT_SEARCH_PRODUCTS,
-  payload: {value}
+  payload: { value },
 });
 
 export const showGridSearchProductsAction = () => ({
@@ -50,17 +51,24 @@ export const showGridSearchProductsAction = () => ({
 });
 export const setSearchValueAction = (searchValue) => ({
   type: SET_SEARCH_VALUE,
-  payload: {searchValue}
+  payload: { searchValue },
 });
 export const clearSearchValueAction = () => ({
   type: CLEAR_SEARCH_VALUE,
 });
 export const setSearchValueForUSerAction = (searchValueForUser) => ({
   type: SET_SEARCH_VALUE_FOR_USER,
-  payload: {searchValueForUser}
+  payload: { searchValueForUser },
 });
 
-export const searchProductsFromLocalStorageAction = (searchProductsFromLocalStorage) => ({
+export const searchProductsFromLocalStorageAction = (
+  searchProductsFromLocalStorage
+) => ({
   type: SEARCH_PRODUCTS_FROM_LOCAL_STORAGE,
-  payload: JSON.parse(searchProductsFromLocalStorage)
+  payload: JSON.parse(searchProductsFromLocalStorage),
+});
+
+export const filterPriceSearchProductsAction = (priceState) => ({
+  type: FILTER_PRICE_SEARCH_PRODUCTS,
+  payload: priceState,
 });
