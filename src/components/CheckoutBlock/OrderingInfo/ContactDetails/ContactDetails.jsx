@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable react/jsx-props-no-spreading */
@@ -231,7 +232,7 @@ const ContactDetails = ({ currentUser }) => {
                 placeholder="example@gmail.com"
               />
               <h2 className={styles.FormBlockTitle}>Способы доставки</h2>
-              <InputRadio onChange={handleChange} currentId={check} id="selfExport" name="options" label="Самовывоз из пункта выдачи" />
+              {/* <InputRadio onChange={handleChange} currentId={check} id="selfExport" name="options" label="Самовывоз из пункта выдачи" />
               {check === 'selfExport' && (
               <select onChange={(e) => {
                 handleChangeSelectselfExport(e);
@@ -254,7 +255,7 @@ const ContactDetails = ({ currentUser }) => {
                 <option>г.Киев, ул. Б. Васильковская (Красноармейская), 132...</option>
                 <option>г.Киев, ул. Б. Васильковская (Красноармейская), 132...</option>
               </select>
-              )}
+              )} */}
             </div>
           </Form>
         )}
