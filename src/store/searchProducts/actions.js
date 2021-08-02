@@ -16,7 +16,6 @@ import {
 
 export const getSearchProductsAction = (value) => (dispatch) => {
   getSearchProducts(value).then((data) => {
-    console.log('allProducts', data);
     dispatch({
       type: SET_SEARCH_PRODUCTS,
       payload: data,
