@@ -18,7 +18,7 @@ import { MdRemoveShoppingCart } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './ProductCardFavorite.module.scss';
 // import { addProductToCartAction } from '../../store/cart/actions';
-import { setFlagInCartAction } from '../../store/products/actions';
+import { setCategoryForBreadcrumbsAction, setFlagInCartAction } from '../../store/products/actions';
 import { setSingleProductAction } from '../../store/singleProduct/actions';
 import { addProdductToFavoritesAction, deleteProdductFromFavoritesAction } from '../../store/favorites/actions';
 import { addViewedProductAction } from '../../store/viewedProducts/actions';
@@ -62,6 +62,7 @@ const ProductCard = ({
   };
 
   const dispatchSingleProductHandler = () => {
+    dispatch(setCategoryForBreadcrumbsAction(product));
     dispatch(setSingleProductAction(product));
     if (!isInViewedProducts) {
       dispatch(addViewedProductAction(product));

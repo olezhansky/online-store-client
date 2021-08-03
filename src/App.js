@@ -41,7 +41,7 @@ import { favoritesFromLocalStorageAction } from './store/favorites/actions';
 import { viewedProductsFromLocalStorageAction } from './store/viewedProducts/actions';
 import deleteCart from './api/deleteCart';
 import { searchProductsFromLocalStorageAction } from './store/searchProducts/actions';
-import { getProductsFromLocalStorageAction } from './store/products/actions';
+import { getCategoryFromLocalStorageAction, getProductsFromLocalStorageAction } from './store/products/actions';
 import AuthorizationPopup from './components/UI/AuthorizationPopup/AuthorizationPopup';
 
 function App() {
@@ -119,6 +119,7 @@ function App() {
     const searchProductsFromLocalStorage =
       localStorage.getItem('searchProducts');
     const productsFromLocalStorage = localStorage.getItem('products');
+    const categoryFromLocalStorage = localStorage.getItem('category');
     if (cartFromLocalStorage) {
       dispatch(cartFromLocalStorageAction(cartFromLocalStorage));
     }
@@ -142,6 +143,9 @@ function App() {
     }
     if (productsFromLocalStorage) {
       dispatch(getProductsFromLocalStorageAction(productsFromLocalStorage));
+    }
+    if (categoryFromLocalStorage) {
+      dispatch(getCategoryFromLocalStorageAction(categoryFromLocalStorage));
     }
   }, [dispatch]);
 
