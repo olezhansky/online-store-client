@@ -25,7 +25,7 @@ import {
   addSingleProductToCartAction,
   addToCartMongoDB,
 } from '../../store/cart/actions';
-import { setFlagInCartAction } from '../../store/products/actions';
+import { setCategoryForBreadcrumbsAction, setFlagInCartAction } from '../../store/products/actions';
 import { setSingleProductAction } from '../../store/singleProduct/actions';
 import {
   addProdductToFavoritesAction,
@@ -71,6 +71,7 @@ const ProductCard = ({ product }) => {
   };
 
   const dispatchSingleProductHandler = () => {
+    dispatch(setCategoryForBreadcrumbsAction(product));
     dispatch(setSingleProductAction(product));
     if (!isInViewedProducts) {
       dispatch(addViewedProductAction(product));
@@ -79,7 +80,11 @@ const ProductCard = ({ product }) => {
 
   return (
     <div className={styles.ProductCard}>
-      <Link to="/single-product" onClick={dispatchSingleProductHandler}>
+      <Link
+        to="/single-product"
+        onClick={dispatchSingleProductHandler}
+        className={styles.ProductCardImgLink}
+      >
         <div className={styles.ProductCardImg}>
           <img src={product.imageUrls[0]} alt={product.imageUrls[0]} />
           {product.hit === 'yes' && (
