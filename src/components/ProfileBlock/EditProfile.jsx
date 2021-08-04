@@ -35,24 +35,25 @@ const EditProfile = () => {
   };
   const handleFileInputChange = (e) => {
     const file = e.target.files[0];
-    setImageSelected(file);
-    // previewFile(file);
+    // setImageSelected(file);
+    previewFile(file);
   };
 
   const handleUploadImg = () => {
-    // if (!previewSource) return;
+    // setIsLoading(true);
+    if (!previewSource) return;
     console.log('UPLOAD CLICK');
-    uploadImg(imageSelected)
-      // uploadImg(previewSource)
+    // console.log('previewSource', previewSource);
+    // uploadImg(imageSelected)
+    uploadImg(previewSource)
       .then((result) => {
-        setIsLoading(true);
-        setPreviewBigActive(false);
+        // setPreviewBigActive(false);
         console.log('upload: ', result);
         setCloudUrl(result.data.url);
       })
-      .then(() => {
-        setIsLoading(false);
-      })
+      // .then(() => {
+      //   setIsLoading(false);
+      // })
       .catch((err) => {
         console.log(err);
       });
