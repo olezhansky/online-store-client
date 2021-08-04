@@ -2,7 +2,9 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/style-prop-object */
 import React, { useState, useEffect } from 'react';
+import { BiSad } from 'react-icons/bi';
 import getCustomerOrders from '../../api/getCustomerOrders';
+
 import Loader from '../UI/Loader/Loader';
 import CartItem from './CartItem/CartItem';
 import styles from './Orders.module.scss';
@@ -58,7 +60,8 @@ const Orders = () => {
         )}
 
         <div className={isItems ? styles.NoOrdersActive : styles.NoOrders}>
-          <h2>У вас нету товаров</h2>
+          <h2>Вы еще ничего у нас не покупали</h2>
+          <BiSad className={styles.Emoji} />
         </div>
       </div>
     </>
