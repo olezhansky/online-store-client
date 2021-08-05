@@ -36,6 +36,7 @@ const BottomMenuLink = ({ parentId, path, title, key, page }) => {
     //   (products) => console.log(products)
     // );
     // dispatch(getFilteredProductsAction(id, page, ''));
+   
     dispatch(setCurrentCategoryAction(id));
     dispatch(setCurrentQueryAction(id, page));
   };

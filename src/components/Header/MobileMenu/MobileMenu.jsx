@@ -34,7 +34,7 @@ const MobileMenu = ({ isOpen, toggleMenu }) => {
         <div className={styles.CloseBtn} onClick={toggleMenu}>
           <VscChromeClose />
         </div>
-        <div className={styles.menuHeader}>
+        <div className={styles.menuHeader} onClick={toggleMenu}>
           <Link to="/" className={styles.logo}>
             <img src="./img/logo.png" alt="logo" />
           </Link>
@@ -45,7 +45,7 @@ const MobileMenu = ({ isOpen, toggleMenu }) => {
             <p className={styles.loginText}>Войти</p>
             <p className={styles.loginText}>Зарегистрироваться</p>
           </div>
-          <LanguageSelector />
+          {/* <LanguageSelector /> */}
         </div>
         <div className={styles.menuWrapper}>
           {menuItems.map((menuItem) => (
@@ -55,6 +55,7 @@ const MobileMenu = ({ isOpen, toggleMenu }) => {
               className={styles.link}
               activeClassName="selected"
               key={menuItem.id}
+              onClick={toggleMenu}
             >
               <BsBoxArrowInRight className={styles.linkIcon} />
               {menuItem.menuTitle}
@@ -67,6 +68,7 @@ const MobileMenu = ({ isOpen, toggleMenu }) => {
               className={styles.link}
               activeClassName="selected"
               key={menuItem.id}
+              onClick={toggleMenu}
             >
               <BsBoxArrowInRight className={styles.linkIcon} />
               {menuItem.title}
