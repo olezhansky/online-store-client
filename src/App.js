@@ -120,7 +120,7 @@ function App() {
     const searchProductsFromLocalStorage =
       localStorage.getItem('searchProducts');
     const productsFromLocalStorage = localStorage.getItem('products');
-    const categoryFromLocalStorage = localStorage.getItem('category');
+    const categoryForBreadcrumbsFromLocalStorage = localStorage.getItem('categoryForBreadcrumbs');
     if (cartFromLocalStorage) {
       dispatch(cartFromLocalStorageAction(cartFromLocalStorage));
     }
@@ -145,8 +145,8 @@ function App() {
     if (productsFromLocalStorage) {
       dispatch(getProductsFromLocalStorageAction(productsFromLocalStorage));
     }
-    if (categoryFromLocalStorage) {
-      dispatch(getCategoryFromLocalStorageAction(categoryFromLocalStorage));
+    if (categoryForBreadcrumbsFromLocalStorage) {
+      dispatch(getCategoryFromLocalStorageAction(categoryForBreadcrumbsFromLocalStorage));
     }
   }, [dispatch]);
 
