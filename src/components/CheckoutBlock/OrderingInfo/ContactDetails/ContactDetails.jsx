@@ -23,6 +23,7 @@ import {
   deleteLocalCartAction,
 } from '../../../../store/cart/actions';
 import FinalModal from '../../../FinalModal/FinalModal';
+import sendMessageToTelegram from '../../../../api/telegram';
 
 const ContactDetails = () => {
   const isLoggedIn = useSelector((state) => state.admin.isLoggedIn);
@@ -213,6 +214,10 @@ const ContactDetails = () => {
       createOrder(newOrder);
       dispatch(deleteLocalCartAction());
     }
+    sendMessageToTelegram(
+      `Номер заказа: №${orderNo}, Имя: ${values.name}, Телефон: ${values.phone}, Email: ${values.email}`
+    );
+    // resetForm();
     setModalActive(true);
   };
 
