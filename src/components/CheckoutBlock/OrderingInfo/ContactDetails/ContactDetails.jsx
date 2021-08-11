@@ -1,3 +1,6 @@
+/* eslint-disable max-len */
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable import/no-unresolved */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable operator-linebreak */
@@ -10,6 +13,8 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import { FormControlLabel } from '@material-ui/core';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import purple from '@material-ui/core/colors/purple';
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './ContactDetails.module.scss';
@@ -169,56 +174,56 @@ const ContactDetails = () => {
   };
   const onSubmit = (values) => {
     console.log('SUBMIT:', values, radioPaymentValue);
-    const orderNumber = Math.floor(Math.random() * 999999);
-    setOrderNo(orderNumber);
+    // const orderNumber = Math.floor(Math.random() * 999999);
+    // setOrderNo(orderNumber);
 
-    let deliveryOption = '';
-    if (radioDeliveryValue === 'a') {
-      deliveryOption = values.selfDelivery;
-    }
-    if (radioDeliveryValue === 'b') {
-      deliveryOption = {
-        npArea: values.npArea,
-        npCity: values.npCity,
-        npOffice: values.npOffice,
-      };
-    }
-    if (radioDeliveryValue === 'c') {
-      deliveryOption = values.address;
-    }
-    const newOrder = {
-      deliveryAddress: JSON.stringify({
-        country: 'Ukraine',
-        city: values.npCity,
-        deliveryOption,
-      }),
-      shipping: JSON.stringify('Kiev 50UAH'),
-      paymentInfo: JSON.stringify(values.paymentRadioGroup),
-      name: values.name,
-      email: values.email,
-      mobile: values.phone,
-      comment: values.comment,
-      letterSubject: 'ABC_Photo_ordering confirm',
-      letterHtml: `<h1>${values.name}, Ваш заказ принят. Номер заказа ${orderNumber}.</h1><p>Мы свяжемся с Вами в ближайшее время</p>`,
-    };
-    if (isLoggedIn) {
-      newOrder.customerId = currentUserId;
-    } else {
-      newOrder.products = JSON.stringify(orderProducts);
-    }
-    console.log('NEWORDER', newOrder);
-    if (isLoggedIn) {
-      createOrder(newOrder);
-      dispatch(cartDeleteAction());
-    } else {
-      createOrder(newOrder);
-      dispatch(deleteLocalCartAction());
-    }
-    sendMessageToTelegram(
-      `Номер заказа: №${orderNo}, Имя: ${values.name}, Телефон: ${values.phone}, Email: ${values.email}`
-    );
-    // resetForm();
-    setModalActive(true);
+    // let deliveryOption = '';
+    // if (radioDeliveryValue === 'a') {
+    //   deliveryOption = values.selfDelivery;
+    // }
+    // if (radioDeliveryValue === 'b') {
+    //   deliveryOption = {
+    //     npArea: values.npArea,
+    //     npCity: values.npCity,
+    //     npOffice: values.npOffice,
+    //   };
+    // }
+    // if (radioDeliveryValue === 'c') {
+    //   deliveryOption = values.address;
+    // }
+    // const newOrder = {
+    //   deliveryAddress: JSON.stringify({
+    //     country: 'Ukraine',
+    //     city: values.npCity,
+    //     deliveryOption,
+    //   }),
+    //   shipping: JSON.stringify('Kiev 50UAH'),
+    //   paymentInfo: JSON.stringify(values.paymentRadioGroup),
+    //   name: values.name,
+    //   email: values.email,
+    //   mobile: values.phone,
+    //   comment: values.comment,
+    //   letterSubject: 'ABC_Photo_ordering confirm',
+    //   letterHtml: `<h1>${values.name}, Ваш заказ принят. Номер заказа ${orderNumber}.</h1><p>Мы свяжемся с Вами в ближайшее время</p>`,
+    // };
+    // if (isLoggedIn) {
+    //   newOrder.customerId = currentUserId;
+    // } else {
+    //   newOrder.products = JSON.stringify(orderProducts);
+    // }
+    // console.log('NEWORDER', newOrder);
+    // if (isLoggedIn) {
+    //   createOrder(newOrder);
+    //   dispatch(cartDeleteAction());
+    // } else {
+    //   createOrder(newOrder);
+    //   dispatch(deleteLocalCartAction());
+    // }
+    // sendMessageToTelegram(
+    //   `Номер заказа: №${orderNo}, Имя: ${values.name}, Телефон: ${values.phone}, Email: ${values.email}`
+    // );
+    // // resetForm();
+    // setModalActive(true);
   };
 
   const validate = (values) => {
@@ -271,6 +276,36 @@ const ContactDetails = () => {
       secondary: { main: '#51AD33' }, // Secondary - is a default radio color, so we override it.
     },
   });
+  // === REACT MUI ===
+  const top100Films = [
+    { title: 'The Shawshank Redemption', year: 1994 },
+    { title: 'The Godfather', year: 1972 },
+    { title: 'The Godfather: Part II', year: 1974 },
+    { title: 'The Dark Knight', year: 2008 },
+    { title: '12 Angry Men', year: 1957 },
+    { title: "Schindler's List", year: 1993 },
+    { title: 'Pulp Fiction', year: 1994 },
+    { title: 'The Lord of the Rings: The Return of the King', year: 2003 },
+    { title: 'The Good, the Bad and the Ugly', year: 1966 },
+    { title: 'Fight Club', year: 1999 },
+    { title: 'The Lord of the Rings: The Fellowship of the Ring', year: 2001 },
+    { title: 'Star Wars: Episode V - The Empire Strikes Back', year: 1980 },
+    { title: 'Forrest Gump', year: 1994 },
+    { title: 'Inception', year: 2010 },
+    { title: 'The Lord of the Rings: The Two Towers', year: 2002 },
+  ];
+  const defaultProps = {
+    options: top100Films,
+    getOptionLabel: (option) => option.title,
+  };
+
+  const flatProps = {
+    options: top100Films.map((option) => option.title),
+  };
+
+  const [value, setValue] = React.useState(null);
+
+  // ===
   return (
     <div className={styles.formWrapper}>
       <form
@@ -283,10 +318,30 @@ const ContactDetails = () => {
           <p>*Поля, обязательные для заполнения</p>
         </div>
         <div className={styles.formGroup}>
-          <label className={styles.formLabel} htmlFor="nameId">
-            Имя
-          </label>
-          <input
+          <Autocomplete
+            {...defaultProps}
+            id="controlled-demo"
+            value={value}
+            onChange={(event, newValue) => {
+              setValue(newValue);
+            }}
+            renderInput={(params) => (
+              <TextField {...params} label="controlled" margin="normal" />
+            )}
+          />
+        </div>
+        <div className={styles.formGroup}>
+          <TextField
+            name="name"
+            id="nameId"
+            label="Имя"
+            variant="outlined"
+            fullWidth
+            size="small"
+            onChange={formik.handleChange}
+            margin="normal"
+          />
+          {/* <input
             name="name"
             className={styles.formInput}
             type="text"
@@ -295,7 +350,7 @@ const ContactDetails = () => {
             value={formik.values.name}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-          />
+          /> */}
           {formik.errors.name && formik.touched.name ? (
             <div className={styles.formError}>{formik.errors.name}</div>
           ) : null}
