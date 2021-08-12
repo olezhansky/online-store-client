@@ -19,14 +19,17 @@
 }
 .Autocomplete {
   position: absolute;
-  left: 0;
-  top: 50px;
-  width: 100%;
+  left: 5px;
+  top: 33px;
+  width: 90%;
   background-color: #fff;
   z-index: 1000;
   max-height: 240px;
   height: auto;
   overflow: auto;
+  border-bottom: 2px solid #e7e9eb;
+  border-left: 2px solid #e7e9eb;
+  border-right: 2px solid #e7e9eb;
 }
 .AutocompleteItem {
   padding: 10px;

@@ -17,18 +17,17 @@ import styles from './SearchForm.module.scss';
 const SearchForm = () => {
   const dispatch = useDispatch();
   const searchValue = useSelector((state) => state.searchProducts.searchValue);
-  const [brands, setBrands] = useState([
-    'canon', 'nikon', 'sony', 'fuji'
-  ]);
+  const autocompleteData = useSelector((state) => state.searchProducts.autocompleteData);
+
   const [state, setState] = useState([]);
 
   const handleChange = (e) => {
-    const newArr = brands.filter((item) => item.includes(searchValue));
+    const newArr = autocompleteData.filter((item) => item.includes(searchValue));
     setState(newArr);
     dispatch(setSearchValueAction(e.target.value));
   };
 
-  const handleClick2 = (item) => {
+  const handleClickAutocomplete = (item) => {
     dispatch(clearSearchProductsAction());
     dispatch(setSearchValueForUSerAction(item));
     dispatch(getSearchProductsAction(item));
@@ -58,7 +57,7 @@ const SearchForm = () => {
             <Link to="/search-products">
               <li
                 className={styles.AutocompleteItem}
-                onClick={() => handleClick2(item)}
+                onClick={() => handleClickAutocomplete(item)}
               >
                 {item}
               </li>
