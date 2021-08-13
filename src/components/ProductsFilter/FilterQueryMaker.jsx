@@ -3,7 +3,9 @@
 /* eslint-disable no-unused-vars */
 import React, { useMemo, memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearProductsAction, getFilteredProductsAction, getPerPageForFilterAction } from '../../store/products/actions';
+import {
+ clearProductsAction, filteredProductsForPaginationAction, getFilteredProductsAction
+} from '../../store/products/actions';
 
 const FilterQueryMaker = ({
   setFilter,
@@ -122,10 +124,11 @@ const FilterQueryMaker = ({
       rangeQuery;
     if (finalQuery) {
       dispatch(clearProductsAction());
-      dispatch(getPerPageForFilterAction());
+      
       dispatch(
         getFilteredProductsAction(currentCategory, page, perPage, finalQuery)
       );
+      dispatch(filteredProductsForPaginationAction(currentCategory, finalQuery));
     } else {
       dispatch(clearProductsAction());
       dispatch(getFilteredProductsAction(currentCategory, page, perPage, ''));

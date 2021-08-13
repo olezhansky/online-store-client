@@ -2,10 +2,12 @@
 /* eslint-disable no-unused-vars */
 import getAllFilteredProducts from '../../api/getAllFilteredProducts';
 import getFilteredProducts from '../../api/getFilteredProducts';
+import filteredProductsForPagination from '../../api/getFilteredProductsForPagination';
 import getSearchProducts from '../../api/getSearchProducts';
 // import getProducts from '../../api/getProducts';
 import {
   CLEAR_PRODUCTS,
+  FILTERED_PRODUCTS_FOR_PAGINATION,
   GET_CATEGORY_FROM_LOCAL_STORAGE,
   GET_PER_PAGE_FOR_FILTER,
   GET_PRODUCTS_FROM_LOCAL_STORAGE,
@@ -45,6 +47,15 @@ export const getAllProductsCurrentCategoryAction =
       // console.log('allProducts', allProducts);
       dispatch({
         type: SET_CURRENT_PRODUCTS_ARR,
+        payload: allProducts.data.products,
+      });
+    });
+  };
+export const filteredProductsForPaginationAction = (currentCategory, addQuery) => (dispatch) => {
+  filteredProductsForPagination(currentCategory, addQuery).then((allProducts) => {
+      // console.log('allProducts', allProducts);
+      dispatch({
+        type: FILTERED_PRODUCTS_FOR_PAGINATION,
         payload: allProducts.data.products,
       });
     });
@@ -106,7 +117,4 @@ export const getCategoryFromLocalStorageAction = (
 ) => ({
   type: GET_CATEGORY_FROM_LOCAL_STORAGE,
   payload: JSON.parse(categoryFromLocalStorage),
-});
-export const getPerPageForFilterAction = () => ({
-  type: GET_PER_PAGE_FOR_FILTER,
 });

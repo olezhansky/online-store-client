@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { CgMenuGridR } from 'react-icons/cg';
 import {
+  filteredProductsForPaginationAction,
   setCurrentPerPageAction,
   setSortQueryAction,
 } from '../../store/products/actions';
@@ -24,6 +25,7 @@ const ProductsSorting = ({ currentPage, allProducts, handlerSwitch }) => {
   console.log(currentPage);
   const showGrid = useSelector((state) => state.productsPage.showGrid);
   const currentPerPage = useSelector((state) => state.productsPage.currentPerPage);
+  console.log(currentPerPage);
   const sortBy = useSelector((state) => state.productsPage.sortBy);
   const searchProductsPerPage = useSelector(
     (state) => state.searchProducts.searchProductsPerPage
@@ -34,6 +36,7 @@ const ProductsSorting = ({ currentPage, allProducts, handlerSwitch }) => {
 
   const handlePerPage = (e) => {
     const showBy = +e.target.value;
+    // filteredProductsForPaginationAction();
     dispatch(setCurrentPerPageAction(showBy));
   };
 

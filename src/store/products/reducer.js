@@ -3,8 +3,8 @@
 /* eslint-disable no-case-declarations */
 import {
   CLEAR_PRODUCTS,
+  FILTERED_PRODUCTS_FOR_PAGINATION,
   GET_CATEGORY_FROM_LOCAL_STORAGE,
-  GET_PER_PAGE_FOR_FILTER,
   GET_PRODUCTS_FROM_LOCAL_STORAGE,
   SET_CATEGORY_FOR_BREADCRUMBS,
   SET_CURRENT_CATEGORY,
@@ -23,7 +23,7 @@ const initialState = {
   currentCategory: null,
   currentCategoryForBreadcrumbs: null,
   currentPage: 1,
-  currentPerPage: 6,
+  currentPerPage: 3,
   isLoadingProducts: true,
   currentQuery: '',
   sortBy: '',
@@ -62,6 +62,7 @@ export const productsReducer = (state = initialState, action) => {
         // isLoadingProducts: false,
       };
     case SET_CURRENT_PAGE:
+      console.log(action.payload);
       return {
         ...state,
         currentPage: action.payload,
@@ -104,10 +105,11 @@ export const productsReducer = (state = initialState, action) => {
         ...state,
         currentCategoryForBreadcrumbs: action.payload,
       };
-    case GET_PER_PAGE_FOR_FILTER:
+    case FILTERED_PRODUCTS_FOR_PAGINATION:
+      console.log('Action payloadddddddddddddd', action.payload);
       return {
         ...state,
-        currentPage: 1
+        allProductsForPagination: action.payload,
       };
     default:
       return state;
