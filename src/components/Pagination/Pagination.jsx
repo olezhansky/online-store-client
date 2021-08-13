@@ -7,12 +7,13 @@ import classNames from 'classnames';
 import React, { useState } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import { setCurrentPageAction } from '../../store/products/actions';
 import styles from './Pagination.module.scss';
 
 const Pagination = ({scrollTo}) => {
   const allProductsArr = useSelector(
-    (state) => state.productsPage.AllProductsForPagination
+    (state) => state.productsPage.allProductsForPagination
   );
   const productPerPage = useSelector(
     (state) => state.productsPage.currentPerPage
@@ -69,6 +70,10 @@ const Pagination = ({scrollTo}) => {
       />
     </div>
   );
+};
+
+Pagination.propTypes = {
+  scrollTo: PropTypes.func.isRequired
 };
 
 export default Pagination;

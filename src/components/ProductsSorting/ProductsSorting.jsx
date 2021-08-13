@@ -19,9 +19,6 @@ import {
 import styles from './ProductsSorting.module.scss';
 
 const ProductsSorting = ({ currentPage, allProducts, handlerSwitch }) => {
-  // const [isSelected3, setIsSelected3] = useState(true);
-  // const [isSelected6, setIsSelected6] = useState(true);
-  // const [isSelected9, setIsSelected9] = useState(true);
   const [currentInterval, setCurrentInterval] = useState([1, 3]);
   const dispatch = useDispatch();
   console.log(currentPage);

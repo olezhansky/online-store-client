@@ -3,7 +3,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useMemo, memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getFilteredProductsAction } from '../../store/products/actions';
+import { clearProductsAction, getFilteredProductsAction, getPerPageForFilterAction } from '../../store/products/actions';
 
 const FilterQueryMaker = ({
   setFilter,
@@ -113,7 +113,6 @@ const FilterQueryMaker = ({
     if (filteredMatrixSizeArr.length > 0) {
       addQueryMatrixSize = `&matrixSize=${filteredMatrixSizeArr.join(',')}`;
     }
-    // console.log(addQueryMatrixSize);
     const finalQuery =
       addQueryType +
       addQueryBrand +
@@ -122,12 +121,13 @@ const FilterQueryMaker = ({
       addQuerySortBy +
       rangeQuery;
     if (finalQuery) {
-      // console.log('FINAL QUERY: ', finalQuery);
+      dispatch(clearProductsAction());
+      dispatch(getPerPageForFilterAction());
       dispatch(
         getFilteredProductsAction(currentCategory, page, perPage, finalQuery)
       );
     } else {
-      // console.log('SHOW ALL!!!');
+      dispatch(clearProductsAction());
       dispatch(getFilteredProductsAction(currentCategory, page, perPage, ''));
     }
   }, [

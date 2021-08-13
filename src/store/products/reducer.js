@@ -4,6 +4,7 @@
 import {
   CLEAR_PRODUCTS,
   GET_CATEGORY_FROM_LOCAL_STORAGE,
+  GET_PER_PAGE_FOR_FILTER,
   GET_PRODUCTS_FROM_LOCAL_STORAGE,
   SET_CATEGORY_FOR_BREADCRUMBS,
   SET_CURRENT_CATEGORY,
@@ -18,7 +19,7 @@ import {
 
 const initialState = {
   products: [],
-  AllProductsForPagination: [],
+  allProductsForPagination: [],
   currentCategory: null,
   currentCategoryForBreadcrumbs: null,
   currentPage: 1,
@@ -45,7 +46,6 @@ export const productsReducer = (state = initialState, action) => {
         currentCategory: action.payload,
         currentCategoryForBreadcrumbs: action.payload,
         isLoadingProducts: false,
-        
       };
     case SET_CURRENT_QUERY:
       return {
@@ -58,7 +58,7 @@ export const productsReducer = (state = initialState, action) => {
       // console.log('SET_CURRENT_PRODUCTS_ARR', action.payload);
       return {
         ...state,
-        AllProductsForPagination: action.payload,
+        allProductsForPagination: action.payload,
         // isLoadingProducts: false,
       };
     case SET_CURRENT_PAGE:
@@ -86,7 +86,6 @@ export const productsReducer = (state = initialState, action) => {
     case CLEAR_PRODUCTS:
       return {
         ...state,
-        // isLoadingProducts: false,
         products: [],
       };
     case GET_PRODUCTS_FROM_LOCAL_STORAGE:
@@ -98,12 +97,17 @@ export const productsReducer = (state = initialState, action) => {
       return {
         ...state,
         currentCategory: action.payload.product.category,
-        currentCategoryForBreadcrumbs: action.payload.product.category
+        currentCategoryForBreadcrumbs: action.payload.product.category,
       };
     case GET_CATEGORY_FROM_LOCAL_STORAGE:
       return {
         ...state,
-        currentCategoryForBreadcrumbs: action.payload
+        currentCategoryForBreadcrumbs: action.payload,
+      };
+    case GET_PER_PAGE_FOR_FILTER:
+      return {
+        ...state,
+        currentPage: 1
       };
     default:
       return state;

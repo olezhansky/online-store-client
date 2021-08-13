@@ -7,6 +7,7 @@ import getSearchProducts from '../../api/getSearchProducts';
 import {
   CLEAR_PRODUCTS,
   GET_CATEGORY_FROM_LOCAL_STORAGE,
+  GET_PER_PAGE_FOR_FILTER,
   GET_PRODUCTS_FROM_LOCAL_STORAGE,
   SET_CATEGORY_FOR_BREADCRUMBS,
   SET_CURRENT_CATEGORY,
@@ -56,24 +57,24 @@ export const setFlagInCartAction = (product) => ({
 export const setCurrentPageAction = (page) => {
   console.log('setCurrentPageAction');
   localStorage.setItem('currentPage', page);
-  return ({
+  return {
     type: SET_CURRENT_PAGE,
     payload: page,
-  });
+  };
 };
 export const setCurrentPerPageAction = (page) => {
   localStorage.setItem('currentPerPage', page);
-  return ({
+  return {
     type: SET_PER_PAGE,
     payload: page,
-  });
+  };
 };
 export const setCurrentCategoryAction = (id) => {
   localStorage.setItem('currentCategory', id);
-  return ({
+  return {
     type: SET_CURRENT_CATEGORY,
     payload: id,
-  });
+  };
 };
 export const setCurrentQueryAction = (id, page) => ({
   type: SET_CURRENT_QUERY,
@@ -90,15 +91,22 @@ export const showGridAction = () => ({
 export const clearProductsAction = () => ({
   type: CLEAR_PRODUCTS,
 });
-export const getProductsFromLocalStorageAction = (productsFromLocalStorage) => ({
+export const getProductsFromLocalStorageAction = (
+  productsFromLocalStorage
+) => ({
   type: GET_PRODUCTS_FROM_LOCAL_STORAGE,
-  payload: JSON.parse(productsFromLocalStorage)
+  payload: JSON.parse(productsFromLocalStorage),
 });
 export const setCategoryForBreadcrumbsAction = (product) => ({
   type: SET_CATEGORY_FOR_BREADCRUMBS,
-  payload: {product}
+  payload: { product },
 });
-export const getCategoryFromLocalStorageAction = (categoryFromLocalStorage) => ({
+export const getCategoryFromLocalStorageAction = (
+  categoryFromLocalStorage
+) => ({
   type: GET_CATEGORY_FROM_LOCAL_STORAGE,
-  payload: JSON.parse(categoryFromLocalStorage)
+  payload: JSON.parse(categoryFromLocalStorage),
+});
+export const getPerPageForFilterAction = () => ({
+  type: GET_PER_PAGE_FOR_FILTER,
 });

@@ -34,7 +34,7 @@ const SingleProductContent = ({ singleProduct }) => {
         } else {
           dispatch(addSingleProductToCartAction(singleProduct));
         }
-      }, 2000);
+      }, 1600);
       setMoveToCart(true);
     }
     setTimeout(() => {

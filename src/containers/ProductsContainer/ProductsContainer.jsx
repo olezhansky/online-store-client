@@ -43,7 +43,7 @@ const ProductsContainer = () => {
   );
   const currentPage = useSelector((state) => state.productsPage.currentPage);
   const allProducts = useSelector(
-    (state) => state.productsPage.AllProductsForPagination.length
+    (state) => state.productsPage.allProductsForPagination.length
   );
 
   const handlerSwitch = () => {

@@ -9,6 +9,7 @@ import React from 'react';
 import { MdClose } from 'react-icons/md';
 // eslint-disable-next-line no-unused-vars
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import {
   cartDecrementAction,
   cartIncrementAction,
@@ -21,7 +22,6 @@ import styles from './CartProduct.module.scss';
 
 const CartProduct = ({ cartProduct, cartQuantity }) => {
   const isLoggedIn = useSelector((state) => state.admin.isLoggedIn);
-  // console.log(cartProduct);
   const dispatch = useDispatch();
   const deleteProductFromCartHandler = () => {
     if (isLoggedIn) {
@@ -91,6 +91,16 @@ const CartProduct = ({ cartProduct, cartQuantity }) => {
       </div>
     </li>
   );
+};
+
+CartProduct.propTypes = {
+  cartProduct: PropTypes.objectOf,
+  cartQuantity: PropTypes.number
+};
+
+CartProduct.defaultProps = {
+  cartProduct: {},
+  cartQuantity: 1
 };
 
 export default CartProduct;
