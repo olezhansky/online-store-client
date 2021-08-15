@@ -4,7 +4,10 @@
 import React, { useMemo, memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
- clearProductsAction, filteredProductsForPaginationAction, getFilteredProductsAction
+ clearProductsAction,
+ filteredProductsForPaginationAction,
+  getFilteredProductsAction,
+  setCurrentBrandQueryAction
 } from '../../store/products/actions';
 
 const FilterQueryMaker = ({
@@ -124,7 +127,7 @@ const FilterQueryMaker = ({
       rangeQuery;
     if (finalQuery) {
       dispatch(clearProductsAction());
-      
+      dispatch(setCurrentBrandQueryAction(finalQuery));
       dispatch(
         getFilteredProductsAction(currentCategory, page, perPage, finalQuery)
       );

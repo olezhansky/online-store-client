@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
@@ -8,16 +9,19 @@ import React, { useState } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { setCurrentPageAction } from '../../store/products/actions';
+import { filteredProductsForPaginationAction, setCurrentPageAction } from '../../store/products/actions';
 import styles from './Pagination.module.scss';
 
 const Pagination = ({scrollTo}) => {
   const allProductsArr = useSelector(
     (state) => state.productsPage.allProductsForPagination
   );
+  const currentCategory = useSelector((state) => state.productsPage.currentCategory);
   const productPerPage = useSelector(
     (state) => state.productsPage.currentPerPage
   );
+  const currentQueryForPagination = useSelector((state) => state.productsPage.currentQueryForPagination);
+  console.log(currentQueryForPagination);
   const currentPage = useSelector((state) => state.productsPage.currentPage);
   const pagesCount = Math.ceil(allProductsArr.length / productPerPage);
   const dispatch = useDispatch();
@@ -26,8 +30,8 @@ const Pagination = ({scrollTo}) => {
     pages.push(i);
   }
   const handleExactPage = (item) => {
-    console.log(item);
     dispatch(setCurrentPageAction(item));
+    dispatch(filteredProductsForPaginationAction(currentCategory, currentQueryForPagination));
     scrollTo();
   };
 

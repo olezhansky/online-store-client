@@ -7,6 +7,7 @@ import {
   GET_CATEGORY_FROM_LOCAL_STORAGE,
   GET_PRODUCTS_FROM_LOCAL_STORAGE,
   SET_CATEGORY_FOR_BREADCRUMBS,
+  SET_CURRENT_BRANDQUERY,
   SET_CURRENT_CATEGORY,
   SET_CURRENT_PAGE,
   SET_CURRENT_PRODUCTS_ARR,
@@ -28,6 +29,7 @@ const initialState = {
   currentQuery: '',
   sortBy: '',
   showGrid: true,
+  currentQueryForPagination: ''
 };
 
 export const productsReducer = (state = initialState, action) => {
@@ -110,6 +112,12 @@ export const productsReducer = (state = initialState, action) => {
       return {
         ...state,
         allProductsForPagination: action.payload,
+      };
+    case SET_CURRENT_BRANDQUERY:
+      console.log('SET_CURRENT_BRANDQUERY', action.payload);
+      return {
+        ...state,
+        currentQueryForPagination: action.payload,
       };
     default:
       return state;

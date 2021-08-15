@@ -35,7 +35,7 @@ const ProductsContainer = () => {
   useEffect(() => {
     dispatch(clearProductsAction());
     dispatch(getFilteredProductsAction(currentCategory, page, perPage, ''));
-    dispatch(getAllProductsCurrentCategoryAction(currentCategory));
+    // dispatch(getAllProductsCurrentCategoryAction(currentCategory));
   }, [currentCategory, dispatch, page, perPage]);
   const products = useSelector((state) => state.productsPage.products);
   const isLoadingProducts = useSelector(

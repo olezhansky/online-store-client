@@ -21,6 +21,7 @@ import {
 import styles from './CartProduct.module.scss';
 
 const CartProduct = ({ cartProduct, cartQuantity }) => {
+  console.log(cartProduct);
   const isLoggedIn = useSelector((state) => state.admin.isLoggedIn);
   const dispatch = useDispatch();
   const deleteProductFromCartHandler = () => {
@@ -31,11 +32,11 @@ const CartProduct = ({ cartProduct, cartQuantity }) => {
     }
   };
   const incrementHandler = () => {
-    if (isLoggedIn) {
+    if (isLoggedIn && cartQuantity < cartProduct.quantity) {
       dispatch(incrementCartMongoDB(cartProduct._id));
-    } else {
-      dispatch(cartIncrementAction(cartProduct._id));
-    }
+    } else if (cartQuantity < cartProduct.quantity) {
+        dispatch(cartIncrementAction(cartProduct._id));
+      }
   };
   const decrementtHandler = () => {
     if (isLoggedIn) {

@@ -12,6 +12,7 @@ import {
   GET_PER_PAGE_FOR_FILTER,
   GET_PRODUCTS_FROM_LOCAL_STORAGE,
   SET_CATEGORY_FOR_BREADCRUMBS,
+  SET_CURRENT_BRANDQUERY,
   SET_CURRENT_CATEGORY,
   SET_CURRENT_PAGE,
   SET_CURRENT_PRODUCTS_ARR,
@@ -51,9 +52,10 @@ export const getAllProductsCurrentCategoryAction =
       });
     });
   };
+
 export const filteredProductsForPaginationAction = (currentCategory, addQuery) => (dispatch) => {
   filteredProductsForPagination(currentCategory, addQuery).then((allProducts) => {
-      // console.log('allProducts', allProducts);
+      console.log('allProducts', allProducts);
       dispatch({
         type: FILTERED_PRODUCTS_FOR_PAGINATION,
         payload: allProducts.data.products,
@@ -66,7 +68,7 @@ export const setFlagInCartAction = (product) => ({
   payload: { product },
 });
 export const setCurrentPageAction = (page) => {
-  console.log('setCurrentPageAction');
+  console.log('setCurrentPageAction', page);
   localStorage.setItem('currentPage', page);
   return {
     type: SET_CURRENT_PAGE,
@@ -117,4 +119,9 @@ export const getCategoryFromLocalStorageAction = (
 ) => ({
   type: GET_CATEGORY_FROM_LOCAL_STORAGE,
   payload: JSON.parse(categoryFromLocalStorage),
+});
+
+export const setCurrentBrandQueryAction = (addQueryBrand) => ({
+  type: SET_CURRENT_BRANDQUERY,
+  payload: addQueryBrand
 });
