@@ -102,7 +102,10 @@ const ProductsContainer = () => {
         <div className={styles.filtersCloseBtn} onClick={handleClick}>
           <VscChromeClose />
         </div>
-        <PhotoCamerasFilter />
+        {currentCategory === 'photocameras' && <PhotoCamerasFilter />}
+        {currentCategory === 'videocameras' && <VideoCamerasFilter />}
+        {currentCategory === 'actioncameras' && <ActionCamerasFilter />}
+        {currentCategory === 'lenses' && <LensesFilter />}
       </div>
     </div>
   );

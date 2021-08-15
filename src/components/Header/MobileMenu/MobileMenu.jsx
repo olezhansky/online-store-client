@@ -56,7 +56,6 @@ const MobileMenu = ({ isOpen, toggleMenu }) => {
             <p className={styles.loginText}>Войти</p>
             <p className={styles.loginText}>Зарегистрироваться</p>
           </div>
-          {/* <LanguageSelector /> */}
         </div>
         <div className={styles.menuWrapper}>
           {menuItems.map((menuItem) => (
