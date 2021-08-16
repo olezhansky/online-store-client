@@ -3,7 +3,7 @@
   width: 0px;
   height: 0px;
   &_active {
-    transition: all .5s ease-in;
+    transition: all 0.5s ease-in;
     height: 100vh;
     width: 100vw;
     background-color: rgba(0, 0, 0, 0.4);
@@ -14,6 +14,7 @@
     justify-content: center;
     align-items: center;
     transform: scale(1);
+    z-index: 999;
   }
 }
 .ModalSvg {
