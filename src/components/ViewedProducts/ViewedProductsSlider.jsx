@@ -42,7 +42,7 @@ const ViewedProductsSlider = ({ viewedProducts }) => {
               slidesPerView: 4,
               spaceBetween: 10,
             },
-            850: {
+            1000: {
               slidesPerView: 3,
               touchRatio: 1,
             },

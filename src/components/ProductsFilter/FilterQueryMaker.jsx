@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable operator-linebreak */
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable no-unused-vars */
@@ -23,6 +24,7 @@ const FilterQueryMaker = ({
   const page = useSelector((state) => state.productsPage.currentPage);
   const perPage = useSelector((state) => state.productsPage.currentPerPage);
   const sortBy = useSelector((state) => state.productsPage.sortBy);
+  const currentQueryForPagination = useSelector((state) => state.productsPage.currentQueryForPagination);
   const dispatch = useDispatch();
 
   const rangeQuery = `&minPrice=${priceState[0]}&maxPrice=${priceState[1]}`;
@@ -125,29 +127,21 @@ const FilterQueryMaker = ({
       addQueryMatrixSize +
       addQuerySortBy +
       rangeQuery;
+      console.log(finalQuery);
+  
     if (finalQuery) {
       dispatch(clearProductsAction());
-      dispatch(setCurrentBrandQueryAction(finalQuery));
+      
       dispatch(
         getFilteredProductsAction(currentCategory, page, perPage, finalQuery)
       );
       dispatch(filteredProductsForPaginationAction(currentCategory, finalQuery));
+      dispatch(setCurrentBrandQueryAction(addQueryBrand));
     } else {
       dispatch(clearProductsAction());
       dispatch(getFilteredProductsAction(currentCategory, page, perPage, ''));
     }
-  }, [
-    brandState,
-    currentCategory,
-    dispatch,
-    matrixState,
-    page,
-    perPage,
-    rangeQuery,
-    setFilter,
-    typeState,
-    addQuerySortBy
-  ]);
+  }, [typeState, brandState, setFilter, matrixState, addQuerySortBy, rangeQuery, dispatch, currentCategory, page, perPage]);
 
   return null;
 };

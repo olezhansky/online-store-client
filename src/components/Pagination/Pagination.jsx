@@ -5,7 +5,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable no-plusplus */
 import classNames from 'classnames';
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -29,11 +29,16 @@ const Pagination = ({scrollTo}) => {
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i);
   }
+
   const handleExactPage = (item) => {
     dispatch(setCurrentPageAction(item));
     dispatch(filteredProductsForPaginationAction(currentCategory, currentQueryForPagination));
     scrollTo();
   };
+
+  // useEffect(() => {
+  //   dispatch(filteredProductsForPaginationAction(currentCategory, currentQueryForPagination));
+  // }, [currentCategory, currentQueryForPagination, dispatch]);
 
   const handleRightPage = () => {
     if (currentPage <= pages.length - 1) {
