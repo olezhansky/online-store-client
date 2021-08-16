@@ -1,7 +1,8 @@
+/* eslint-disable no-alert */
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, {useState} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import SearchIcon from '@material-ui/icons/Search';
 import { Link } from 'react-router-dom';
@@ -28,22 +29,68 @@ const SearchForm = () => {
   };
 
   const handleClickAutocomplete = (item) => {
-    dispatch(clearSearchProductsAction());
-    dispatch(setSearchValueForUSerAction(item));
-    dispatch(getSearchProductsAction(item));
-    dispatch(clearSearchValueAction());
+    let searchValueRu = '';
+    if (item === 'фотоаппараты') {
+      searchValueRu = 'photocameras';
+      dispatch(clearSearchProductsAction());
+      dispatch(getSearchProductsAction(searchValueRu));
+      dispatch(clearSearchValueAction());
+    } else if (item === 'видеокамеры') {
+      searchValueRu = 'videocameras';
+      dispatch(clearSearchProductsAction());
+      dispatch(getSearchProductsAction(searchValueRu));
+      dispatch(clearSearchValueAction());
+    } else if (item === 'экшнкамеры') {
+      searchValueRu = 'actioncameras';
+      dispatch(clearSearchProductsAction());
+      dispatch(getSearchProductsAction(searchValueRu));
+      dispatch(clearSearchValueAction());
+    } else if (item === 'объективы') {
+      searchValueRu = 'lenses';
+      dispatch(clearSearchProductsAction());
+      dispatch(getSearchProductsAction(searchValueRu));
+      dispatch(clearSearchValueAction());
+    } else {
+      dispatch(clearSearchProductsAction());
+      dispatch(setSearchValueForUSerAction(item));
+      dispatch(getSearchProductsAction(item));
+      dispatch(clearSearchValueAction());
+    }
   };
 
   const handleClick = () => {
-    dispatch(clearSearchProductsAction());
-    dispatch(setSearchValueForUSerAction(searchValue));
-    dispatch(getSearchProductsAction(searchValue));
-    dispatch(clearSearchValueAction());
+    let searchValueRu = '';
+    if (searchValue === 'фотоаппараты') {
+      searchValueRu = 'photocameras';
+      dispatch(clearSearchProductsAction());
+      dispatch(getSearchProductsAction(searchValueRu));
+      dispatch(clearSearchValueAction());
+    } else if (searchValue === 'видеокамеры') {
+      searchValueRu = 'videocameras';
+      dispatch(clearSearchProductsAction());
+      dispatch(getSearchProductsAction(searchValueRu));
+      dispatch(clearSearchValueAction());
+    } else if (searchValue === 'экшнкамеры') {
+      searchValueRu = 'actioncameras';
+      dispatch(clearSearchProductsAction());
+      dispatch(getSearchProductsAction(searchValueRu));
+      dispatch(clearSearchValueAction());
+    } else if (searchValue === 'объективы') {
+      searchValueRu = 'lenses';
+      dispatch(clearSearchProductsAction());
+      dispatch(getSearchProductsAction(searchValueRu));
+      dispatch(clearSearchValueAction());
+    } else {
+      dispatch(clearSearchProductsAction());
+      dispatch(setSearchValueForUSerAction(searchValue));
+      dispatch(getSearchProductsAction(searchValue));
+      dispatch(clearSearchValueAction());
+    }
   };
 
   return (
     <div className={styles.searchFormWrapper}>
-      <form className={styles.searchForm}>
+      <form className={styles.searchForm} onSubmit={handleClick}>
         <input
           value={searchValue}
           type="text"
@@ -77,8 +124,8 @@ const SearchForm = () => {
             <Link to="/search-products">
               <button
                 className={styles.searchButton}
-                type="button"
-                onClick={handleClick}
+                type="submit"
+                onClick={(e) => handleClick(e)}
               >
                 <SearchIcon className={styles.searchIconActive} />
               </button>
