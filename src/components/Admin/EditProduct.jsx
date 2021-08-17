@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-undef */
 /* eslint-disable no-underscore-dangle */
@@ -19,11 +20,23 @@ import Button from '../UI/Button/Button';
 import { editProduct } from '../../store/admin/actions';
 
 const EditProduct = ({ product }) => {
+  console.log(product);
+  console.log(product.characteristics);
+
+  const characteristicsObj = {};
+  Object.keys(product.characteristics).forEach((key) => {
+    console.log(key);
+    console.log(product.characteristics[key][1]);
+    characteristicsObj[key] = product.characteristics[key][1];
+  });
+
+  console.log(characteristicsObj);
   const formik = useFormikContext();
   const dispatch = useDispatch();
   const productId = product._id;
 
   const handleEditProduct = (values, { setSubmitting }) => {
+    console.log(values);
     const {
       _id,
       brand,
@@ -34,18 +47,6 @@ const EditProduct = ({ product }) => {
       artical,
       hitSale,
       categories,
-      waranty,
-      type,
-      set,
-      megapixels,
-      matrixType,
-      matrixSize,
-      screenDiagonal,
-      sensorScreen,
-      digitalMagnification,
-      stabilization,
-      opticalMagnification,
-      focusDistance,
       description,
       imageUrl01,
       imageUrl02,
@@ -57,28 +58,18 @@ const EditProduct = ({ product }) => {
       _id,
       brand,
       name,
+      model: name,
       currentPrice,
       previousPrice,
       quantity,
       artical,
       hitSale,
       categories,
-      waranty,
-      type,
-      set,
-      megapixels,
-      matrixType,
-      matrixSize,
-      screenDiagonal,
-      sensorScreen,
-      digitalMagnification,
-      stabilization,
-      opticalMagnification,
-      focusDistance,
       description,
       imageUrls: [imageUrl01, imageUrl02, imageUrl03, imageUrl04],
     };
     editProductApi(productId, newProduct);
+    // dispatch(authorizationPopupAction('Авторизация прошла успешно'));
     console.log(newProduct);
     setSubmitting(false);
     dispatch(editProductModalClose());
@@ -93,55 +84,48 @@ const EditProduct = ({ product }) => {
     artical: Yup.string().required('Is required'),
     hitSale: Yup.string().required('Is required'),
     categories: Yup.string().required('Is required'),
-    waranty: Yup.string().required('Is required'),
-    type: Yup.string().required('Is required'),
-    set: Yup.string().required('Is required'),
-    megapixels: Yup.string().required('Is required'),
-    matrixType: Yup.string().required('Is required'),
-    screenDiagonal: Yup.string().required('Is required'),
-    sensorScreen: Yup.string().required('Is required'),
-    digitalMagnification: Yup.string().required('Is required'),
-    stabilization: Yup.string().required('Is required'),
-    opticalMagnification: Yup.string().required('Is required'),
-    focusDistance: Yup.string().required('Is required'),
     description: Yup.string().required('Is required'),
     imageUrl01: Yup.string().required('Is required'),
     imageUrl02: Yup.string().required('Is required'),
     imageUrl03: Yup.string().required('Is required'),
     imageUrl04: Yup.string().required('Is required'),
   });
+  // const temp = {
+  //   waranty: product.waranty,
+  //   set: product.set,
+  //   type: product.type,
+  //   megapixels: product.megapixels,
+  //   matrixType: product.matrixType,
+  //   matrixSize: product.matrixSize,
+  //   screenDiagonal: product.screenDiagonal,
+  //   sensorScreen: product.sensorScreen,
+  //   digitalMagnification: product.digitalMagnification,
+  //   stabilization: product.stabilization,
+  //   opticalMagnification: product.opticalMagnification,
+  //   focusDistance: product.focusDistance,
+  // }
+  const initialValuesGeneral = {
+    _id: product._id,
+    brand: product.brand,
+    name: product.model,
+    currentPrice: product.currentPrice,
+    previousPrice: product.previousPrice,
+    quantity: product.quantity,
+    artical: product.artical,
+    hitSale: product.hit,
+    categories: product.category,
 
+    description: product.description,
+    imageUrl01: product.imageUrls[0],
+    imageUrl02: product.imageUrls[1],
+    imageUrl03: product.imageUrls[2],
+    imageUrl04: product.imageUrls[3],
+  };
+  // const initialValues = Object.assign(initialValuesGeneral, characteristicsObj);
   return (
     <div className="formBlock create">
       <Formik
-        initialValues={{
-          _id: product._id,
-          brand: product.brand,
-          name: product.name,
-          set: product.set,
-          currentPrice: product.currentPrice,
-          previousPrice: product.previousPrice,
-          quantity: product.quantity,
-          artical: product.artical,
-          hitSale: product.hitSale,
-          categories: product.categories,
-          waranty: product.waranty,
-          type: product.type,
-          megapixels: product.megapixels,
-          matrixType: product.matrixType,
-          matrixSize: product.matrixSize,
-          screenDiagonal: product.screenDiagonal,
-          sensorScreen: product.sensorScreen,
-          digitalMagnification: product.digitalMagnification,
-          stabilization: product.stabilization,
-          opticalMagnification: product.opticalMagnification,
-          focusDistance: product.focusDistance,
-          description: product.description,
-          imageUrl01: product.imageUrls[0],
-          imageUrl02: product.imageUrls[1],
-          imageUrl03: product.imageUrls[2],
-          imageUrl04: product.imageUrls[3],
-        }}
+        initialValues={initialValuesGeneral}
         onSubmit={handleEditProduct}
         validationSchema={productSchema}
       >
@@ -149,13 +133,9 @@ const EditProduct = ({ product }) => {
           <Form className="product-form" id="edit-product">
             <div className="product-inputs-area">
               <TextInput label="" name="_id" type="hidden" />
+
               <TextInput label="Производитель" name="brand" type="text" />
               <TextInput label="Модель" name="name" type="text" />
-              <TextInput
-                label="Комплектация (c/без объектива)"
-                name="set"
-                type="text"
-              />
               <TextInput label="Текущая цена" name="currentPrice" type="text" />
               <TextInput
                 label="Предыдущая цена"
@@ -174,53 +154,12 @@ const EditProduct = ({ product }) => {
                 type="text"
               />
               <TextInput label="Категория" name="categories" type="text" />
-
-              <TextInput label="Гарантия" name="waranty" type="number" />
-              <TextInput label="Тип фотоаппарата" name="type" type="text" />
-              <TextInput
-                label="Количество мегапикселей"
-                name="megapixels"
-                type="text"
-              />
-              <TextInput label="Тип матрицы" name="matrixType" type="text" />
-              <TextInput label="Размер матрицы" name="matrixSize" type="text" />
-              <TextInput
-                label="Диагональ экрана"
-                name="screenDiagonal"
-                type="text"
-              />
-              <TextInput
-                label="Сенсорный экран"
-                name="sensorScreen"
-                type="text"
-              />
-              <TextInput
-                label="Цифровой зум"
-                name="digitalMagnification"
-                type="text"
-              />
-              <TextInput
-                label="Стабилизация"
-                name="stabilization"
-                type="text"
-              />
-              <TextInput
-                label="Оптический зум"
-                name="opticalMagnification"
-                type="text"
-              />
-              <TextInput
-                label="Фокусное расстояние"
-                name="focusDistance"
-                type="text"
-              />
               <FormikControl
                 control="textarea"
                 label="Описание"
                 name="description"
                 type="text"
               />
-
               <TextInput
                 label="Ссылка на изобажение 1"
                 name="imageUrl01"
@@ -242,11 +181,7 @@ const EditProduct = ({ product }) => {
                 type="text"
               />
             </div>
-            <div className="form-btn-group">
-              {/* <Button type="submit" addClass="admin-edit">
-                Apply changes
-              </Button> */}
-            </div>
+            <div className="form-btn-group" />
           </Form>
         )}
       </Formik>
