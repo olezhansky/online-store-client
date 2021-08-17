@@ -120,11 +120,9 @@ const ProductCardFavorite = ({
           : <span className={styles.ProductCardIsExpected}>ожидается</span>}
         </p>
         <div className={styles.ProductFavorite} onClick={addProductToFavoritesHandler}>
-          {/* {isInFavorites ? <BsStar /> : <BsStar style={{color: '#e91e49'}} />} */}
           {isInFavorites ? <span className={styles.ProductFavoriteColor}><BsFillStarFill /></span> : <span className={styles.ProductFavoriteTransparent}><BsStar /></span>}
         </div>
         <button type="button" disabled={popupIsOpen} className={styles.ProductCardIconCart} onClick={addProductToCartHandler}>
-          {/* {isInCart ? <FaShoppingCart /> : <BiCart />} */}
           {product.quantity !== 0 ? <BiCart /> : <MdRemoveShoppingCart style={{color: '#e91e49'}} />}
           {isInCart && <span><GiCheckMark /></span>}
         </button>

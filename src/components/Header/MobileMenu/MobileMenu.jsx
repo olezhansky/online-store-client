@@ -43,6 +43,7 @@ const MobileMenu = ({ isOpen, closeMenu }) => {
   };
   const handleLogin = () => {
     dispatch(loginModalOpenAction());
+    closeMenu();
   };
 
   return (
@@ -59,7 +60,9 @@ const MobileMenu = ({ isOpen, closeMenu }) => {
         </div>
         <div className={styles.header}>
           <div className={styles.loginWrapper}>
-            <FaUserAlt className={styles.loginIcon} />
+            <Link to="/profile" onClick={closeMenu}>
+              <FaUserAlt className={styles.loginIcon} />
+            </Link>
             <p onClick={handleLogin} className={styles.loginText}>
               Войти/Зарегистрироваться
             </p>
