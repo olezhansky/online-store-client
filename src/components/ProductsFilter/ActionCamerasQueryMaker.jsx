@@ -1,18 +1,30 @@
+/* eslint-disable max-len */
 /* eslint-disable object-curly-newline */
 /* eslint-disable operator-linebreak */
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable no-unused-vars */
 import React, { useMemo, memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearProductsAction, getFilteredProductsAction } from '../../store/products/actions';
+import {
+  clearProductsAction,
+  getFilteredProductsAction,
+  setCurrentFilterAction,
+} from '../../store/products/actions';
 
-const ActionCamerasQueryMaker = ({priceState, matrixType, features, wireless}) => {
+const ActionCamerasQueryMaker = ({
+  priceState,
+  matrixType,
+  features,
+  wireless,
+}) => {
   const rangeQuery = `&minPrice=${priceState[0]}&maxPrice=${priceState[1]}`;
   const currentCategory = useSelector(
     (state) => state.productsPage.currentCategory
   );
   const page = useSelector((state) => state.productsPage.currentPage);
   const perPage = useSelector((state) => state.productsPage.currentPerPage);
+  const sortBy = useSelector((state) => state.productsPage.sortBy);
+  const addQuerySortBy = `&sort=${sortBy}`;
   const dispatch = useDispatch();
 
   const result = useMemo(() => {
@@ -62,8 +74,6 @@ const ActionCamerasQueryMaker = ({priceState, matrixType, features, wireless}) =
     const filteredFeaturesArr = featuresArr.filter((item) => item !== null);
     const filteredWirelessArr = wirelessArr.filter((item) => item !== null);
 
-    // console.log('filteredQueryArr', filteredQueryArr.join(','));
-    // const addQuery = `&characteristics.type[1]=${queryArr.toString()}`;
     let addQueryMatrixType = '';
     let addQueryFeatures = '';
     let addQueryWireless = '';
@@ -79,19 +89,10 @@ const ActionCamerasQueryMaker = ({priceState, matrixType, features, wireless}) =
     }
 
     const finalQuery =
-    addQueryMatrixType + addQueryFeatures + addQueryWireless + rangeQuery;
-    if (finalQuery) {
-      console.log('FINAL QUERY: ', finalQuery);
-      dispatch(clearProductsAction());
-      dispatch(
-        getFilteredProductsAction(currentCategory, page, perPage, finalQuery)
-      );
-    } else {
-      console.log('SHOW ALL!!!');
-      dispatch(clearProductsAction());
-      dispatch(getFilteredProductsAction(currentCategory, page, perPage, ''));
-    }
-  }, [currentCategory, dispatch, features, matrixType, page, perPage, rangeQuery, wireless]);
+      addQueryMatrixType + addQueryFeatures + addQueryWireless + rangeQuery;
+    dispatch(setCurrentFilterAction(finalQuery));
+    return finalQuery;
+  }, [dispatch, features, matrixType, rangeQuery, wireless]);
 
   return null;
 };

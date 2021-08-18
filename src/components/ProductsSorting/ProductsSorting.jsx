@@ -7,6 +7,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { GiHamburgerMenu } from 'react-icons/gi';
+import PropTypes from 'prop-types';
 import { CgMenuGridR } from 'react-icons/cg';
 import {
   filteredProductsForPaginationAction,
@@ -19,24 +20,17 @@ import {
 } from '../../store/searchProducts/actions';
 import styles from './ProductsSorting.module.scss';
 
-const ProductsSorting = ({ currentPage, allProducts, handlerSwitch }) => {
-  const [currentInterval, setCurrentInterval] = useState([1, 3]);
+const ProductsSorting = ({handlerSwitch }) => {
   const dispatch = useDispatch();
-  console.log(currentPage);
   const showGrid = useSelector((state) => state.productsPage.showGrid);
-  const currentPerPage = useSelector((state) => state.productsPage.currentPerPage);
-  console.log(currentPerPage);
+  const currentPerPage = useSelector(
+    (state) => state.productsPage.currentPerPage
+  );
+  // console.log(currentPerPage);
   const sortBy = useSelector((state) => state.productsPage.sortBy);
-  const searchProductsPerPage = useSelector(
-    (state) => state.searchProducts.searchProductsPerPage
-  );
-  const searchProductsShowBy = useSelector(
-    (state) => state.searchProducts.showBy
-  );
 
   const handlePerPage = (e) => {
     const showBy = +e.target.value;
-    // filteredProductsForPaginationAction();
     dispatch(setCurrentPerPageAction(showBy));
   };
 
@@ -44,8 +38,6 @@ const ProductsSorting = ({ currentPage, allProducts, handlerSwitch }) => {
     dispatch(sortSearchProductsAction(e.target.value));
     dispatch(setSortQueryAction(e.target.value));
   };
-  const optArr = [];
-
   return (
     <div className={styles.ProductsSorting}>
       <div className={styles.ProductsSortingLeft}>
@@ -58,11 +50,15 @@ const ProductsSorting = ({ currentPage, allProducts, handlerSwitch }) => {
               handlePerPage(e);
             }}
           >
-            <option selected={currentPerPage === '3'} value="3">3 товара</option>
+            <option selected={currentPerPage === '3'} value="3">
+              3 товара
+            </option>
             <option selected={currentPerPage === '6'} value="6">
               6 товаров
             </option>
-            <option selected={currentPerPage === '9'} value="9">9 товаров</option>
+            <option selected={currentPerPage === '9'} value="9">
+              9 товаров
+            </option>
           </select>
         </div>
       </div>
@@ -73,9 +69,15 @@ const ProductsSorting = ({ currentPage, allProducts, handlerSwitch }) => {
           className={styles.SelectPrice}
           onChange={(e) => handleMinMaxSort(e)}
         >
-          <option selected={sortBy === ''} value="">Умолчанию</option>
-          <option selected={sortBy === '+currentPrice'} value="+currentPrice">Возростанию цены</option>
-          <option selected={sortBy === '-currentPrice'} value="-currentPrice">Уменьшению цены</option>
+          <option selected={sortBy === ''} value="">
+            Умолчанию
+          </option>
+          <option selected={sortBy === '+currentPrice'} value="+currentPrice">
+            Возростанию цены
+          </option>
+          <option selected={sortBy === '-currentPrice'} value="-currentPrice">
+            Уменьшению цены
+          </option>
         </select>
       </div>
       <div
@@ -90,6 +92,10 @@ const ProductsSorting = ({ currentPage, allProducts, handlerSwitch }) => {
       </div>
     </div>
   );
+};
+
+ProductsSorting.propTypes = {
+  handlerSwitch: PropTypes.func.isRequired,
 };
 
 export default ProductsSorting;
