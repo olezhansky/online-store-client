@@ -65,8 +65,6 @@ const ActionCamerasQueryMaker = ({priceState, matrixType, features, wireless}) =
     const filteredFeaturesArr = featuresArr.filter((item) => item !== null);
     const filteredWirelessArr = wirelessArr.filter((item) => item !== null);
 
-    // console.log('filteredQueryArr', filteredQueryArr.join(','));
-    // const addQuery = `&characteristics.type[1]=${queryArr.toString()}`;
     let addQueryMatrixType = '';
     let addQueryFeatures = '';
     let addQueryWireless = '';
