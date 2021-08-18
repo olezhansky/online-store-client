@@ -13,7 +13,7 @@ import { FaUserAlt } from 'react-icons/fa';
 // eslint-disable-next-line import/no-unresolved
 import { BsBoxArrowInRight } from 'react-icons/bs';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './MobileMenu.module.scss';
 import menuItems from '../../../Data/menuItems';
 import categoryItems from '../../../Data/buttomMenuItems';
@@ -26,6 +26,8 @@ import { loginModalOpenAction } from '../../../store/madals/actions';
 
 const MobileMenu = ({ isOpen, closeMenu }) => {
   const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state) => state.admin.isLoggedIn);
+  const isAdmin = useSelector((state) => state.admin.isAdmin);
   const menuStyles = classNames({
     [styles.MobileMenu]: true,
     [styles.MobileMenu_active]: isOpen,
@@ -60,9 +62,16 @@ const MobileMenu = ({ isOpen, closeMenu }) => {
         </div>
         <div className={styles.header}>
           <div className={styles.loginWrapper}>
+            {isLoggedIn && !isAdmin && (
             <Link to="/profile" onClick={closeMenu}>
               <FaUserAlt className={styles.loginIcon} />
             </Link>
+            )}
+            {isLoggedIn && isAdmin && (
+            <Link to="/profile" onClick={closeMenu}>
+              <FaUserAlt className={styles.loginIcon} />
+            </Link>
+            )}
             <p onClick={handleLogin} className={styles.loginText}>
               Войти/Зарегистрироваться
             </p>
