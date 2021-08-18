@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import styles from './ProductsFilter.module.scss';
-// import SearchProductsQueryMaker from './SearchProductsQueryMaker';
+import SearchProductsQueryMaker from './SearchProductsQueryMaker';
 import RangeSliderContainer from './RangeSlider/RangeSliderContainer';
 import FilterBlock from './FilterBlock/FilterBlock';
 
@@ -60,10 +60,10 @@ const SearchProductsFilter = () => {
   // ======================================
   return (
     <div className={styles.ProductsFilter}>
-      {/* <SearchProductsQueryMaker
+      <SearchProductsQueryMaker
         priceState={priceData}
         // brandState={brandState}
-      /> */}
+      />
       <RangeSliderContainer
         priceState={priceState}
         rangeSelector={rangeSelector}
