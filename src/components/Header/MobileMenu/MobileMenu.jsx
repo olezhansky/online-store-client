@@ -1,10 +1,11 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/prop-types */
 import classNames from 'classnames';
-import React from 'react';
+import { React, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 // eslint-disable-next-line import/no-unresolved
 import { VscChromeClose } from 'react-icons/vsc';
@@ -32,6 +33,7 @@ const MobileMenu = ({ isOpen, closeMenu }) => {
     [styles.MobileMenu]: true,
     [styles.MobileMenu_active]: isOpen,
   });
+  const currentUser = useSelector((state) => state.admin.currentUser);
   const MenuCover = classNames({
     [styles.MenuCover]: true,
     [styles.MenuCover_active]: isOpen,
@@ -47,6 +49,9 @@ const MobileMenu = ({ isOpen, closeMenu }) => {
     dispatch(loginModalOpenAction());
     closeMenu();
   };
+  useEffect(() => {
+    console.log(currentUser);
+  }, [currentUser]);
 
   return (
     <>
@@ -76,6 +81,7 @@ const MobileMenu = ({ isOpen, closeMenu }) => {
               Войти/Зарегистрироваться
             </p>
           </div>
+          {/* <LanguageSelector /> */}
         </div>
         <div className={styles.menuWrapper}>
           {menuItems.map((menuItem) => (
