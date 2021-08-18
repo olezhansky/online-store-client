@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable object-curly-newline */
 /* eslint-disable operator-linebreak */
 /* eslint-disable react-hooks/rules-of-hooks */
@@ -22,6 +23,8 @@ const VideoCamerasQueryMaker = ({
   );
   const page = useSelector((state) => state.productsPage.currentPage);
   const perPage = useSelector((state) => state.productsPage.currentPerPage);
+  const sortBy = useSelector((state) => state.productsPage.sortBy);
+  const addQuerySortBy = `&sort=${sortBy}`;
   const dispatch = useDispatch();
 
   const result = useMemo(() => {

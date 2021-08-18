@@ -96,8 +96,7 @@ const PhotoCamerasQueryMaker = ({
     const filteredBrandArr = brandArr.filter((item) => item !== null);
     const filteredSetArr = setArr.filter((item) => item !== null);
     const filteredMatrixSizeArr = matrixSizeArr.filter((item) => item !== null);
-    // console.log('filteredQueryArr', filteredQueryArr.join(','));
-    // const addQuery = `&characteristics.type[1]=${queryArr.toString()}`;
+    
     let addQueryType = '';
     let addQueryBrand = '';
     let addQuerySet = '';

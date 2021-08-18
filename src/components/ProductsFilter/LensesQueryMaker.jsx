@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable object-curly-newline */
 /* eslint-disable operator-linebreak */
 /* eslint-disable react-hooks/rules-of-hooks */
@@ -12,11 +13,14 @@ import {
 
 const LensesQueryMaker = ({ brandType, lenseType, bionet, priceState }) => {
   const rangeQuery = `&minPrice=${priceState[0]}&maxPrice=${priceState[1]}`;
+
   const currentCategory = useSelector(
     (state) => state.productsPage.currentCategory
   );
   const page = useSelector((state) => state.productsPage.currentPage);
   const perPage = useSelector((state) => state.productsPage.currentPerPage);
+  const sortBy = useSelector((state) => state.productsPage.sortBy);
+  const addQuerySortBy = `&sort=${sortBy}`;
   const dispatch = useDispatch();
 
   const result = useMemo(() => {

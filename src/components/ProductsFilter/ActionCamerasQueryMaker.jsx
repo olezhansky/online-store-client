@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable object-curly-newline */
 /* eslint-disable operator-linebreak */
 /* eslint-disable react-hooks/rules-of-hooks */
@@ -22,6 +23,8 @@ const ActionCamerasQueryMaker = ({
   );
   const page = useSelector((state) => state.productsPage.currentPage);
   const perPage = useSelector((state) => state.productsPage.currentPerPage);
+  const sortBy = useSelector((state) => state.productsPage.sortBy);
+  const addQuerySortBy = `&sort=${sortBy}`;
   const dispatch = useDispatch();
 
   const result = useMemo(() => {
@@ -71,8 +74,6 @@ const ActionCamerasQueryMaker = ({
     const filteredFeaturesArr = featuresArr.filter((item) => item !== null);
     const filteredWirelessArr = wirelessArr.filter((item) => item !== null);
 
-    // console.log('filteredQueryArr', filteredQueryArr.join(','));
-    // const addQuery = `&characteristics.type[1]=${queryArr.toString()}`;
     let addQueryMatrixType = '';
     let addQueryFeatures = '';
     let addQueryWireless = '';

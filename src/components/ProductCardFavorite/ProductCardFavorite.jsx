@@ -10,15 +10,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { BiCart } from 'react-icons/bi';
 import { BsFillStarFill, BsStar } from 'react-icons/bs';
-// import { FaShoppingCart } from 'react-icons/fa';
 import { GiCheckMark } from 'react-icons/gi';
 import { MdRemoveShoppingCart } from 'react-icons/md';
-
-// import PropTypes from 'prop-types';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './ProductCardFavorite.module.scss';
-// import { addProductToCartAction } from '../../store/cart/actions';
 import {
   setCategoryForBreadcrumbsAction,
   setFlagInCartAction,
@@ -61,12 +57,10 @@ const ProductCardFavorite = ({
         dispatch(addToCartMongoDB(product));
       } else {
         dispatch(addSingleProductToCartAction(product));
-        // dispatch(addProductToCartAction(product));
         dispatch(setFlagInCartAction(product));
       }
     }
   };
-
   const addProductToFavoritesHandler = () => {
     if (isInFavorites) {
       dispatch(deleteProdductFromFavoritesAction(product));
@@ -74,7 +68,6 @@ const ProductCardFavorite = ({
       dispatch(addProdductToFavoritesAction(product));
     }
   };
-
   const dispatchSingleProductHandler = () => {
     dispatch(setCategoryForBreadcrumbsAction(product));
     dispatch(setSingleProductAction(product));
@@ -82,7 +75,6 @@ const ProductCardFavorite = ({
       dispatch(addViewedProductAction(product));
     }
   };
-
   return (
     <div
       className={styles.ProductCard}
@@ -134,7 +126,6 @@ const ProductCardFavorite = ({
           className={styles.ProductFavorite}
           onClick={addProductToFavoritesHandler}
         >
-          {/* {isInFavorites ? <BsStar /> : <BsStar style={{color: '#e91e49'}} />} */}
           {isInFavorites ? (
             <span className={styles.ProductFavoriteColor}>
               <BsFillStarFill />
@@ -151,7 +142,6 @@ const ProductCardFavorite = ({
           className={styles.ProductCardIconCart}
           onClick={addProductToCartHandler}
         >
-          {/* {isInCart ? <FaShoppingCart /> : <BiCart />} */}
           {product.quantity !== 0 ? (
             <BiCart />
           ) : (
