@@ -22,10 +22,12 @@ import styles from './ProductsSorting.module.scss';
 const ProductsSorting = ({ currentPage, allProducts, handlerSwitch }) => {
   const [currentInterval, setCurrentInterval] = useState([1, 3]);
   const dispatch = useDispatch();
-  console.log(currentPage);
+  // console.log(currentPage);
   const showGrid = useSelector((state) => state.productsPage.showGrid);
-  const currentPerPage = useSelector((state) => state.productsPage.currentPerPage);
-  console.log(currentPerPage);
+  const currentPerPage = useSelector(
+    (state) => state.productsPage.currentPerPage
+  );
+  // console.log(currentPerPage);
   const sortBy = useSelector((state) => state.productsPage.sortBy);
   const searchProductsPerPage = useSelector(
     (state) => state.searchProducts.searchProductsPerPage
@@ -58,11 +60,15 @@ const ProductsSorting = ({ currentPage, allProducts, handlerSwitch }) => {
               handlePerPage(e);
             }}
           >
-            <option selected={currentPerPage === '3'} value="3">3 товара</option>
+            <option selected={currentPerPage === '3'} value="3">
+              3 товара
+            </option>
             <option selected={currentPerPage === '6'} value="6">
               6 товаров
             </option>
-            <option selected={currentPerPage === '9'} value="9">9 товаров</option>
+            <option selected={currentPerPage === '9'} value="9">
+              9 товаров
+            </option>
           </select>
         </div>
       </div>
@@ -73,9 +79,15 @@ const ProductsSorting = ({ currentPage, allProducts, handlerSwitch }) => {
           className={styles.SelectPrice}
           onChange={(e) => handleMinMaxSort(e)}
         >
-          <option selected={sortBy === ''} value="">Умолчанию</option>
-          <option selected={sortBy === '+currentPrice'} value="+currentPrice">Возростанию цены</option>
-          <option selected={sortBy === '-currentPrice'} value="-currentPrice">Уменьшению цены</option>
+          <option selected={sortBy === ''} value="">
+            Умолчанию
+          </option>
+          <option selected={sortBy === '+currentPrice'} value="+currentPrice">
+            Возростанию цены
+          </option>
+          <option selected={sortBy === '-currentPrice'} value="-currentPrice">
+            Уменьшению цены
+          </option>
         </select>
       </div>
       <div
@@ -92,4 +104,4 @@ const ProductsSorting = ({ currentPage, allProducts, handlerSwitch }) => {
   );
 };
 
-export default ProductsSorting;
+export default React.memo(ProductsSorting);

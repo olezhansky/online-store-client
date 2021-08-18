@@ -4,9 +4,18 @@
 /* eslint-disable no-unused-vars */
 import React, { useMemo, memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearProductsAction, getFilteredProductsAction } from '../../store/products/actions';
+import {
+  clearProductsAction,
+  getFilteredProductsAction,
+  setCurrentFilterAction,
+} from '../../store/products/actions';
 
-const VideoCamerasQueryMaker = ({lenseType, priceState, fileFormat, connectors }) => {
+const VideoCamerasQueryMaker = ({
+  lenseType,
+  priceState,
+  fileFormat,
+  connectors,
+}) => {
   const rangeQuery = `&minPrice=${priceState[0]}&maxPrice=${priceState[1]}`;
   const currentCategory = useSelector(
     (state) => state.productsPage.currentCategory
@@ -56,8 +65,6 @@ const VideoCamerasQueryMaker = ({lenseType, priceState, fileFormat, connectors }
     const filteredLenseTypeArr = lenseTypeArr.filter((item) => item !== null);
     const filteredFileFormatArr = fileFormatArr.filter((item) => item !== null);
 
-    // console.log('filteredQueryArr', filteredQueryArr.join(','));
-    // const addQuery = `&characteristics.type[1]=${queryArr.toString()}`;
     let addQueryConnectors = '';
     let addQueryLensType = '';
     let addQueryFileFormat = '';
@@ -71,21 +78,11 @@ const VideoCamerasQueryMaker = ({lenseType, priceState, fileFormat, connectors }
     if (filteredFileFormatArr.length > 0) {
       addQueryFileFormat = `&format=${filteredFileFormatArr.join(',')}`;
     }
-
     const finalQuery =
-    addQueryConnectors + addQueryFileFormat + addQueryLensType + rangeQuery;
-    if (finalQuery) {
-      console.log('FINAL QUERY: ', finalQuery);
-      dispatch(clearProductsAction());
-      dispatch(
-        getFilteredProductsAction(currentCategory, page, perPage, finalQuery)
-      );
-    } else {
-      console.log('SHOW ALL!!!');
-      dispatch(clearProductsAction());
-      dispatch(getFilteredProductsAction(currentCategory, page, perPage, ''));
-    }
-  }, [connectors, currentCategory, dispatch, fileFormat, lenseType, page, perPage, rangeQuery]);
+      addQueryConnectors + addQueryFileFormat + addQueryLensType + rangeQuery;
+    dispatch(setCurrentFilterAction(finalQuery));
+    return finalQuery;
+  }, [connectors, dispatch, fileFormat, lenseType, rangeQuery]);
 
   return null;
 };

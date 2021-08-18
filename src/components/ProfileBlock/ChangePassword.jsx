@@ -45,7 +45,9 @@ const ChangePassword = () => {
           console.log('editedCustomer', response);
           setSubmitting(false);
           if (response.data.password) {
-            dispatch(authorizationPopupAction('Вы ввели неверный текущий пароль'));
+            dispatch(
+              authorizationPopupAction('Вы ввели неверный текущий пароль')
+            );
             // alert('Вы ввели неправильный текущий пароль');
           }
           if (response.data.message) {
@@ -162,4 +164,4 @@ const ChangePassword = () => {
   );
 };
 
-export default ChangePassword;
+export default React.memo(ChangePassword);

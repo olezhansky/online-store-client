@@ -4,9 +4,18 @@
 /* eslint-disable no-unused-vars */
 import React, { useMemo, memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearProductsAction, getFilteredProductsAction } from '../../store/products/actions';
+import {
+  clearProductsAction,
+  getFilteredProductsAction,
+  setCurrentFilterAction,
+} from '../../store/products/actions';
 
-const ActionCamerasQueryMaker = ({priceState, matrixType, features, wireless}) => {
+const ActionCamerasQueryMaker = ({
+  priceState,
+  matrixType,
+  features,
+  wireless,
+}) => {
   const rangeQuery = `&minPrice=${priceState[0]}&maxPrice=${priceState[1]}`;
   const currentCategory = useSelector(
     (state) => state.productsPage.currentCategory
@@ -79,19 +88,10 @@ const ActionCamerasQueryMaker = ({priceState, matrixType, features, wireless}) =
     }
 
     const finalQuery =
-    addQueryMatrixType + addQueryFeatures + addQueryWireless + rangeQuery;
-    if (finalQuery) {
-      console.log('FINAL QUERY: ', finalQuery);
-      dispatch(clearProductsAction());
-      dispatch(
-        getFilteredProductsAction(currentCategory, page, perPage, finalQuery)
-      );
-    } else {
-      console.log('SHOW ALL!!!');
-      dispatch(clearProductsAction());
-      dispatch(getFilteredProductsAction(currentCategory, page, perPage, ''));
-    }
-  }, [currentCategory, dispatch, features, matrixType, page, perPage, rangeQuery, wireless]);
+      addQueryMatrixType + addQueryFeatures + addQueryWireless + rangeQuery;
+    dispatch(setCurrentFilterAction(finalQuery));
+    return finalQuery;
+  }, [dispatch, features, matrixType, rangeQuery, wireless]);
 
   return null;
 };

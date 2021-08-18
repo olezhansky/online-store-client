@@ -533,7 +533,7 @@ const ContactDetails = () => {
                     formik.errors.selfDelivery &&
                     formik.touched.selfDelivery ? (
                       <div className={styles.formError}>
-                        {formik.errors.name}
+                        {formik.errors.selfDelivery}
                       </div>
                     ) : null}
                   </div>

@@ -4,7 +4,11 @@
 /* eslint-disable no-unused-vars */
 import React, { useMemo, memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearProductsAction, getFilteredProductsAction } from '../../store/products/actions';
+import {
+  clearProductsAction,
+  getFilteredProductsAction,
+  setCurrentFilterAction,
+} from '../../store/products/actions';
 
 const LensesQueryMaker = ({ brandType, lenseType, bionet, priceState }) => {
   const rangeQuery = `&minPrice=${priceState[0]}&maxPrice=${priceState[1]}`;
@@ -86,27 +90,9 @@ const LensesQueryMaker = ({ brandType, lenseType, bionet, priceState }) => {
 
     const finalQuery =
       addQueryType + addQueryBrand + addQueryBionet + rangeQuery;
-    if (finalQuery) {
-      console.log('FINAL QUERY: ', finalQuery);
-      dispatch(clearProductsAction());
-      dispatch(
-        getFilteredProductsAction(currentCategory, page, perPage, finalQuery)
-      );
-    } else {
-      console.log('SHOW ALL!!!');
-      dispatch(clearProductsAction());
-      dispatch(getFilteredProductsAction(currentCategory, page, perPage, ''));
-    }
-  }, [
-    bionet,
-    brandType,
-    currentCategory,
-    dispatch,
-    lenseType,
-    page,
-    perPage,
-    rangeQuery,
-  ]);
+    dispatch(setCurrentFilterAction(finalQuery));
+    return finalQuery;
+  }, [bionet, brandType, dispatch, lenseType, rangeQuery]);
 
   return null;
 };
