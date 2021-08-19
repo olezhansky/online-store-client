@@ -73,7 +73,6 @@ const EditProduct = ({ product }) => {
       dispatch(editProduct(newProduct));
       /* Do something with updatedProduct */
     });
-    console.log(newProduct);
   };
   const productSchema = Yup.object().shape({
     brand: Yup.string().required('Is required'),
